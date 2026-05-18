@@ -39,7 +39,7 @@ function About() {
           University, and Daxbot.
         </p>
         <p className="fade-in" style={{ animationDelay: '0.3s' }}>
-          Outside work, I enjoy running, exploring the PNW, and chipping away at
+          When I'm not working or chasing my kids around, I enjoy strength training, tinkering with my homelab, and chipping away at
           a Cosmere novel.
         </p>
         <br></br>

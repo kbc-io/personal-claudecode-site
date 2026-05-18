@@ -1,6 +1,6 @@
 {
-  "title": "Carnegie Mellon Web App",
-  "description": "Brief description for the portfolio grid card.",
+  "title": "CMU x AI",
+  "description": "UI/UX ovehaul of an AI-powered learning app for Cargnegie Mellon.",
   "image": "cmu-app-01.png",
   "visible": true,
   "tags": ["Design", "Strategy"],

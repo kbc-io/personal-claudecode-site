@@ -228,6 +228,22 @@
   margin-bottom: 4px;
 }
 
+/* Company tenure group — vertical line spanning multiple roles at the same company */
+.company-group {
+  position: relative;
+}
+
+.company-group::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--border-color);
+  opacity: 1;
+}
+
 /* About Page */
 .about-content {
   max-width: 600px;

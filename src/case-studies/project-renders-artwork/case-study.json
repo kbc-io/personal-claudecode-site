@@ -1,0 +1,25 @@
+{
+  "title": "Renders + Artwork",
+  "description": "Brief description for the portfolio grid card.",
+  "image": "thumbnail.jpg",
+  "visible": true,
+  "tags": ["3D", "Graphics"],
+  "order": 7,
+  "caseStudy": {
+    "heroImage": "hero.jpg",
+    "overview": "",
+    "role": "",
+    "timeline": "",
+    "team": "",
+    "objectives": [],
+    "challenge": "",
+    "approach": "",
+    "userExperience": {
+      "description": "",
+      "insights": []
+    },
+    "solution": "",
+    "images": [],
+    "results": []
+  }
+}
