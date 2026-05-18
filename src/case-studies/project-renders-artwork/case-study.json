@@ -1,25 +1,12 @@
 {
   "title": "Renders + Artwork",
-  "description": "Brief description for the portfolio grid card.",
-  "image": "thumbnail.jpg",
+  "description": "3D renders, motion graphics, and vector artwork.",
+  "image": "renders-artwork-01.png",
   "visible": true,
+  "layout": "gallery",
   "tags": ["3D", "Graphics"],
   "order": 7,
   "caseStudy": {
-    "heroImage": "hero.jpg",
-    "overview": "",
-    "role": "",
-    "timeline": "",
-    "team": "",
-    "objectives": [],
-    "challenge": "",
-    "approach": "",
-    "userExperience": {
-      "description": "",
-      "insights": []
-    },
-    "solution": "",
-    "images": [],
-    "results": []
+    "overview": ""
   }
 }

@@ -23,13 +23,33 @@ function resolveImage(slug, filename) {
 }
 
 function resolveImages(slug, data) {
+  if (data.layout === 'gallery') {
+    // Auto-discover every image in the folder, sorted by filename.
+    // No manual list in case-study.json needed — just drop images into the folder.
+    const prefix = `../case-studies/${slug}/`
+    const galleryImages = Object.entries(imageModules)
+      .filter(([path]) => path.startsWith(prefix))
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([, url]) => ({ src: url, caption: '' }))
+
+    return {
+      ...data,
+      // Use explicit thumbnail if provided; otherwise fall back to first discovered image
+      image: data.image ? resolveImage(slug, data.image) : (galleryImages[0]?.src ?? null),
+      caseStudy: {
+        ...data.caseStudy,
+        images: galleryImages
+      }
+    }
+  }
+
   return {
     ...data,
     image: resolveImage(slug, data.image),
     caseStudy: {
       ...data.caseStudy,
-      heroImage: resolveImage(slug, data.caseStudy.heroImage),
-      images: data.caseStudy.images?.map(img => ({
+      heroImage: resolveImage(slug, data.caseStudy?.heroImage),
+      images: data.caseStudy?.images?.map(img => ({
         ...img,
         src: resolveImage(slug, img.src)
       }))

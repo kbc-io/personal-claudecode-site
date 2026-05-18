@@ -693,6 +693,41 @@
   border-top: 1px solid var(--border-color);
 }
 
+/* Bento gallery grid */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 300px;
+  gap: 12px;
+  margin-top: 32px;
+  margin-bottom: 40px;
+}
+
+.bento-item {
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background-color: var(--gallery-image-bg);
+  display: block;
+}
+
+.bento-item.wide {
+  grid-column: span 2;
+}
+
+.bento-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.bento-item:hover img {
+  opacity: 0.8;
+}
+
 /* Case Study Image Strip */
 .case-study-image-strip {
   display: grid;
