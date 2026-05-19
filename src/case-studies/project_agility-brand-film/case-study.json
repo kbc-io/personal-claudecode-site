@@ -3,7 +3,7 @@
   "description": "Brand + visual design support",
   "image": "agility-brand-film-03.png",
   "visible": true,
-  "tags": ["Video"],
+  "tags": ["Video", "Brand"],
   "order": 4,
   "caseStudy": {
     "heroImage": "agility-brand-film-03.png",

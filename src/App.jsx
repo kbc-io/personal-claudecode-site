@@ -25,7 +25,7 @@ function App() {
           <div className="navbar-content">
             <ul className="nav-links">
               <li><NavLink to="/">Resume</NavLink></li>
-              <li><NavLink to="/portfolio">Case Studies</NavLink></li>
+              <li><NavLink to="/portfolio">Portfolio</NavLink></li>
               <li><NavLink to="/about">About</NavLink></li>
             </ul>
           </div>

@@ -3,7 +3,7 @@
   "description": "Brief description of the project and your role.",
   "image": "robot-livery-01.png",
   "visible": true,
-  "tags": ["Content", "Strategy"],
+  "tags": ["Graphics", "Print"],
   "order": 3,
   "caseStudy": {
     "heroImage": "robot-livery-02.png",

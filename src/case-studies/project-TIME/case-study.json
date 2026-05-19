@@ -2,7 +2,7 @@
   "title": "TIME",
   "description": "Company brand liason",
   "image": "thumbnail.jpg",
-  "visible": true,
+  "visible": false,
   "tags": ["Tag1", "Tag2"],
   "order": 9,
   "caseStudy": {

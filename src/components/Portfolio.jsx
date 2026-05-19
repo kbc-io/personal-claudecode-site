@@ -22,7 +22,7 @@ function Portfolio() {
 
   return (
     <section className="section">
-      <h2>Case Studies</h2>
+      <h2>Recent Work</h2>
       <div className="filter-bar">
         {allTags.map((tag) => (
           <button

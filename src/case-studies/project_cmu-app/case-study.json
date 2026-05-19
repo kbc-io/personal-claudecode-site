@@ -3,7 +3,7 @@
   "description": "UI/UX ovehaul of an AI-powered learning app for Cargnegie Mellon.",
   "image": "cmu-app-01.png",
   "visible": true,
-  "tags": ["Design", "Strategy"],
+  "tags": ["Web", "UI/UX"],
   "order": 5,
   "caseStudy": {
     "heroImage": "cmu-app-01.png",
