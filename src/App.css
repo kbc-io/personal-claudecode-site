@@ -728,6 +728,89 @@
   opacity: 0.8;
 }
 
+/* Multi-gallery groups */
+.gallery-group {
+  margin-bottom: 56px;
+}
+
+.gallery-group:last-child {
+  margin-bottom: 0;
+}
+
+.gallery-group-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  margin: 0 0 0 0;
+}
+
+/* Carousel (multi-gallery layout) */
+.carousel {
+  margin-top: 16px;
+}
+
+.carousel-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.carousel-item {
+  height: 240px;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background-color: var(--gallery-image-bg);
+  display: block;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.carousel-item:hover img {
+  opacity: 0.8;
+}
+
+.carousel-nav {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.carousel-arrow {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-color);
+  background: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease, background-color 0.15s ease;
+  padding: 0;
+}
+
+.carousel-arrow.disabled,
+.carousel-arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.carousel-arrow:not(:disabled):hover {
+  background-color: var(--border-color);
+}
+
 /* Case Study Image Strip */
 .case-study-image-strip {
   display: grid;

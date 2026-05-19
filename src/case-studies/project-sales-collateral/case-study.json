@@ -1,25 +1,16 @@
 {
   "title": "Sales Collateral",
-  "description": "Brief description for the portfolio grid card.",
-  "image": "thumbnail.jpg",
+  "description": "Sales and marketing collateral for Agility Robotics and Active911.",
+  "image": "agility-collateral-03.png",
   "visible": true,
-  "tags": ["Branding", "Video"],
+  "layout": "multi-gallery",
+  "tags": ["Branding", "Design"],
   "order": 6,
   "caseStudy": {
-    "heroImage": "hero.jpg",
     "overview": "",
-    "role": "",
-    "timeline": "",
-    "team": "",
-    "objectives": [],
-    "challenge": "",
-    "approach": "",
-    "userExperience": {
-      "description": "",
-      "insights": []
-    },
-    "solution": "",
-    "images": [],
-    "results": []
+    "groups": [
+      { "label": "Agility Robotics", "prefix": "agility-" },
+      { "label": "Active911",        "prefix": "A911-"    }
+    ]
   }
 }

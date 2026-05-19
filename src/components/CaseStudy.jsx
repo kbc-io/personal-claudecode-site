@@ -59,15 +59,25 @@ function CaseStudy() {
   const [lightboxIndex, setLightboxIndex] = useState(null)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [galleryLayout, setGalleryLayout] = useState(null)
+  const [galleryGroups, setGalleryGroups] = useState(null)
+  const [carouselIndices, setCarouselIndices] = useState({})
+  const getCarouselIndex = (label) => carouselIndices[label] ?? 0
+  const setCarouselGroupIndex = (label, idx) =>
+    setCarouselIndices(prev => ({ ...prev, [label]: idx }))
   const sentinelRef = useRef(null)
 
   // Raw discovered images (alphabetical). Used for the image strip and for
   // standard (non-gallery) lightbox navigation.
   const images = project?.caseStudy?.images || []
 
-  // For gallery pages, activeImages is the computed layout (may reorder images
-  // to produce clean rows). For standard pages it's the same as images.
-  const activeImages = project?.layout === 'gallery' ? (galleryLayout ?? []) : images
+  // activeImages drives the lightbox for all layout types:
+  //   gallery      → computed layout order (may differ from alphabetical)
+  //   multi-gallery → all groups flattened in order
+  //   standard     → raw images list
+  const activeImages =
+    project?.layout === 'gallery'       ? (galleryLayout ?? []) :
+    project?.layout === 'multi-gallery' ? (galleryGroups?.flatMap(g => g.images) ?? []) :
+    images
 
   // Scroll to top on every case study entry
   useEffect(() => {
@@ -108,7 +118,7 @@ function CaseStudy() {
   // layout algorithm. Re-runs whenever the slug changes (different gallery).
   useEffect(() => {
     if (project?.layout !== 'gallery' || !images.length) return
-    setGalleryLayout(null) // reset while new dims are loading
+    setGalleryLayout(null)
 
     Promise.all(
       images.map(img => new Promise(resolve => {
@@ -118,6 +128,16 @@ function CaseStudy() {
         el.src = img.src
       }))
     ).then(dims => setGalleryLayout(computeGalleryLayout(dims)))
+  }, [slug]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // For multi-gallery layouts: populate groups from already-resolved project data (no async needed).
+  useEffect(() => {
+    if (project?.layout !== 'multi-gallery') return
+    const groups = project.caseStudy?.groups || []
+    setGalleryGroups(null)
+    setCarouselIndices({})
+    if (!groups.length) return
+    setGalleryGroups(groups.map(g => ({ label: g.label, images: g.images })))
   }, [slug]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // -------------------------------------------------------------------------
@@ -152,7 +172,7 @@ function CaseStudy() {
 
       {/* Sticky header */}
       <div className={`case-study-sticky-header${isCollapsed ? ' collapsed' : ''}`}>
-        {stripImages.length > 0 && (
+        {stripImages.length > 0 && project?.layout !== 'multi-gallery' && (
           <div className="case-study-image-strip">
             {stripImages.map((image, index) => (
               <button
@@ -187,9 +207,64 @@ function CaseStudy() {
       </div>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Gallery layout                                                       */}
+      {/* Multi-gallery layout (grouped bento grids)                          */}
       {/* ------------------------------------------------------------------ */}
-      {project.layout === 'gallery' ? (
+      {project.layout === 'multi-gallery' ? (
+        galleryGroups && (() => {
+          let offset = 0
+          return galleryGroups.map((group) => {
+            const groupOffset = offset
+            offset += group.images.length
+            const carouselStart = getCarouselIndex(group.label)
+            const canGoPrev = carouselStart > 0
+            const canGoNext = group.images.length > 4 && carouselStart < group.images.length - 4
+            const visibleImages = group.images.slice(carouselStart, carouselStart + 4)
+            return (
+              <div key={group.label} className="gallery-group">
+                <h2 className="gallery-group-label">{group.label}</h2>
+                <div className="carousel">
+                  <div className="carousel-track">
+                    {visibleImages.map((image, i) => (
+                      <button
+                        key={carouselStart + i}
+                        className="carousel-item fade-in"
+                        onClick={() => setLightboxIndex(groupOffset + carouselStart + i)}
+                        aria-label={`View image ${carouselStart + i + 1}`}
+                      >
+                        <img src={image.src} alt={image.caption || `Image ${carouselStart + i + 1}`} />
+                      </button>
+                    ))}
+                  </div>
+                  {group.images.length > 4 && (
+                    <div className="carousel-nav">
+                      <button
+                        className={`carousel-arrow${!canGoPrev ? ' disabled' : ''}`}
+                        onClick={() => canGoPrev && setCarouselGroupIndex(group.label, carouselStart - 1)}
+                        disabled={!canGoPrev}
+                        aria-label="Previous image"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <polyline points="13,3 5,10 13,17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                      <button
+                        className={`carousel-arrow${!canGoNext ? ' disabled' : ''}`}
+                        onClick={() => canGoNext && setCarouselGroupIndex(group.label, carouselStart + 1)}
+                        disabled={!canGoNext}
+                        aria-label="Next image"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <polyline points="7,3 15,10 7,17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )
+          })
+        })()
+      ) : project.layout === 'gallery' ? (
         galleryLayout && (
           <div className="bento-grid">
             {galleryLayout.map((image, index) => (

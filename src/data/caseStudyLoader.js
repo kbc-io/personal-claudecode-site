@@ -23,6 +23,39 @@ function resolveImage(slug, filename) {
 }
 
 function resolveImages(slug, data) {
+  if (data.layout === 'multi-gallery') {
+    // Auto-discover all images in the folder and group them by filename prefix.
+    // Groups are defined in case-study.json as [{ label, prefix }].
+    // Adding images to a group is as simple as dropping a file with the matching prefix.
+    const folderPrefix = `../case-studies/${slug}/`
+    const allEntries = Object.entries(imageModules)
+      .filter(([path]) => path.startsWith(folderPrefix))
+      .sort(([a], [b]) => a.localeCompare(b))
+
+    const groups = (data.caseStudy?.groups || []).map(group => ({
+      label: group.label,
+      prefix: group.prefix,
+      images: allEntries
+        .filter(([path]) => {
+          const filename = path.split('/').pop()
+          return filename.toLowerCase().startsWith(group.prefix.toLowerCase())
+        })
+        .map(([, url]) => ({ src: url, caption: '' }))
+    }))
+
+    const flatImages = groups.flatMap(g => g.images)
+
+    return {
+      ...data,
+      image: data.image ? resolveImage(slug, data.image) : (flatImages[0]?.src ?? null),
+      caseStudy: {
+        ...data.caseStudy,
+        groups,
+        images: flatImages  // flat list used for the image strip
+      }
+    }
+  }
+
   if (data.layout === 'gallery') {
     // Auto-discover every image in the folder, sorted by filename.
     // No manual list in case-study.json needed — just drop images into the folder.
