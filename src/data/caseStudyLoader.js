@@ -99,4 +99,8 @@ export function loadCaseStudies() {
     })
     .filter(project => project.visible !== false)
     .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
+    .map(project => ({
+      ...project,
+      tags: project.tags ? [...project.tags].sort() : project.tags
+    }))
 }

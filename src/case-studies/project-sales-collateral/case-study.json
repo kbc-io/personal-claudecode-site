@@ -1,7 +1,7 @@
 {
   "title": "Sales Collateral",
   "description": "Sales and marketing collateral for Agility Robotics and Active911.",
-  "image": "agility-collateral-03.png",
+  "image": "agility-post-spec-sheet-p-1.png",
   "visible": true,
   "layout": "multi-gallery",
   "tags": ["Graphics", "Print"],
@@ -9,8 +9,12 @@
   "caseStudy": {
     "overview": "",
     "groups": [
-      { "label": "Agility Robotics", "prefix": "agility-" },
-      { "label": "Active911",        "prefix": "A911-"    }
+      { "label": "Digit Spec Sheet",    "prefix": "agility-post-spec-sheet-"    },
+      { "label": "Manufacturing Guide", "prefix": "agility-post-manufacturing-" },
+      { "label": "Safety Guide",        "prefix": "agility-post-safety-"        },
+      { "label": "Workflows Guide",     "prefix": "agility-post-workflows-"     },
+      { "label": "Agility - Pre Rebrand", "prefix": "agility-collateral-"       },
+      { "label": "Active911",             "prefix": "A911-"                     }
     ]
   }
 }

@@ -59,21 +59,25 @@ function Resume() {
 
       <section className="section fade-in" style={{ animationDelay: `${(experience.length + 1) * 0.1}s` }}>
         <h2>Education</h2>
-        {education.map((edu, index) => (
-          <div className="job fade-in" key={index} style={{ animationDelay: `${(experience.length + 2 + index) * 0.1}s` }}>
-            <div className="job-header">
-              <span className="job-title">{edu.degree}</span>
-              {/* <span className="job-date">{edu.startDate} - {edu.endDate}</span> */}
+        <div className="resume-section-container">
+          {education.map((edu, index) => (
+            <div className="job fade-in" key={index} style={{ animationDelay: `${(experience.length + 2 + index) * 0.1}s` }}>
+              <div className="job-header">
+                <span className="job-title">{edu.degree}</span>
+                {/* <span className="job-date">{edu.startDate} - {edu.endDate}</span> */}
+              </div>
+              <div className="job-company">{edu.institution}</div>
             </div>
-            <div className="job-company">{edu.institution}</div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
       <section className="section fade-in" style={{ animationDelay: `${(experience.length + education.length + 2) * 0.1}s` }}>
         <h2>Skills</h2>
-        <div className="job-description">
-          <p>{skills.join(', ')}</p>
+        <div className="resume-section-container">
+          <div className="job-description">
+            <p>{skills.join(', ')}</p>
+          </div>
         </div>
       </section>
     </>

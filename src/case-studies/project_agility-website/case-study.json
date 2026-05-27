@@ -7,27 +7,10 @@
   "order": 2,
   "caseStudy": {
     "heroImage": "agility-website-02.png",
-    "overview": "Agility Robotics had outgrown its Squarespace website. As the company scaled, the platform became a bottleneck — limiting custom layouts, interactions, and the design quality needed to compete with the industry's best. I led the visual design of a full site redesign, prototyping in Figma while a marketing strategist built the new site in Webflow in parallel.",
     "role": "Visual / UX Designer",
     "timeline": "A few months (condensed, parallel build)",
-    "team": "Visual Designer (me), Marketing Strategist (Webflow), Product Marketing Manager, Chief Business Officer",
-    "objectives": [
-      "Replace Squarespace with a flexible, scalable design framework in Webflow",
-      "Improve information architecture to support both top-down and bottom-up user journeys",
-      "Elevate the visual quality and polish of the site to match industry leaders",
-      "Create a megamenu navigation structure that simplifies access to dense content"
-    ],
-    "challenge": "The timeline was extremely condensed — there was no opportunity to fully prototype the new site before migration began. While I was still designing in Figma, the strategist was already building in Webflow. This meant decisions had to be made quickly and confidently, and any major pivots would be costly. Squarespace had also created content and information architecture habits that needed to be deliberately broken.",
-    "approach": "I started with a competitive analysis, studying sites with the level of polish we were aiming for: Apple, Figure.ai, Tesla, and Rivian. These references helped establish a clear visual direction early. I focused first on the navigation — a megamenu structure that could elegantly handle Agility's complex content hierarchy. Weekly syncs with the strategist kept Figma prototypes aligned with Webflow's build progress, allowing us to course-correct before decisions became locked in.",
-    "userExperience": {
-      "description": "The site needed to serve two types of visitors: those who start from an industry and want to drill down to relevant use cases, and those who already know what task they need a robot to perform and want to navigate up to the broader context. Supporting both paths simultaneously was the core information architecture challenge.",
-      "insights": [
-        "Potential customers navigate top-down (industry → use case); others start bottom-up (use case → industry) — the nav had to support both",
-        "The brand's visual identity is open and breathable, but the product content is dense and technical — the design had to balance both without cluttering key surfaces",
-        "A megamenu structure with an expanded footer significantly reduces friction to reaching desired information"
-      ]
-    },
-    "solution": "The redesign delivered a new megamenu navigation and expanded footer that simplified wayfinding across Agility's content. The visual design elevated the site's quality to be competitive with industry leaders, while preserving the brand's clean, open aesthetic. Built in Webflow, the new framework is extensible in ways Squarespace never could have been — giving the team a foundation to continue building on. I collaborated with the Product Marketing Manager on customer profiles and incorporated feedback from the Chief Business Officer throughout.",
+    "team": "Brand Designer (me), Brand Director, Upstatement, Chief Business Officer",
+    "teamHtml": "Brand Designer (me), Brand Director, <a href=\"https://upstatement.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Upstatement</a>, Chief Business Officer",
     "images": [
       {
         "src": "agility-website-03.png",
@@ -53,12 +36,6 @@
         "src": "agility-website-08.png",
         "caption": "Site layout and visual system"
       }
-    ],
-    "results": [
-      "Successfully migrated from Squarespace to a scalable Webflow framework",
-      "New megamenu and footer dramatically improved navigation to key content",
-      "Positive feedback from leadership on the updated visual design and polish",
-      "Established a design foundation the team can continue to build and iterate on"
     ]
   }
 }

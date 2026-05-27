@@ -228,20 +228,29 @@
   margin-bottom: 4px;
 }
 
-/* Company tenure group — vertical line spanning multiple roles at the same company */
+/* Company tenure group — bordered container spanning multiple roles at the same company */
 .company-group {
   position: relative;
+  border: 1px solid rgba(56, 56, 56, 0.7);
+  padding: 20px 20px 0 20px;
+  margin-bottom: 20px;
 }
 
-.company-group::before {
-  content: '';
-  position: absolute;
-  left: -20px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background-color: var(--border-color);
-  opacity: 1;
+/* Resume section container — same treatment for Education and Skills */
+.resume-section-container {
+  border: 1px solid rgba(56, 56, 56, 0.7);
+  padding: 20px 20px 0 20px;
+}
+
+/* Remove bottom margin from last job inside any resume container so padding is consistent */
+.company-group .job:last-child,
+.resume-section-container .job:last-child {
+  margin-bottom: 20px;
+}
+
+/* Skills block inside container needs bottom spacing too */
+.resume-section-container .job-description {
+  padding-bottom: 20px;
 }
 
 /* About Page */
@@ -317,6 +326,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
 }
 
 .project-info {
@@ -575,6 +585,23 @@
   width: 100%;
   height: auto;
   display: block;
+}
+
+.case-study-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 50px;
+  background-color: #000;
+}
+
+.case-study-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
 }
 
 .case-study-section {
@@ -981,6 +1008,118 @@
 
 .lightbox-arrow-next {
   right: 20px;
+}
+
+/* PDF card in multi-gallery */
+.pdf-group-track {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.pdf-card {
+  height: 240px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  padding: 0;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.pdf-card:hover {
+  border-color: var(--text-secondary);
+}
+
+.pdf-card-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* PDF lightbox overlay */
+.pdf-lightbox-overlay {
+  align-items: flex-start;
+  padding: 60px 40px 40px;
+  overflow-y: auto;
+}
+
+.pdf-lightbox-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: lightboxSlideIn 0.2s ease;
+}
+
+.pdf-lightbox-title {
+  font-family: var(--font-sans);
+  font-size: var(--type-headline-small-size);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.pdf-lightbox-loading {
+  font-family: var(--font-mono);
+  font-size: var(--type-eyebrow-size);
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  padding: 60px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* 3-row horizontal-scroll page grid */
+.pdf-page-grid {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  /* Thin scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+
+.pdf-page-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.pdf-page-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.pdf-page-grid::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.15);
+  border-radius: 3px;
+}
+
+.pdf-page-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.pdf-page-canvas {
+  display: block;
+  height: 320px;
+  width: auto;
+  background-color: #ffffff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.pdf-page-number {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.05em;
 }
 
 /* Tablet breakpoint */
