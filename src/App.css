@@ -695,7 +695,7 @@
   border-top: 1px solid var(--border-color);
 }
 
-/* Bento gallery grid */
+/* Bento gallery grid — used for Renders + Artwork and all standard case studies */
 .bento-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -730,7 +730,7 @@
   opacity: 0.8;
 }
 
-/* Multi-gallery groups */
+/* Multi-gallery groups (Sales Collateral) */
 .gallery-group {
   margin-bottom: 56px;
 }
@@ -749,7 +749,7 @@
   margin: 0 0 0 0;
 }
 
-/* Carousel (multi-gallery layout) */
+/* Carousel (Sales Collateral) */
 .carousel {
   margin-top: 16px;
 }
@@ -811,54 +811,6 @@
 
 .carousel-arrow:not(:disabled):hover {
   background-color: var(--border-color);
-}
-
-/* Case Study Image Strip — horizontal scroll, natural aspect ratios, fixed height */
-.case-study-image-strip {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  overflow-x: auto;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  padding-bottom: 4px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-color) transparent;
-}
-
-.case-study-image-strip::-webkit-scrollbar {
-  height: 4px;
-}
-
-.case-study-image-strip::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.case-study-image-strip::-webkit-scrollbar-thumb {
-  background-color: var(--border-color);
-  border-radius: 2px;
-}
-
-.image-strip-item {
-  flex-shrink: 0;
-  height: 220px;
-  overflow: hidden;
-  padding: 0;
-  border: none;
-  background: rgba(255, 255, 255, 0.05);
-  cursor: pointer;
-  display: block;
-}
-
-.image-strip-item img {
-  height: 100%;
-  width: auto;
-  display: block;
-  transition: opacity 0.2s ease;
-}
-
-.image-strip-item:hover img {
-  opacity: 0.8;
 }
 
 /* Inline image grid — also clickable */
@@ -999,7 +951,6 @@
 .lightbox-arrow-next {
   right: 20px;
 }
-
 
 /* Tablet breakpoint */
 @media (max-width: 1024px) {
@@ -1154,14 +1105,14 @@
     padding: 20px;
   }
 
-  .case-study-image-strip {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
     gap: 8px;
-    margin-top: 28px;
-    margin-bottom: 28px;
   }
 
-  .image-strip-item {
-    height: 160px;
+  .bento-item.wide {
+    grid-column: span 1;
   }
 
   .lightbox-overlay {
@@ -1273,4 +1224,3 @@
   }
 
 }
-

@@ -74,11 +74,12 @@ function CaseStudy() {
       ? [{ src: heroImg, caption: '' }, ...images]
       : images
 
-  // activeImages drives the lightbox for all layout types
+  // activeImages drives the lightbox for all layout types.
+  // For standard layout, galleryLayout order matches the rendered grid order.
   const activeImages =
     project?.layout === 'gallery'       ? (galleryLayout ?? []) :
     project?.layout === 'multi-gallery' ? (galleryGroups?.flatMap(g => g.images) ?? []) :
-    stripImages
+    (galleryLayout ?? stripImages)
 
   // Scroll to top on every case study entry
   useEffect(() => {
@@ -115,13 +116,18 @@ function CaseStudy() {
     return () => { document.body.style.overflow = '' }
   }, [lightboxIndex])
 
-  // For gallery layouts: load every image's natural dimensions, then run the layout algorithm.
+  // Load natural image dimensions and compute bento layout.
+  // Runs for both 'gallery' layouts (Renders + Artwork) and standard case study
+  // layouts that have images, so both share the same grid algorithm and CSS.
   useEffect(() => {
-    if (project?.layout !== 'gallery' || !images.length) return
-    setGalleryLayout(null)
+    if (project?.layout === 'multi-gallery') return
 
+    const targetImages = project?.layout === 'gallery' ? images : stripImages
+    if (!targetImages.length) return
+
+    setGalleryLayout(null)
     Promise.all(
-      images.map(img => new Promise(resolve => {
+      targetImages.map(img => new Promise(resolve => {
         const el = new Image()
         el.onload = () => resolve({ src: img.src, caption: img.caption, width: el.naturalWidth, height: el.naturalHeight })
         el.onerror = () => resolve({ src: img.src, caption: img.caption, width: 1, height: 1 })
@@ -166,6 +172,24 @@ function CaseStudy() {
 
   const hasMetaContent = caseStudy.role || caseStudy.timeline || caseStudy.team || caseStudy.teamHtml
 
+  // Shared bento grid renderer — used for both 'gallery' layout and standard case studies
+  const renderBentoGrid = () =>
+    galleryLayout && (
+      <div className="bento-grid">
+        {galleryLayout.map((image, index) => (
+          <button
+            key={index}
+            className={`bento-item${image.span === 2 ? ' wide' : ''} fade-in`}
+            style={{ animationDelay: `${index * 0.05}s` }}
+            onClick={() => setLightboxIndex(index)}
+            aria-label={`View image ${index + 1}`}
+          >
+            <img src={image.src} alt={image.caption || `Image ${index + 1}`} />
+          </button>
+        ))}
+      </div>
+    )
+
   return (
     <div className="case-study">
       {/* Sentinel — scrolls out of view to trigger sticky header collapse */}
@@ -187,7 +211,7 @@ function CaseStudy() {
       </div>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Multi-gallery layout (grouped carousels)                            */}
+      {/* Multi-gallery layout (Sales Collateral — grouped carousels)         */}
       {/* ------------------------------------------------------------------ */}
       {project.layout === 'multi-gallery' ? (
         galleryGroups && (() => {
@@ -246,23 +270,9 @@ function CaseStudy() {
         })()
       ) : project.layout === 'gallery' ? (
       /* ------------------------------------------------------------------ */
-      /* Bento gallery layout                                                 */
+      /* Gallery layout (Renders + Artwork — bento grid only)                */
       /* ------------------------------------------------------------------ */
-        galleryLayout && (
-          <div className="bento-grid">
-            {galleryLayout.map((image, index) => (
-              <button
-                key={index}
-                className={`bento-item${image.span === 2 ? ' wide' : ''} fade-in`}
-                style={{ animationDelay: `${index * 0.05}s` }}
-                onClick={() => setLightboxIndex(index)}
-                aria-label={`View image ${index + 1}`}
-              >
-                <img src={image.src} alt={image.caption || `Image ${index + 1}`} />
-              </button>
-            ))}
-          </div>
-        )
+        renderBentoGrid()
       ) : (
       /* ------------------------------------------------------------------ */
       /* Standard case study layout                                           */
@@ -313,21 +323,8 @@ function CaseStudy() {
             </div>
           )}
 
-          {/* Horizontal image strip — natural aspect ratios at fixed height */}
-          {stripImages.length > 0 && (
-            <div className="case-study-image-strip">
-              {stripImages.map((image, index) => (
-                <button
-                  key={index}
-                  className="image-strip-item"
-                  onClick={() => setLightboxIndex(index)}
-                  aria-label={image.caption ? `View image: ${image.caption}` : `View image ${index + 1}`}
-                >
-                  <img src={image.src} alt={image.caption || `Image ${index + 1}`} />
-                </button>
-              ))}
-            </div>
-          )}
+          {/* Bento grid — same algorithm as Renders + Artwork */}
+          {renderBentoGrid()}
         </>
       )}
 
