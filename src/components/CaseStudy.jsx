@@ -172,15 +172,16 @@ function CaseStudy() {
 
   const hasMetaContent = caseStudy.role || caseStudy.timeline || caseStudy.team || caseStudy.teamHtml
 
-  // Shared bento grid renderer — used for both 'gallery' layout and standard case studies
-  const renderBentoGrid = () =>
+  // Shared bento grid renderer — used for both 'gallery' layout and standard case studies.
+  // startDelay offsets all item delays so the grid animates in after the meta content above it.
+  const renderBentoGrid = (startDelay = 0) =>
     galleryLayout && (
       <div className="bento-grid">
         {galleryLayout.map((image, index) => (
           <button
             key={index}
             className={`bento-item${image.span === 2 ? ' wide' : ''} fade-in`}
-            style={{ animationDelay: `${index * 0.05}s` }}
+            style={{ animationDelay: `${startDelay + index * 0.05}s` }}
             onClick={() => setLightboxIndex(index)}
             aria-label={`View image ${index + 1}`}
           >
@@ -197,17 +198,17 @@ function CaseStudy() {
 
       {/* Sticky header */}
       <div className={`case-study-sticky-header${isCollapsed ? ' collapsed' : ''}`}>
-        <Link to="/portfolio" className="back-link"><svg className="back-arrow" width="14" height="14" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="244,400 100,256 244,112" stroke="currentColor" strokeWidth="48" strokeLinecap="square" strokeLinejoin="miter"/><line x1="120" y1="256" x2="412" y2="256" stroke="currentColor" strokeWidth="48" strokeLinecap="square"/></svg>Back</Link>
+        <Link to="/portfolio" className="back-link fade-in" style={{ animationDelay: '0s' }}><svg className="back-arrow" width="14" height="14" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="244,400 100,256 244,112" stroke="currentColor" strokeWidth="48" strokeLinecap="square" strokeLinejoin="miter"/><line x1="120" y1="256" x2="412" y2="256" stroke="currentColor" strokeWidth="48" strokeLinecap="square"/></svg>Back</Link>
 
-        <div className="case-study-tags">
+        <div className="case-study-tags fade-in" style={{ animationDelay: '0.05s' }}>
           {tags.map((tag, index) => (
             <span className="tag" key={index}>{tag}</span>
           ))}
         </div>
 
-        <h1 className="case-study-title">{title}</h1>
+        <h1 className="case-study-title fade-in" style={{ animationDelay: '0.1s' }}>{title}</h1>
 
-        <div className="case-study-sticky-divider" />
+        <div className="case-study-sticky-divider fade-in" style={{ animationDelay: '0.15s' }} />
       </div>
 
       {/* ------------------------------------------------------------------ */}
@@ -216,7 +217,7 @@ function CaseStudy() {
       {project.layout === 'multi-gallery' ? (
         galleryGroups && (() => {
           let offset = 0
-          return galleryGroups.map((group) => {
+          return galleryGroups.map((group, groupIdx) => {
             const groupOffset = offset
             offset += group.images.length
             const carouselStart = getCarouselIndex(group.label)
@@ -225,7 +226,7 @@ function CaseStudy() {
             const visibleImages = group.images.slice(carouselStart, carouselStart + 4)
             return (
               <div key={group.label} className="gallery-group">
-                <h2 className="gallery-group-label">{group.label}</h2>
+                <h2 className="gallery-group-label fade-in" style={{ animationDelay: `${groupIdx * 0.08}s` }}>{group.label}</h2>
                 <div className="carousel">
                   <div className="carousel-track">
                     {visibleImages.map((image, i) => (
@@ -280,12 +281,12 @@ function CaseStudy() {
         <>
           {/* Condensed blurb — between title/tags and role/timeline/team */}
           {caseStudy.blurb && (
-            <p className="case-study-blurb">{caseStudy.blurb}</p>
+            <p className="case-study-blurb fade-in" style={{ animationDelay: '0.2s' }}>{caseStudy.blurb}</p>
           )}
 
           {/* Role / Timeline / Team */}
           {hasMetaContent && (
-            <div className="case-study-meta">
+            <div className="case-study-meta fade-in" style={{ animationDelay: '0.28s' }}>
               {caseStudy.role && (
                 <div className="meta-item">
                   <h3>Role</h3>
@@ -312,7 +313,7 @@ function CaseStudy() {
 
           {/* Video embed (Hero Brand Film) */}
           {caseStudy.videoUrl && (
-            <div className="case-study-video">
+            <div className="case-study-video fade-in" style={{ animationDelay: '0.35s' }}>
               <iframe
                 src={caseStudy.videoUrl}
                 title={title}
@@ -323,8 +324,8 @@ function CaseStudy() {
             </div>
           )}
 
-          {/* Bento grid — same algorithm as Renders + Artwork */}
-          {renderBentoGrid()}
+          {/* Bento grid — same algorithm as Renders + Artwork; starts after meta */}
+          {renderBentoGrid(0.35)}
         </>
       )}
 

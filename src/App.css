@@ -271,10 +271,20 @@
 .about-content li {
   color: var(--text-secondary);
   list-style-type: none;
-
 }
 
 .about-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Container box around the About blurb — matches resume section border treatment */
+.about-blurb-container {
+  border: 1px solid rgba(56, 56, 56, 0.7);
+  padding: 20px;
+  margin-bottom: 32px;
+}
+
+.about-blurb-container p:last-child {
   margin-bottom: 0;
 }
 
