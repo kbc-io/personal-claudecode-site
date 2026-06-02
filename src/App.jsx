@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom'
 import { useRef, useEffect } from 'react'
 import './App.css'
 import resumeData from './data/resume.json'
@@ -24,8 +24,8 @@ function App() {
         <nav className={`navbar${intro ? ' fade-in' : ''}`} {...d(0)}>
           <div className="navbar-content">
             <ul className="nav-links">
-              <li><NavLink to="/">Experience</NavLink></li>
               <li><NavLink to="/portfolio">Portfolio</NavLink></li>
+              <li><NavLink to="/experience">Experience</NavLink></li>
               <li><NavLink to="/about">About</NavLink></li>
             </ul>
           </div>
@@ -45,8 +45,9 @@ function App() {
 
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<Resume />} />
+            <Route path="/" element={<Navigate to="/portfolio" replace />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/experience" element={<Resume />} />
             <Route path="/portfolio/:slug" element={<CaseStudy />} />
             <Route path="/about" element={<About />} />
           </Routes>

@@ -41,7 +41,8 @@
       "Bash(mv \"Digit Vector Artwork.png\" \"renders-artwork-04.png\")",
       "Bash(file \"/Users/kevincoalwell/Documents/CS Stuff/personal-claudecode-site/src/case-studies/project-sales-collateral/\"*.png \"/Users/kevincoalwell/Documents/CS Stuff/personal-claudecode-site/src/case-studies/project-sales-collateral/\"*.PNG \"/Users/kevincoalwell/Documents/CS Stuff/personal-claudecode-site/src/case-studies/project-sales-collateral/\"*.jpg \"/Users/kevincoalwell/Documents/CS Stuff/personal-claudecode-site/src/case-studies/project-sales-collateral/\"*.JPG)",
       "Bash(mv \"agility-collateral-01.PNG\" \"agility-collateral-01.png\")",
-      "Bash(mv \"agility-collateral-02.JPG\" \"agility-collateral-02.jpg\")"
+      "Bash(mv \"agility-collateral-02.JPG\" \"agility-collateral-02.jpg\")",
+      "WebFetch(domain:localhost)"
     ]
   }
 }
