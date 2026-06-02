@@ -20,15 +20,13 @@ function computeGalleryLayout(dims) {
     preferredSpan: d.width / d.height > 1.3 ? 2 : 1
   }))
 
-  const queue = items.map((_, i) => i) // indices of unplaced images
+  const queue = items.map((_, i) => i)
   const result = []
   let rowFill = 0
 
   while (queue.length > 0) {
     const remaining = GALLERY_COLS - rowFill
 
-    // Find the first item in the front of the queue whose preferred span fits.
-    // Lookahead up to 4 positions so narrow images can fill gaps left by wide ones.
     let chosenQueuePos = 0
     for (let qi = 0; qi < Math.min(queue.length, 4); qi++) {
       if (items[queue[qi]].preferredSpan <= remaining) {
@@ -39,7 +37,6 @@ function computeGalleryLayout(dims) {
 
     const idx = queue.splice(chosenQueuePos, 1)[0]
     const item = items[idx]
-    // If nothing in the lookahead fits perfectly, cap span at remaining columns
     const span = Math.min(item.preferredSpan, remaining)
 
     result.push({ src: item.src, caption: item.caption, span })
@@ -66,18 +63,23 @@ function CaseStudy() {
     setCarouselIndices(prev => ({ ...prev, [label]: idx }))
   const sentinelRef = useRef(null)
 
-  // Raw discovered images (alphabetical). Used for the image strip and for
-  // standard (non-gallery) lightbox navigation.
+  // Raw discovered images from the images array
   const images = project?.caseStudy?.images || []
 
-  // activeImages drives the lightbox for all layout types:
-  //   gallery      → computed layout order (may differ from alphabetical)
-  //   multi-gallery → all groups flattened in order
-  //   standard     → raw images list
+  // For standard layouts: combine heroImage (if not already in images) with the images array
+  const heroImg = project?.caseStudy?.heroImage
+  const heroAlreadyInImages = heroImg && images.some(i => i.src === heroImg)
+  const stripImages =
+    heroImg && !heroAlreadyInImages
+      ? [{ src: heroImg, caption: '' }, ...images]
+      : images
+
+  // activeImages drives the lightbox for all layout types.
+  // For standard layout, galleryLayout order matches the rendered grid order.
   const activeImages =
     project?.layout === 'gallery'       ? (galleryLayout ?? []) :
     project?.layout === 'multi-gallery' ? (galleryGroups?.flatMap(g => g.images) ?? []) :
-    images
+    (galleryLayout ?? stripImages)
 
   // Scroll to top on every case study entry
   useEffect(() => {
@@ -114,14 +116,18 @@ function CaseStudy() {
     return () => { document.body.style.overflow = '' }
   }, [lightboxIndex])
 
-  // For gallery layouts: load every image's natural dimensions, then run the
-  // layout algorithm. Re-runs whenever the slug changes (different gallery).
+  // Load natural image dimensions and compute bento layout.
+  // Runs for both 'gallery' layouts (Renders + Artwork) and standard case study
+  // layouts that have images, so both share the same grid algorithm and CSS.
   useEffect(() => {
-    if (project?.layout !== 'gallery' || !images.length) return
-    setGalleryLayout(null)
+    if (project?.layout === 'multi-gallery') return
 
+    const targetImages = project?.layout === 'gallery' ? images : stripImages
+    if (!targetImages.length) return
+
+    setGalleryLayout(null)
     Promise.all(
-      images.map(img => new Promise(resolve => {
+      targetImages.map(img => new Promise(resolve => {
         const el = new Image()
         el.onload = () => resolve({ src: img.src, caption: img.caption, width: el.naturalWidth, height: el.naturalHeight })
         el.onerror = () => resolve({ src: img.src, caption: img.caption, width: 1, height: 1 })
@@ -130,7 +136,7 @@ function CaseStudy() {
     ).then(dims => setGalleryLayout(computeGalleryLayout(dims)))
   }, [slug]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // For multi-gallery layouts: populate groups from already-resolved project data (no async needed).
+  // For multi-gallery layouts: populate groups from already-resolved project data.
   useEffect(() => {
     if (project?.layout !== 'multi-gallery') return
     const groups = project.caseStudy?.groups || []
@@ -153,7 +159,6 @@ function CaseStudy() {
   }
 
   const { title, tags, caseStudy } = project
-  const stripImages = images.slice(0, 4)
 
   const closeLightbox = () => setLightboxIndex(null)
   const goPrev = (e) => {
@@ -165,6 +170,27 @@ function CaseStudy() {
     setLightboxIndex(i => (i + 1) % activeImages.length)
   }
 
+  const hasMetaContent = caseStudy.role || caseStudy.timeline || caseStudy.team || caseStudy.teamHtml
+
+  // Shared bento grid renderer — used for both 'gallery' layout and standard case studies.
+  // startDelay offsets all item delays so the grid animates in after the meta content above it.
+  const renderBentoGrid = (startDelay = 0) =>
+    galleryLayout && (
+      <div className="bento-grid">
+        {galleryLayout.map((image, index) => (
+          <button
+            key={index}
+            className={`bento-item${image.span === 2 ? ' wide' : ''} fade-in`}
+            style={{ animationDelay: `${startDelay + index * 0.05}s` }}
+            onClick={() => setLightboxIndex(index)}
+            aria-label={`View image ${index + 1}`}
+          >
+            <img src={image.src} alt={image.caption || `Image ${index + 1}`} />
+          </button>
+        ))}
+      </div>
+    )
+
   return (
     <div className="case-study">
       {/* Sentinel — scrolls out of view to trigger sticky header collapse */}
@@ -172,47 +198,26 @@ function CaseStudy() {
 
       {/* Sticky header */}
       <div className={`case-study-sticky-header${isCollapsed ? ' collapsed' : ''}`}>
-        {stripImages.length > 0 && project?.layout !== 'multi-gallery' && (
-          <div className="case-study-image-strip">
-            {stripImages.map((image, index) => (
-              <button
-                key={index}
-                className="image-strip-item"
-                onClick={() => setLightboxIndex(index)}
-                aria-label={`View image: ${image.caption}`}
-              >
-                <img src={image.src} alt={image.caption} />
-              </button>
-            ))}
-          </div>
-        )}
+        <Link to="/portfolio" className="back-link fade-in" style={{ animationDelay: '0s' }}><svg className="back-arrow" width="14" height="14" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="244,400 100,256 244,112" stroke="currentColor" strokeWidth="48" strokeLinecap="square" strokeLinejoin="miter"/><line x1="120" y1="256" x2="412" y2="256" stroke="currentColor" strokeWidth="48" strokeLinecap="square"/></svg>Back</Link>
 
-        <Link to="/portfolio" className="back-link"><svg className="back-arrow" width="14" height="14" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="244,400 100,256 244,112" stroke="currentColor" strokeWidth="48" strokeLinecap="square" strokeLinejoin="miter"/><line x1="120" y1="256" x2="412" y2="256" stroke="currentColor" strokeWidth="48" strokeLinecap="square"/></svg>Back</Link>
-
-        <div className="case-study-tags">
+        <div className="case-study-tags fade-in" style={{ animationDelay: '0.05s' }}>
           {tags.map((tag, index) => (
             <span className="tag" key={index}>{tag}</span>
           ))}
         </div>
 
-        <h1 className="case-study-title">{title}</h1>
+        <h1 className="case-study-title fade-in" style={{ animationDelay: '0.1s' }}>{title}</h1>
 
-        {caseStudy.overview && (
-          <div className="case-study-overview-wrapper">
-            <p className="case-study-overview">{caseStudy.overview}</p>
-          </div>
-        )}
-
-        <div className="case-study-sticky-divider" />
+        <div className="case-study-sticky-divider fade-in" style={{ animationDelay: '0.15s' }} />
       </div>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Multi-gallery layout (grouped bento grids)                          */}
+      {/* Multi-gallery layout (Sales Collateral — grouped carousels)         */}
       {/* ------------------------------------------------------------------ */}
       {project.layout === 'multi-gallery' ? (
         galleryGroups && (() => {
           let offset = 0
-          return galleryGroups.map((group) => {
+          return galleryGroups.map((group, groupIdx) => {
             const groupOffset = offset
             offset += group.images.length
             const carouselStart = getCarouselIndex(group.label)
@@ -221,7 +226,7 @@ function CaseStudy() {
             const visibleImages = group.images.slice(carouselStart, carouselStart + 4)
             return (
               <div key={group.label} className="gallery-group">
-                <h2 className="gallery-group-label">{group.label}</h2>
+                <h2 className="gallery-group-label fade-in" style={{ animationDelay: `${groupIdx * 0.08}s` }}>{group.label}</h2>
                 <div className="carousel">
                   <div className="carousel-track">
                     {visibleImages.map((image, i) => (
@@ -265,46 +270,50 @@ function CaseStudy() {
           })
         })()
       ) : project.layout === 'gallery' ? (
-        galleryLayout && (
-          <div className="bento-grid">
-            {galleryLayout.map((image, index) => (
-              <button
-                key={index}
-                className={`bento-item${image.span === 2 ? ' wide' : ''} fade-in`}
-                style={{ animationDelay: `${index * 0.05}s` }}
-                onClick={() => setLightboxIndex(index)}
-                aria-label={`View image ${index + 1}`}
-              >
-                <img src={image.src} alt={image.caption || `Image ${index + 1}`} />
-              </button>
-            ))}
-          </div>
-        )
+      /* ------------------------------------------------------------------ */
+      /* Gallery layout (Renders + Artwork — bento grid only)                */
+      /* ------------------------------------------------------------------ */
+        renderBentoGrid()
       ) : (
       /* ------------------------------------------------------------------ */
       /* Standard case study layout                                           */
       /* ------------------------------------------------------------------ */
         <>
-          <div className="case-study-meta">
-            <div className="meta-item">
-              <h3>Role</h3>
-              <p>{caseStudy.role}</p>
-            </div>
-            <div className="meta-item">
-              <h3>Timeline</h3>
-              <p>{caseStudy.timeline}</p>
-            </div>
-            <div className="meta-item">
-              <h3>Team</h3>
-              {caseStudy.teamHtml
-                ? <p dangerouslySetInnerHTML={{ __html: caseStudy.teamHtml }} />
-                : <p>{caseStudy.team}</p>
-              }
-            </div>
-          </div>
+          {/* Condensed blurb — between title/tags and role/timeline/team */}
+          {caseStudy.blurb && (
+            <p className="case-study-blurb fade-in" style={{ animationDelay: '0.2s' }}>{caseStudy.blurb}</p>
+          )}
 
-          {caseStudy.videoUrl ? (
-            <div className="case-study-video">
+          {/* Role / Timeline / Team */}
+          {hasMetaContent && (
+            <div className="case-study-meta fade-in" style={{ animationDelay: '0.28s' }}>
+              {caseStudy.role && (
+                <div className="meta-item">
+                  <h3>Role</h3>
+                  <p>{caseStudy.role}</p>
+                </div>
+              )}
+              {caseStudy.timeline && (
+                <div className="meta-item">
+                  <h3>Timeline</h3>
+                  <p>{caseStudy.timeline}</p>
+                </div>
+              )}
+              {(caseStudy.team || caseStudy.teamHtml) && (
+                <div className="meta-item">
+                  <h3>Team</h3>
+                  {caseStudy.teamHtml
+                    ? <p dangerouslySetInnerHTML={{ __html: caseStudy.teamHtml }} />
+                    : <p>{caseStudy.team}</p>
+                  }
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Video embed (Hero Brand Film) */}
+          {caseStudy.videoUrl && (
+            <div className="case-study-video fade-in" style={{ animationDelay: '0.35s' }}>
               <iframe
                 src={caseStudy.videoUrl}
                 title={title}
@@ -313,86 +322,10 @@ function CaseStudy() {
                 allowFullScreen
               />
             </div>
-          ) : caseStudy.heroImage ? (
-            <div className="case-study-hero">
-              <img src={caseStudy.heroImage} alt={title} />
-            </div>
-          ) : null}
-
-          {caseStudy.objectives?.length > 0 && (
-            <section className="case-study-section">
-              <h2>Objectives</h2>
-              <ul className="objectives-list">
-                {caseStudy.objectives.map((objective, index) => (
-                  <li key={index}>{objective}</li>
-                ))}
-              </ul>
-            </section>
           )}
 
-          {caseStudy.challenge && (
-            <section className="case-study-section">
-              <h2>The Challenge</h2>
-              <p>{caseStudy.challenge}</p>
-            </section>
-          )}
-
-          {caseStudy.approach && (
-            <section className="case-study-section">
-              <h2>Approach</h2>
-              <p>{caseStudy.approach}</p>
-            </section>
-          )}
-
-          {caseStudy.userExperience && (
-            <section className="case-study-section">
-              <h2>User Experience</h2>
-              <p>{caseStudy.userExperience.description}</p>
-              <div className="insights">
-                <h3>Key Insights</h3>
-                <ul>
-                  {caseStudy.userExperience.insights.map((insight, index) => (
-                    <li key={index}>{insight}</li>
-                  ))}
-                </ul>
-              </div>
-            </section>
-          )}
-
-          {caseStudy.solution && (
-            <section className="case-study-section">
-              <h2>Solution</h2>
-              <p>{caseStudy.solution}</p>
-            </section>
-          )}
-
-          {stripImages.length > 0 && (
-            <section className="case-study-images">
-              {stripImages.map((image, index) => (
-                <figure key={index} className="case-study-figure">
-                  <button
-                    className="case-study-figure-btn"
-                    onClick={() => setLightboxIndex(index)}
-                    aria-label={`View image: ${image.caption}`}
-                  >
-                    <img src={image.src} alt={image.caption} />
-                  </button>
-                  <figcaption>{image.caption}</figcaption>
-                </figure>
-              ))}
-            </section>
-          )}
-
-          {caseStudy.results?.length > 0 && (
-            <section className="case-study-section">
-              <h2>Results</h2>
-              <ul className="results-list">
-                {caseStudy.results.map((result, index) => (
-                  <li key={index}>{result}</li>
-                ))}
-              </ul>
-            </section>
-          )}
+          {/* Bento grid — same algorithm as Renders + Artwork; starts after meta */}
+          {renderBentoGrid(0.35)}
         </>
       )}
 
@@ -400,7 +333,7 @@ function CaseStudy() {
         <Link to="/portfolio" className="back-link"><svg className="back-arrow" width="14" height="14" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="244,400 100,256 244,112" stroke="currentColor" strokeWidth="48" strokeLinecap="square" strokeLinejoin="miter"/><line x1="120" y1="256" x2="412" y2="256" stroke="currentColor" strokeWidth="48" strokeLinecap="square"/></svg>Back</Link>
       </div>
 
-      {/* Lightbox — uses activeImages so gallery order matches clicked item */}
+      {/* Lightbox */}
       {lightboxIndex !== null && (
         <div className="lightbox-overlay" onClick={closeLightbox} role="dialog" aria-modal="true">
           <button className="lightbox-close" onClick={closeLightbox} aria-label="Close lightbox">

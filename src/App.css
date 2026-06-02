@@ -271,10 +271,20 @@
 .about-content li {
   color: var(--text-secondary);
   list-style-type: none;
-
 }
 
 .about-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Container box around the About blurb — matches resume section border treatment */
+.about-blurb-container {
+  border: 1px solid rgba(56, 56, 56, 0.7);
+  padding: 20px;
+  margin-bottom: 32px;
+}
+
+.about-blurb-container p:last-child {
   margin-bottom: 0;
 }
 
@@ -454,20 +464,6 @@
   opacity: 1;
 }
 
-/* Image strip collapse */
-.case-study-sticky-header .case-study-image-strip {
-  overflow: hidden;
-  max-height: 300px;
-  opacity: 1;
-  transition: max-height 0.4s ease, opacity 0.3s ease, margin-bottom 0.35s ease;
-}
-
-.case-study-sticky-header.collapsed .case-study-image-strip {
-  max-height: 0;
-  opacity: 0;
-  margin-bottom: 0;
-}
-
 /* Back link */
 .back-link {
   display: inline-block;
@@ -482,7 +478,6 @@
 }
 
 .case-study-sticky-header.collapsed .back-link {
-  margin-top: 40px;
   margin-bottom: 12px;
 }
 
@@ -523,26 +518,16 @@
   margin-bottom: 0;
 }
 
-/* Overview collapse wrapper */
-.case-study-overview-wrapper {
-  overflow: hidden;
-  max-height: 500px;
-  opacity: 1;
-  transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.35s ease;
-}
-
-.case-study-sticky-header.collapsed .case-study-overview-wrapper {
-  max-height: 0;
-  opacity: 0;
-}
-
-.case-study-overview {
+/* Condensed blurb paragraph — sits between title/tags and role/timeline/team */
+.case-study-blurb {
   font-family: var(--font-sans);
-  font-size: var(--type-body-large-size);
-  font-weight: var(--type-body-large-weight);
-  line-height: var(--type-body-large-line-height);
-  letter-spacing: var(--type-body-large-letter-spacing);
+  font-size: var(--type-body-medium-size);
+  font-weight: var(--type-body-medium-weight);
+  line-height: 1.8;
+  letter-spacing: var(--type-body-medium-letter-spacing);
   color: var(--text-secondary);
+  padding-top: 32px;
+  margin-bottom: 0;
 }
 
 .case-study-meta {
@@ -720,7 +705,7 @@
   border-top: 1px solid var(--border-color);
 }
 
-/* Bento gallery grid */
+/* Bento gallery grid — used for Renders + Artwork and all standard case studies */
 .bento-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -755,7 +740,7 @@
   opacity: 0.8;
 }
 
-/* Multi-gallery groups */
+/* Multi-gallery groups (Sales Collateral) */
 .gallery-group {
   margin-bottom: 56px;
 }
@@ -774,7 +759,7 @@
   margin: 0 0 0 0;
 }
 
-/* Carousel (multi-gallery layout) */
+/* Carousel (Sales Collateral) */
 .carousel {
   margin-top: 16px;
 }
@@ -836,39 +821,6 @@
 
 .carousel-arrow:not(:disabled):hover {
   background-color: var(--border-color);
-}
-
-/* Case Study Image Strip */
-.case-study-image-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin-bottom: 32px;
-}
-
-.image-strip-item {
-  border-radius: 2px;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  padding: 0;
-  border: none;
-  background: rgba(255, 255, 255, 0.05);
-  cursor: pointer;
-  display: block;
-  position: relative;
-}
-
-.image-strip-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.image-strip-item:hover img {
-  transform: scale(1.04);
-  opacity: 0.85;
 }
 
 /* Inline image grid — also clickable */
@@ -1008,118 +960,6 @@
 
 .lightbox-arrow-next {
   right: 20px;
-}
-
-/* PDF card in multi-gallery */
-.pdf-group-track {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.pdf-card {
-  height: 240px;
-  overflow: hidden;
-  cursor: pointer;
-  border: 1px solid var(--border-color);
-  padding: 0;
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  transition: border-color 0.2s;
-}
-
-.pdf-card:hover {
-  border-color: var(--text-secondary);
-}
-
-.pdf-card-canvas {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-/* PDF lightbox overlay */
-.pdf-lightbox-overlay {
-  align-items: flex-start;
-  padding: 60px 40px 40px;
-  overflow-y: auto;
-}
-
-.pdf-lightbox-content {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  animation: lightboxSlideIn 0.2s ease;
-}
-
-.pdf-lightbox-title {
-  font-family: var(--font-sans);
-  font-size: var(--type-headline-small-size);
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 24px;
-  text-align: center;
-}
-
-.pdf-lightbox-loading {
-  font-family: var(--font-mono);
-  font-size: var(--type-eyebrow-size);
-  color: rgba(255, 255, 255, 0.4);
-  text-align: center;
-  padding: 60px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-/* 3-row horizontal-scroll page grid */
-.pdf-page-grid {
-  display: grid;
-  grid-template-rows: repeat(3, auto);
-  grid-auto-flow: column;
-  grid-auto-columns: max-content;
-  gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 16px;
-  /* Thin scrollbar */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.15) transparent;
-}
-
-.pdf-page-grid::-webkit-scrollbar {
-  height: 6px;
-}
-
-.pdf-page-grid::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.pdf-page-grid::-webkit-scrollbar-thumb {
-  background-color: rgba(255,255,255,0.15);
-  border-radius: 3px;
-}
-
-.pdf-page-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-.pdf-page-canvas {
-  display: block;
-  height: 320px;
-  width: auto;
-  background-color: #ffffff;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
-}
-
-.pdf-page-number {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 0.05em;
 }
 
 /* Tablet breakpoint */
@@ -1275,9 +1115,14 @@
     padding: 20px;
   }
 
-  .case-study-image-strip {
-    gap: 6px;
-    margin-bottom: 24px;
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+    gap: 8px;
+  }
+
+  .bento-item.wide {
+    grid-column: span 1;
   }
 
   .lightbox-overlay {
@@ -1389,4 +1234,3 @@
   }
 
 }
-

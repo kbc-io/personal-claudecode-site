@@ -24,7 +24,7 @@ function App() {
         <nav className={`navbar${intro ? ' fade-in' : ''}`} {...d(0)}>
           <div className="navbar-content">
             <ul className="nav-links">
-              <li><NavLink to="/">Resume</NavLink></li>
+              <li><NavLink to="/">Experience</NavLink></li>
               <li><NavLink to="/portfolio">Portfolio</NavLink></li>
               <li><NavLink to="/about">About</NavLink></li>
             </ul>
