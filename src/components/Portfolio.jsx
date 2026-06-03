@@ -6,7 +6,14 @@ const projects = loadCaseStudies()
 
 function Portfolio() {
   const [activeFilter, setActiveFilter] = useState('All')
-  const [viewMode, setViewMode] = useState('list')
+  const [viewMode, setViewMode] = useState(
+    () => sessionStorage.getItem('portfolioViewMode') || 'grid'
+  )
+
+  const handleSetViewMode = (mode) => {
+    sessionStorage.setItem('portfolioViewMode', mode)
+    setViewMode(mode)
+  }
 
   const allTags = useMemo(() => {
     const tags = new Set()
@@ -23,12 +30,37 @@ function Portfolio() {
 
   return (
     <section className="section">
-      <div className="portfolio-header">
-        <h2>Recent Work</h2>
+      <h2>Recent Work</h2>
+
+      <div className="filter-bar">
+        <div className="filter-tags">
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              className={`filter-tag ${activeFilter === tag ? 'active' : ''}`}
+              onClick={() => setActiveFilter(activeFilter === tag ? 'All' : tag)}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
         <div className="view-toggle" role="group" aria-label="View mode">
           <button
+            className={`view-toggle-btn${viewMode === 'grid' ? ' active' : ''}`}
+            onClick={() => handleSetViewMode('grid')}
+            aria-pressed={viewMode === 'grid'}
+            title="Grid view"
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="1" y="1" width="6" height="6" stroke="currentColor" strokeWidth="1.5"/>
+              <rect x="9" y="1" width="6" height="6" stroke="currentColor" strokeWidth="1.5"/>
+              <rect x="1" y="9" width="6" height="6" stroke="currentColor" strokeWidth="1.5"/>
+              <rect x="9" y="9" width="6" height="6" stroke="currentColor" strokeWidth="1.5"/>
+            </svg>
+          </button>
+          <button
             className={`view-toggle-btn${viewMode === 'list' ? ' active' : ''}`}
-            onClick={() => setViewMode('list')}
+            onClick={() => handleSetViewMode('list')}
             aria-pressed={viewMode === 'list'}
             title="List view"
           >
@@ -40,35 +72,8 @@ function Portfolio() {
               <rect x="1" y="6.5" width="2.5" height="2.5" fill="currentColor"/>
               <rect x="1" y="10.5" width="2.5" height="2.5" fill="currentColor"/>
             </svg>
-            List
-          </button>
-          <button
-            className={`view-toggle-btn${viewMode === 'grid' ? ' active' : ''}`}
-            onClick={() => setViewMode('grid')}
-            aria-pressed={viewMode === 'grid'}
-            title="Grid view"
-          >
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="1" y="1" width="6" height="6" stroke="currentColor" strokeWidth="1.5"/>
-              <rect x="9" y="1" width="6" height="6" stroke="currentColor" strokeWidth="1.5"/>
-              <rect x="1" y="9" width="6" height="6" stroke="currentColor" strokeWidth="1.5"/>
-              <rect x="9" y="9" width="6" height="6" stroke="currentColor" strokeWidth="1.5"/>
-            </svg>
-            Grid
           </button>
         </div>
-      </div>
-
-      <div className="filter-bar">
-        {allTags.map((tag) => (
-          <button
-            key={tag}
-            className={`filter-tag ${activeFilter === tag ? 'active' : ''}`}
-            onClick={() => setActiveFilter(activeFilter === tag ? 'All' : tag)}
-          >
-            {tag}
-          </button>
-        ))}
       </div>
 
       {viewMode === 'list' ? (

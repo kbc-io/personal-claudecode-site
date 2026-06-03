@@ -288,18 +288,6 @@
   margin-bottom: 0;
 }
 
-/* Portfolio header row — title + view toggle */
-.portfolio-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 30px;
-}
-
-.portfolio-header h2 {
-  margin-bottom: 0;
-}
-
 /* List / Grid segmented toggle */
 .view-toggle {
   display: flex;
@@ -344,10 +332,10 @@
   gap: 12px;
 }
 
-/* Portfolio Grid view — 3 columns */
+/* Portfolio Grid view — 4 columns */
 .portfolio-grid-view {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
 
@@ -473,12 +461,19 @@
   color: var(--text-secondary);
 }
 
-/* Filter Bar */
+/* Filter Bar — tags on left, view toggle on right */
 .filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.filter-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 30px;
 }
 
 .filter-tag {
@@ -1180,7 +1175,11 @@
 
   .portfolio-grid-view {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 8px;
+  }
+
+  .filter-bar {
+    align-items: flex-start;
   }
 
   .project-grid-info {
