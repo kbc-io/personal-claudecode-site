@@ -1,0 +1,43 @@
+{
+  "title": "Agility Rebrand",
+  "description": "Full stack brand refresh.",
+  "image": "thumbnail.jpg",
+  "visible": true,
+  "tags": ["Brand", "Design"],
+  "order": 10,
+  "caseStudy": {
+    "heroImage": "hero.jpg",
+    "overview": "A comprehensive overview of the project.",
+    "role": "Your Role",
+    "timeline": "3 months",
+    "team": "Team description",
+    "objectives": [
+      "First objective",
+      "Second objective"
+    ],
+    "challenge": "Describe the main challenge or problem.",
+    "approach": "Detail your strategic approach.",
+    "userExperience": {
+      "description": "User experience considerations.",
+      "insights": [
+        "Key insight 1",
+        "Key insight 2"
+      ]
+    },
+    "solution": "Describe the final solution.",
+    "images": [
+      {
+        "src": "detail-1.jpg",
+        "caption": "Caption for image 1"
+      },
+      {
+        "src": "detail-2.jpg",
+        "caption": "Caption for image 2"
+      }
+    ],
+    "results": [
+      "Result or outcome 1",
+      "Result or outcome 2"
+    ]
+  }
+}
