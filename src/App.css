@@ -288,11 +288,104 @@
   margin-bottom: 0;
 }
 
-/* Portfolio Grid */
+/* Portfolio header row — title + view toggle */
+.portfolio-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.portfolio-header h2 {
+  margin-bottom: 0;
+}
+
+/* List / Grid segmented toggle */
+.view-toggle {
+  display: flex;
+  border: 1px solid var(--border-color);
+}
+
+.view-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-family: var(--font-mono);
+  font-size: var(--type-eyebrow-size);
+  font-weight: var(--type-eyebrow-weight);
+  letter-spacing: var(--type-eyebrow-letter-spacing);
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+  border-radius: 0;
+}
+
+.view-toggle-btn + .view-toggle-btn {
+  border-left: 1px solid var(--border-color);
+}
+
+.view-toggle-btn:hover {
+  color: var(--text-primary);
+}
+
+.view-toggle-btn.active {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+/* Portfolio List (default) */
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 12px;
+}
+
+/* Portfolio Grid view — 3 columns */
+.portfolio-grid-view {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.project-grid-card {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  animation: fadeInDown 0.3s ease-out both;
+}
+
+.project-grid-card:hover {
+  border-color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.project-grid-image {
+  aspect-ratio: 4 / 3;
+  background-color: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.project-grid-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.project-grid-info {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes fadeInDown {
@@ -1083,6 +1176,15 @@
   .portfolio-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .portfolio-grid-view {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .project-grid-info {
+    padding: 12px;
   }
 
   .project-info {
