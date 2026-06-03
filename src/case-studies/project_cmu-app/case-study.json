@@ -1,7 +1,7 @@
 {
   "title": "AI Learning App",
   "description": "UI/UX ovehaul of an AI-powered learning app for Cargnegie Mellon.",
-  "image": "cmu-app-01.png",
+  "image": "cmu-mockup.png",
   "visible": true,
   "tags": ["Web", "UI/UX"],
   "order": 5,
