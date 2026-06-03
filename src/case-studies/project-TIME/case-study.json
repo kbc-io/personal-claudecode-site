@@ -1,9 +1,10 @@
 {
   "title": "TIME",
   "description": "Company brand liason",
-  "image": "thumbnail.jpg",
-  "visible": false,
-  "tags": ["Tag1", "Tag2"],
+  "image": "time-01.webp",
+  "thumbnailPosition": "50% 25%",
+  "visible": true,
+  "tags": ["Brand", "Photo"],
   "order": 9,
   "caseStudy": {
     "heroImage": "hero.jpg",

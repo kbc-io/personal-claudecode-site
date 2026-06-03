@@ -86,7 +86,11 @@ function Portfolio() {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="project-image">
-                <img src={project.image} alt={project.title} />
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  style={project.thumbnailPosition ? { objectPosition: project.thumbnailPosition } : undefined}
+                />
               </div>
               <div className="project-info">
                 <h3 className="project-title">{project.title}</h3>
@@ -110,7 +114,11 @@ function Portfolio() {
               style={{ animationDelay: `${index * 0.05}s` }}
             >
               <div className="project-grid-image">
-                <img src={project.image} alt={project.title} />
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  style={project.thumbnailPosition ? { objectPosition: project.thumbnailPosition } : undefined}
+                />
               </div>
               <div className="project-grid-info">
                 <h3 className="project-title">{project.title}</h3>
