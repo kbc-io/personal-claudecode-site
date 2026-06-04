@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { loadCaseStudies } from '../data/caseStudyLoader'
+import { loadCaseStudies, getCaseStudyLayout } from '../data/caseStudyLoader'
 
 const projects = loadCaseStudies()
 
@@ -160,6 +160,11 @@ function CaseStudy() {
 
   const { title, tags, caseStudy } = project
 
+  // Optional bespoke layout: a `layout.jsx` in the case study folder + `"layout": "custom"`.
+  // Renders inside the shared chrome and gets the resolved data plus lightbox control.
+  const CustomLayout =
+    project.layout === 'custom' ? getCaseStudyLayout(slug) : null
+
   const closeLightbox = () => setLightboxIndex(null)
   const goPrev = (e) => {
     e.stopPropagation()
@@ -212,9 +217,15 @@ function CaseStudy() {
       </div>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Multi-gallery layout (Sales Collateral — grouped carousels)         */}
+      {/* Custom layout — bespoke per-case-study component (escape hatch)      */}
       {/* ------------------------------------------------------------------ */}
-      {project.layout === 'multi-gallery' ? (
+      {CustomLayout ? (
+        <CustomLayout
+          project={project}
+          images={activeImages}
+          openLightbox={setLightboxIndex}
+        />
+      ) : project.layout === 'multi-gallery' ? (
         galleryGroups && (() => {
           let offset = 0
           return galleryGroups.map((group, groupIdx) => {
