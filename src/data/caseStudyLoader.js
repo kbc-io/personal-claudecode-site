@@ -90,6 +90,15 @@ function resolveImages(slug, data) {
   }
 }
 
+/**
+ * Every resolved case-study image URL (deduplicated).
+ * Used to warm the browser cache in the background from the portfolio page,
+ * so images are already downloaded by the time a visitor opens a case study.
+ */
+export function getAllCaseStudyImageUrls() {
+  return Array.from(new Set(Object.values(imageModules)))
+}
+
 export function loadCaseStudies() {
   return Object.entries(caseStudyModules)
     .map(([path, module]) => {
