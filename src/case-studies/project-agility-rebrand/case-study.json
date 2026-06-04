@@ -2,7 +2,7 @@
   "title": "Agility Rebrand",
   "description": "Full stack brand refresh.",
   "image": "thumbnail.jpg",
-  "visible": true,
+  "visible": false,
   "tags": ["Brand", "Design"],
   "order": 10,
   "caseStudy": {

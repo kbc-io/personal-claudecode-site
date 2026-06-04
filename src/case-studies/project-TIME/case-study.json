@@ -3,7 +3,7 @@
   "description": "Company brand liason",
   "image": "time-01.webp",
   "thumbnailPosition": "50% 25%",
-  "visible": true,
+  "visible": false,
   "tags": ["Brand", "Photo"],
   "order": 9,
   "caseStudy": {
