@@ -185,7 +185,7 @@ function CaseStudy() {
             onClick={() => setLightboxIndex(index)}
             aria-label={`View image ${index + 1}`}
           >
-            <img src={image.src} alt={image.caption || `Image ${index + 1}`} />
+            <img src={image.src} alt={image.caption || `Image ${index + 1}`} loading="lazy" decoding="async" />
           </button>
         ))}
       </div>
@@ -236,7 +236,7 @@ function CaseStudy() {
                         onClick={() => setLightboxIndex(groupOffset + carouselStart + i)}
                         aria-label={`View image ${carouselStart + i + 1}`}
                       >
-                        <img src={image.src} alt={image.caption || `Image ${carouselStart + i + 1}`} />
+                        <img src={image.src} alt={image.caption || `Image ${carouselStart + i + 1}`} loading="lazy" decoding="async" />
                       </button>
                     ))}
                   </div>

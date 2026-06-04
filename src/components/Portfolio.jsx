@@ -89,6 +89,8 @@ function Portfolio() {
                 <img
                   src={project.image}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
                   style={project.thumbnailPosition ? { objectPosition: project.thumbnailPosition } : undefined}
                 />
               </div>
@@ -117,6 +119,8 @@ function Portfolio() {
                 <img
                   src={project.image}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
                   style={project.thumbnailPosition ? { objectPosition: project.thumbnailPosition } : undefined}
                 />
               </div>

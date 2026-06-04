@@ -1,12 +1,12 @@
 {
   "title": "Tradeshow Experience",
   "description": "Brand + experience design",
-  "image": "tradeshow-booth-03.jpg",
+  "image": "tradeshow-booth-03.webp",
   "visible": true,
   "tags": ["Experience", "Graphics", "Print"],
   "order": 5,
   "caseStudy": {
-    "heroImage": "tradeshow-booth-03.jpg",
+    "heroImage": "tradeshow-booth-03.webp",
     "blurb": "As Agility Robotics' sole graphic designer, I owned the entire visual footprint of the ProMat 2025 booth — the industry debut of Digit Gen 4's beta. Over three months, I designed large-format wall graphics, LED panel content, printed handouts, and team apparel, coordinating directly with the booth manufacturer and event coordinator to deliver a cohesive, high-polish presence that drew strong foot traffic and set a new benchmark for Agility's trade show identity.",
     "overview": "ProMat 2025 was a major industry trade show in Chicago and a significant moment for Agility Robotics — the debut of the beta version of Digit's 4th generation. As the company's sole graphic designer, I owned the visual design across every touchpoint at the booth: large-format wall graphics, digital LED panel content, printed collateral, and team apparel.",
     "role": "Graphic Designer",
@@ -31,35 +31,35 @@
     "solution": "The final booth design centered on large-scale, high-resolution renders of Digit on the perimeter walls — bold enough to draw attention from across the show floor. Digital LED panels featured motion assets. Printed handouts included a spec sheet and a personality-driven 'resume' for Digit. Team apparel featured a minimal Agility logo alongside detailed technical artwork of the robot, making it something crew members still wear around the office after the show.",
     "images": [
       {
-        "src": "tradeshow-booth-04.jpg",
+        "src": "tradeshow-booth-04.webp",
         "caption": "Booth front with LED panels and crowd engagement"
       },
       {
-        "src": "tradeshow-booth-06.jpg",
+        "src": "tradeshow-booth-06.webp",
         "caption": "Wall graphic close-up featuring Digit render"
       },
       {
-        "src": "tradeshow-booth-01.png",
+        "src": "tradeshow-booth-01.webp",
         "caption": "Isometric booth layout with panel mapping"
       },
       {
-        "src": "tradeshow-booth-10.png",
+        "src": "tradeshow-booth-10.webp",
         "caption": "Wall graphic vector artwork"
       },
       {
-        "src": "tradeshow-booth-08.png",
+        "src": "tradeshow-booth-08.webp",
         "caption": "Meet Digit spec sheet handout"
       },
       {
-        "src": "tradeshow-booth-09.png",
+        "src": "tradeshow-booth-09.webp",
         "caption": "Team apparel with technical robot artwork"
       },
       {
-        "src": "tradeshow-booth-07.jpg",
+        "src": "tradeshow-booth-07.webp",
         "caption": "Booth entrance with DIGIT branding and LED display"
       },
       {
-        "src": "tradeshow-booth-05.jpg",
+        "src": "tradeshow-booth-05.webp",
         "caption": "Booth front view with attendee traffic"
       }
     ],

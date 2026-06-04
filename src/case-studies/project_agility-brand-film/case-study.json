@@ -1,12 +1,12 @@
 {
   "title": "Hero Brand Film",
   "description": "Brand + visual design support",
-  "image": "agility-brand-film-02.png",
+  "image": "agility-brand-film-02.webp",
   "visible": true,
   "tags": ["Video", "Brand"],
   "order": 4,
   "caseStudy": {
-    "heroImage": "agility-brand-film-03.png",
+    "heroImage": "agility-brand-film-03.webp",
     "videoUrl": "https://www.youtube.com/embed/LM3hTXUShvA",
     "blurb": "I contributed visual design and brand direction support for Agility's first cinematic brand film — the public debut of a fully refreshed visual identity. My work spanned on-screen graphics design, iterative brand direction feedback across edit rounds, and helping establish the art direction standards that emerged from production. The design decisions made during this film became the foundation for Agility's broader visual guidelines.",
     "overview": "Agility Robotics' Hero Brand Film was the company's first brand film produced at this scale — a cinematic reintroduction of Agility to the world. More than a product showcase, it was a holistic statement of company vision: who Agility is, what they're building, and why it matters. The film also served as the proving ground for a top-to-bottom refreshed visual identity and newly established art direction guidelines.",
@@ -32,15 +32,15 @@
     "solution": "The final film debuted Agility's refreshed visual identity at scale, with on-screen graphics and brand treatments that established a new visual standard for the company. The art direction and design decisions made during production became the foundation for Agility's broader art direction guidelines going forward. The film was used across external marketing channels and shared with investors and partners as a definitive statement of where Agility is headed.",
     "images": [
       {
-        "src": "agility-brand-film-01.png",
+        "src": "agility-brand-film-01.webp",
         "caption": "Reviewing Digit design and animation direction"
       },
       {
-        "src": "agility-brand-film-02.png",
+        "src": "agility-brand-film-02.webp",
         "caption": "On-screen graphics and visual direction development"
       },
       {
-        "src": "agility-brand-film-03.png",
+        "src": "agility-brand-film-03.webp",
         "caption": "Final frame with brand typography"
       }
     ],
