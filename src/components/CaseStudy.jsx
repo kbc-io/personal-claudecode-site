@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { loadCaseStudies } from '../data/caseStudyLoader'
+import { loadCaseStudies, getCaseStudyLayout } from '../data/caseStudyLoader'
 
 const projects = loadCaseStudies()
 
@@ -160,6 +160,11 @@ function CaseStudy() {
 
   const { title, tags, caseStudy } = project
 
+  // Optional bespoke layout: a `layout.jsx` in the case study folder + `"layout": "custom"`.
+  // Renders inside the shared chrome and gets the resolved data plus lightbox control.
+  const CustomLayout =
+    project.layout === 'custom' ? getCaseStudyLayout(slug) : null
+
   const closeLightbox = () => setLightboxIndex(null)
   const goPrev = (e) => {
     e.stopPropagation()
@@ -185,7 +190,7 @@ function CaseStudy() {
             onClick={() => setLightboxIndex(index)}
             aria-label={`View image ${index + 1}`}
           >
-            <img src={image.src} alt={image.caption || `Image ${index + 1}`} />
+            <img src={image.src} alt={image.caption || `Image ${index + 1}`} loading="lazy" decoding="async" />
           </button>
         ))}
       </div>
@@ -212,9 +217,15 @@ function CaseStudy() {
       </div>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Multi-gallery layout (Sales Collateral — grouped carousels)         */}
+      {/* Custom layout — bespoke per-case-study component (escape hatch)      */}
       {/* ------------------------------------------------------------------ */}
-      {project.layout === 'multi-gallery' ? (
+      {CustomLayout ? (
+        <CustomLayout
+          project={project}
+          images={activeImages}
+          openLightbox={setLightboxIndex}
+        />
+      ) : project.layout === 'multi-gallery' ? (
         galleryGroups && (() => {
           let offset = 0
           return galleryGroups.map((group, groupIdx) => {
@@ -236,7 +247,7 @@ function CaseStudy() {
                         onClick={() => setLightboxIndex(groupOffset + carouselStart + i)}
                         aria-label={`View image ${carouselStart + i + 1}`}
                       >
-                        <img src={image.src} alt={image.caption || `Image ${carouselStart + i + 1}`} />
+                        <img src={image.src} alt={image.caption || `Image ${carouselStart + i + 1}`} loading="lazy" decoding="async" />
                       </button>
                     ))}
                   </div>

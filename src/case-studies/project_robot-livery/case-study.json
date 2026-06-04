@@ -1,12 +1,12 @@
 {
   "title": "Robot Livery",
   "description": "Brief description of the project and your role.",
-  "image": "robot-livery-08.png",
+  "image": "robot-livery-08.webp",
   "visible": true,
   "tags": ["Graphics", "Print"],
   "order": 3,
   "caseStudy": {
-    "heroImage": "robot-livery-08.png",
+    "heroImage": "robot-livery-08.webp",
     "blurb": "I designed a custom physical livery for Agility's experimental Digit robots — a chest-shell wrap that visually distinguishes them from production units in video content. Through rounds of iteration with marketing, sales, and innovation stakeholders, the final design reads clearly on camera while staying on-brand, and was successfully applied by a local wrap shop. The livery has since appeared in Agility's R&D and experimental video productions.",
     "overview": "Agility Robotics produces experimental video content featuring Digit in R&D and innovation contexts — but customers were sometimes confused about whether they were watching production-ready behavior or early-stage experimentation. To solve this, I designed a custom livery: a physical wrap applied to Digit's chest shells that creates an unmistakable visual distinction between the production robot and its experimental counterpart.",
     "role": "Graphic Designer",
@@ -31,23 +31,23 @@
     "solution": "The final livery design uses a distinct visual approach — different enough from Digit's standard appearance to clearly signal 'experimental,' but cohesive enough to still feel like an intentional Agility product. Applied as a physical wrap to the robot's chest shells by a local wrap shop, the livery is purpose-built for video content and has appeared across Agility's experimental and innovation-focused productions.",
     "images": [
       {
-        "src": "robot-livery-03.png",
+        "src": "robot-livery-03.webp",
         "caption": "Livery pattern explorations applied to chest shell form"
       },
       {
-        "src": "robot-livery-04.png",
+        "src": "robot-livery-04.webp",
         "caption": "Early pattern generation studies"
       },
       {
-        "src": "robot-livery-05.png",
+        "src": "robot-livery-05.webp",
         "caption": "Digit with livery in simulated grocery environment"
       },
       {
-        "src": "robot-livery-06.png",
+        "src": "robot-livery-06.webp",
         "caption": "Digit with livery on white backdrop"
       },
       {
-        "src": "robot-livery-07.png",
+        "src": "robot-livery-07.webp",
         "caption": "Digit with livery during R&D testing"
       }
     ],

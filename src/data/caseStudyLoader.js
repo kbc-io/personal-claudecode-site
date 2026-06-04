@@ -90,6 +90,31 @@ function resolveImages(slug, data) {
   }
 }
 
+// Optional per-case-study custom layout components.
+// Drop a `layout.jsx` (default export a React component) into a case study
+// folder and set `"layout": "custom"` in its case-study.json to render a
+// fully bespoke body inside the shared chrome (sticky header, footer, lightbox).
+const layoutModules = import.meta.glob('../case-studies/*/layout.jsx', {
+  eager: true,
+  import: 'default',
+})
+
+/**
+ * Returns the custom layout component for a slug, or null if none exists.
+ */
+export function getCaseStudyLayout(slug) {
+  return layoutModules[`../case-studies/${slug}/layout.jsx`] || null
+}
+
+/**
+ * Every resolved case-study image URL (deduplicated).
+ * Used to warm the browser cache in the background from the portfolio page,
+ * so images are already downloaded by the time a visitor opens a case study.
+ */
+export function getAllCaseStudyImageUrls() {
+  return Array.from(new Set(Object.values(imageModules)))
+}
+
 export function loadCaseStudies() {
   return Object.entries(caseStudyModules)
     .map(([path, module]) => {

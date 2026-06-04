@@ -1,12 +1,12 @@
 {
   "title": "AI Learning App",
   "description": "UI/UX ovehaul of an AI-powered learning app for Cargnegie Mellon.",
-  "image": "cmu-mockup.png",
+  "image": "cmu-mockup.webp",
   "visible": true,
   "tags": ["Web", "UI/UX"],
   "order": 5,
   "caseStudy": {
-    "heroImage": "cmu-app-01.png",
+    "heroImage": "cmu-app-01.webp",
     "overview": "",
     "role": "",
     "timeline": "",
@@ -21,23 +21,23 @@
     "solution": "",
     "images": [
       {
-        "src": "cmu-app-02.png",
+        "src": "cmu-app-02.webp",
         "caption": "Ad campaign creation interface"
       },
       {
-        "src": "cmu-app-03.png",
+        "src": "cmu-app-03.webp",
         "caption": "Objectives and learning outcomes page"
       },
       {
-        "src": "cmu-app-04.png",
+        "src": "cmu-app-04.webp",
         "caption": "UI primitives — menu states and typography"
       },
       {
-        "src": "cmu-app-05.png",
+        "src": "cmu-app-05.webp",
         "caption": "Button component system"
       },
       {
-        "src": "cmu-app-06.png",
+        "src": "cmu-app-06.webp",
         "caption": "Card component system"
       }
     ],

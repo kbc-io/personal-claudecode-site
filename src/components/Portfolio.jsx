@@ -1,14 +1,50 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { loadCaseStudies } from '../data/caseStudyLoader'
+import { loadCaseStudies, getAllCaseStudyImageUrls } from '../data/caseStudyLoader'
 
 const projects = loadCaseStudies()
+
+// Warm the browser cache with every case-study image during idle time, a few at
+// a time at low priority, so they're already downloaded when a visitor clicks in.
+// Runs once per page load and won't compete with on-screen thumbnails.
+let prefetchStarted = false
+function prefetchCaseStudyImages() {
+  if (prefetchStarted || typeof window === 'undefined') return
+  prefetchStarted = true
+
+  const urls = getAllCaseStudyImageUrls()
+  const CONCURRENCY = 4
+  let i = 0
+
+  const loadNext = () => {
+    if (i >= urls.length) return
+    const img = new Image()
+    img.fetchPriority = 'low'
+    img.decoding = 'async'
+    img.onload = img.onerror = loadNext
+    img.src = urls[i++]
+  }
+
+  const start = () => {
+    for (let c = 0; c < CONCURRENCY; c++) loadNext()
+  }
+
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(start, { timeout: 3000 })
+  } else {
+    setTimeout(start, 1500)
+  }
+}
 
 function Portfolio() {
   const [activeFilter, setActiveFilter] = useState('All')
   const [viewMode, setViewMode] = useState(
     () => sessionStorage.getItem('portfolioViewMode') || 'grid'
   )
+
+  useEffect(() => {
+    prefetchCaseStudyImages()
+  }, [])
 
   const handleSetViewMode = (mode) => {
     sessionStorage.setItem('portfolioViewMode', mode)
@@ -89,6 +125,8 @@ function Portfolio() {
                 <img
                   src={project.image}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
                   style={project.thumbnailPosition ? { objectPosition: project.thumbnailPosition } : undefined}
                 />
               </div>
@@ -117,6 +155,8 @@ function Portfolio() {
                 <img
                   src={project.image}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
                   style={project.thumbnailPosition ? { objectPosition: project.thumbnailPosition } : undefined}
                 />
               </div>
