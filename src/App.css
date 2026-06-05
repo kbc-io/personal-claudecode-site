@@ -1186,6 +1186,18 @@
     padding: 12px;
   }
 
+  /* List-view cards stack vertically so the thumbnail spans the full card
+     width and fills its container instead of a tiny fixed-ratio sliver. */
+  .project-card {
+    flex-direction: column;
+  }
+
+  .project-image {
+    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
   .project-info {
     padding: 16px;
   }
@@ -1224,6 +1236,16 @@
 
   .bento-item.wide {
     grid-column: span 1;
+  }
+
+  /* Sales Collateral carousel: drop from 4 columns to 2 so portrait page
+     previews aren't squeezed into tall, skinny slivers. */
+  .carousel-track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .carousel-item {
+    height: 220px;
   }
 
   .lightbox-overlay {
@@ -1334,4 +1356,11 @@
     font-size: 14px;
   }
 
+  .project-image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .carousel-item {
+    height: 180px;
+  }
 }
