@@ -51,7 +51,9 @@
       "Bash(git reset *)",
       "Bash(git restore *)",
       "Bash(git checkout *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git rm *)",
+      "Bash(git commit *)"
     ]
   }
 }
