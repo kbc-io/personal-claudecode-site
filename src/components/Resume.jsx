@@ -73,14 +73,14 @@ function Resume() {
         </div>
       </section>
 
-      <section className="section fade-in" style={{ animationDelay: `${(experience.length + education.length + 2) * 0.1}s` }}>
+      {/* <section className="section fade-in" style={{ animationDelay: `${(experience.length + education.length + 2) * 0.1}s` }}>
         <h2>Skills</h2>
         <div className="resume-section-container">
           <div className="job-description">
             <p>{skills.join(', ')}</p>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   )
 }
