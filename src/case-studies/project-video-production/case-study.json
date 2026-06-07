@@ -2,7 +2,7 @@
   "title": "Video Production",
   "description": "Brief description for the portfolio grid card.",
   "image": "thumbnail.webp",
-  "visible": false,
+  "visible": true,
   "tags": ["Tag1", "Tag2"],
   "order": 8,
   "caseStudy": {
