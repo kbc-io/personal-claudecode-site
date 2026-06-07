@@ -42,7 +42,18 @@
       "Bash(file \"/Users/kevincoalwell/Documents/CS Stuff/personal-claudecode-site/src/case-studies/project-sales-collateral/\"*.png \"/Users/kevincoalwell/Documents/CS Stuff/personal-claudecode-site/src/case-studies/project-sales-collateral/\"*.PNG \"/Users/kevincoalwell/Documents/CS Stuff/personal-claudecode-site/src/case-studies/project-sales-collateral/\"*.jpg \"/Users/kevincoalwell/Documents/CS Stuff/personal-claudecode-site/src/case-studies/project-sales-collateral/\"*.JPG)",
       "Bash(mv \"agility-collateral-01.PNG\" \"agility-collateral-01.png\")",
       "Bash(mv \"agility-collateral-02.JPG\" \"agility-collateral-02.jpg\")",
-      "WebFetch(domain:localhost)"
+      "WebFetch(domain:localhost)",
+      "Bash(npm run *)",
+      "Bash(ls dist/assets/*.css)",
+      "Bash(node -e \"const p=require\\('puppeteer'\\);console.log\\('puppeteer available'\\)\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git reset *)",
+      "Bash(git restore *)",
+      "Bash(git checkout *)",
+      "Bash(git push *)",
+      "Bash(git rm *)",
+      "Bash(git commit *)"
     ]
   }
 }

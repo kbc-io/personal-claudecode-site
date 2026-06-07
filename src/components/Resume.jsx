@@ -4,8 +4,9 @@ function Resume() {
   const { experience, education, skills } = resumeData
 
   // Group consecutive jobs at the same company to show tenure
-  const groupedExperience = experience.reduce((groups, job, i) => {
-    if (i === 0 || job.company !== experience[i - 1].company) {
+  const visibleExperience = experience.filter(job => job.visible !== false)
+  const groupedExperience = visibleExperience.reduce((groups, job, i) => {
+    if (i === 0 || job.company !== visibleExperience[i - 1].company) {
       groups.push([job])
     } else {
       groups[groups.length - 1].push(job)
@@ -36,7 +37,7 @@ function Resume() {
                         ) : (
                           job.company
                         )}
-                        {job.location && <span className="job-location"> · {job.location}</span>}
+                        {job.time && <span className="job-location"> · {job.time}</span>}
                       </div>
                       <div className="job-description">
                         {job.highlights && job.highlights.length > 0 && (
@@ -72,14 +73,14 @@ function Resume() {
         </div>
       </section>
 
-      <section className="section fade-in" style={{ animationDelay: `${(experience.length + education.length + 2) * 0.1}s` }}>
+      {/* <section className="section fade-in" style={{ animationDelay: `${(experience.length + education.length + 2) * 0.1}s` }}>
         <h2>Skills</h2>
         <div className="resume-section-container">
           <div className="job-description">
             <p>{skills.join(', ')}</p>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   )
 }

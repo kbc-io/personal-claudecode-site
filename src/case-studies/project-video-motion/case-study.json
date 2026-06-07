@@ -1,0 +1,43 @@
+{
+  "title": "Video + Motion",
+  "description": "Brief description for the portfolio grid card.",
+  "image": "thumbnail.webp",
+  "visible": false,
+  "tags": ["Tag1", "Tag2"],
+  "order": 8,
+  "caseStudy": {
+    "heroImage": "hero.webp",
+    "overview": "A comprehensive overview of the project.",
+    "role": "Your Role",
+    "timeline": "3 months",
+    "team": "Team description",
+    "objectives": [
+      "First objective",
+      "Second objective"
+    ],
+    "challenge": "Describe the main challenge or problem.",
+    "approach": "Detail your strategic approach.",
+    "userExperience": {
+      "description": "User experience considerations.",
+      "insights": [
+        "Key insight 1",
+        "Key insight 2"
+      ]
+    },
+    "solution": "Describe the final solution.",
+    "images": [
+      {
+        "src": "detail-1.webp",
+        "caption": "Caption for image 1"
+      },
+      {
+        "src": "detail-2.webp",
+        "caption": "Caption for image 2"
+      }
+    ],
+    "results": [
+      "Result or outcome 1",
+      "Result or outcome 2"
+    ]
+  }
+}

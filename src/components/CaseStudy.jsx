@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
 import { loadCaseStudies, getCaseStudyLayout } from '../data/caseStudyLoader'
 
 const projects = loadCaseStudies()
@@ -292,7 +293,9 @@ function CaseStudy() {
         <>
           {/* Condensed blurb — between title/tags and role/timeline/team */}
           {caseStudy.blurb && (
-            <p className="case-study-blurb fade-in" style={{ animationDelay: '0.2s' }}>{caseStudy.blurb}</p>
+            <div className="case-study-blurb fade-in" style={{ animationDelay: '0.2s' }}>
+              <ReactMarkdown>{caseStudy.blurb}</ReactMarkdown>
+            </div>
           )}
 
           {/* Role / Timeline / Team */}

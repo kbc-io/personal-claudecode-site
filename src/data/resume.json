@@ -2,7 +2,7 @@
   "name": "Kevin Coalwell",
   "bio": "Versatile designer specializing in translating complex technical concepts into compelling visual experiences through strategic brand design and content creation, with proven experience engaging large-scale digital audiences. A unique blend of hands-on technical ability and attentive design sensibilities enable me to bridge the gap between engineering teams and broader markets.",
   "contact": {
-    "email": "work@kevincoalwell.com",
+    "email": "hello@kbco.work",
     "linkedin": "https://www.linkedin.com/in/kevin-coalwell/"
   },
   "experience": [
@@ -11,7 +11,8 @@
       "company": "Agility Robotics",
       "url": "https://www.agilityrobotics.com",
       "duration": "October 2024 – Present",
-      "location": "Remote",
+      "time": "Full Time",
+      "visible": true,
       "highlights": [
         "Managing internal coordination of comprehensive visual rebrand, serving as creative liaison between stakeholders and design contractors.",
         "Led visual strategy for website redesign project, focusing on user experience optimization and brand consistency.",
@@ -23,7 +24,21 @@
       "company": "Agility Robotics",
       "url": "https://www.agilityrobotics.com",
       "duration": "August 2022 - October 2024",
-      "location": "Remote",
+      "time": "Full Time",
+      "visible": true,
+      "highlights": [
+        "Cultivated the company brand, voice, and storytelling strategy, built trust and generated millions of engagements across digital channels.",
+        "Interviewed SMEs to translate highly technical topics into engaging content across a variety of touch points.",
+        "Managed creative contractors and sourced freelance labor."
+      ]
+    },
+    {
+      "title": "UI/UX Designer",
+      "company": "Carnegie Mellon University",
+      "url": "https://www.agilityrobotics.com",
+      "duration": "July 2025 - December 2025",
+      "time": "Freelance",
+      "visible": true,
       "highlights": [
         "Cultivated the company brand, voice, and storytelling strategy, built trust and generated millions of engagements across digital channels.",
         "Interviewed SMEs to translate highly technical topics into engaging content across a variety of touch points.",
@@ -35,7 +50,8 @@
       "company": "Active911",
       "url": "https://www.active911.com",
       "duration": "March 2021 - June 2022",
-      "location": "Corvallis, OR",
+      "time": "Full-time",
+      "visible": true,
       "highlights": [
         "Produced and published multimedia content across social channels to an audience of over 50,000.",
         "Developed visual brand strategy for multimedia content in adherance to existing brand guidelines.",
@@ -47,7 +63,8 @@
       "company": "Oregon State University",
       "url": "https://communications.oregonstate.edu/osp",
       "duration": "January 2019 - March 2021",
-      "location": "Corvallis, OR",
+      "time": "Part-time",
+      "visible": false,
       "highlights": [
         "Coordinated with clients, drafted project proposals, conducted video shoots, and edited documentary and promotional content for Oregon State University in accordance with university brand guidelines."
       ]

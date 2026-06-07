@@ -1,16 +1,18 @@
 {
   "title": "Agility Rebrand",
   "description": "Full stack brand refresh.",
-  "image": "thumbnail.webp",
-  "visible": false,
+  "image": "agility-rebrand-thumbnail.webp",
+  "thumbnailPosition": "50%",
+  "visible": true,
   "tags": ["Brand", "Design"],
-  "order": 10,
+  "order": 1,
   "caseStudy": {
-    "heroImage": "hero.webp",
+    "heroImage": "agility-rebrand-08.webp",
     "overview": "A comprehensive overview of the project.",
-    "role": "Your Role",
-    "timeline": "3 months",
-    "team": "Team description",
+    "blurb": "Top to bottom refresh of the Agility Robotics brand identity. As the internal designer on the visual identity team, I worked closely with our Visual Brand Director to define the new visual language and strategy, including new propietary typeface",
+    "role": "Brand Designer (Internal Team)",
+    "timeline": "6 months",
+    "team": "Visual + Verbal Identity Brand Directors (External), Brand Designer (Me), C-Suite (Approval)",
     "objectives": [
       "First objective",
       "Second objective"
@@ -27,12 +29,40 @@
     "solution": "Describe the final solution.",
     "images": [
       {
-        "src": "detail-1.webp",
-        "caption": "Caption for image 1"
+        "src": "agility-rebrand-01.webp",
+        "caption": "Typography and iconography system built on Diatype"
       },
       {
-        "src": "detail-2.webp",
-        "caption": "Caption for image 2"
+        "src": "agility-rebrand-02.webp",
+        "caption": "Logo construction and wordmark grid"
+      },
+      {
+        "src": "agility-rebrand-03.webp",
+        "caption": "Core color palette"
+      },
+      {
+        "src": "agility-rebrand-04.webp",
+        "caption": "Branded apparel"
+      },
+      {
+        "src": "agility-rebrand-05.webp",
+        "caption": "Business card system"
+      },
+      {
+        "src": "agility-rebrand-06.webp",
+        "caption": "Branded tote bag"
+      },
+      {
+        "src": "agility-rebrand-07.webp",
+        "caption": "Wayfinding and facility signage"
+      },
+      {
+        "src": "agility-rebrand-09.webp",
+        "caption": "Product photography for the refreshed brand"
+      },
+      {
+        "src": "agility-rebrand-10.webp",
+        "caption": "Hardware detail photography"
       }
     ],
     "results": [
