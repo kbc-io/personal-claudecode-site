@@ -1,8 +1,8 @@
 {
-  "title": "Video Production",
+  "title": "Video + Motion",
   "description": "Brief description for the portfolio grid card.",
   "image": "thumbnail.webp",
-  "visible": true,
+  "visible": false,
   "tags": ["Tag1", "Tag2"],
   "order": 8,
   "caseStudy": {

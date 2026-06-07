@@ -464,7 +464,7 @@
 /* Filter Bar — tags on left, view toggle on right */
 .filter-bar {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 30px;
