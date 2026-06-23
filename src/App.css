@@ -255,7 +255,8 @@
 
 /* About Page */
 .about-content {
-  max-width: 600px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .about-content p {
@@ -282,6 +283,8 @@
   border: 1px solid rgba(56, 56, 56, 0.7);
   padding: 20px;
   margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
 }
 
 .about-blurb-container p:last-child {
@@ -830,7 +833,8 @@
 
 /* Multi-gallery groups (Sales Collateral) */
 .gallery-group {
-  margin-bottom: 56px;
+  margin-top: 16px;
+  margin-bottom: 32px;
 }
 
 .gallery-group:last-child {

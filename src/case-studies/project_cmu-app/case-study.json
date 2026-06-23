@@ -1,16 +1,18 @@
 {
   "title": "AI Learning App",
-  "description": "UI/UX ovehaul of an AI-powered learning app for Cargnegie Mellon.",
+  "description": "UI/UX overhaul of an AI-powered learning app for Carnegie Mellon.",
   "image": "cmu-mockup.webp",
   "visible": true,
   "tags": ["Web", "UI/UX"],
   "order": 5,
   "caseStudy": {
     "heroImage": "cmu-app-01.webp",
+    "blurb": "A six-month UI/UX overhaul of an AI-powered learning platform for Carnegie Mellon's Tepper School of Business. I led the redesign end to end, rebuilding the experience around a scalable design system: a unified color and type foundation, reusable button, card, menu, and panel components, and redesigned core flows for campaign creation, bidding, and performance analytics. The result is a cohesive, accessible product that holds up across every learning module.",
     "overview": "",
-    "role": "",
-    "timeline": "",
-    "team": "",
+    "role": "UI/UX Designer",
+    "timeline": "6 months",
+    "team": "Client: Carnegie Mellon University, Tepper School of Business",
+    "videoUrl": "https://www.youtube.com/embed/qZkjKtYW7mY",
     "objectives": [],
     "challenge": "",
     "approach": "",
@@ -29,16 +31,36 @@
         "caption": "Objectives and learning outcomes page"
       },
       {
-        "src": "cmu-app-04.webp",
-        "caption": "UI primitives — menu states and typography"
+        "src": "cmu-app-07.webp",
+        "caption": "Lesson content module: image and copy layout"
       },
       {
-        "src": "cmu-app-05.webp",
-        "caption": "Button component system"
+        "src": "cmu-app-08.webp",
+        "caption": "Campaign performance analytics"
       },
       {
-        "src": "cmu-app-06.webp",
-        "caption": "Card component system"
+        "src": "cmu-app-09.webp",
+        "caption": "Bid management and placement view"
+      },
+      {
+        "src": "cmu-app-10.webp",
+        "caption": "Page hero and title system"
+      },
+      {
+        "src": "cmu-app-11.webp",
+        "caption": "Button and icon-button component states"
+      },
+      {
+        "src": "cmu-app-12.webp",
+        "caption": "Navigation menu component"
+      },
+      {
+        "src": "cmu-app-13.webp",
+        "caption": "Color palette and design tokens"
+      },
+      {
+        "src": "cmu-app-14.webp",
+        "caption": "Typography and heading specimens"
       }
     ],
     "results": []
