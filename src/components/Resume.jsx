@@ -1,4 +1,6 @@
 import resumeData from '../data/resume.json'
+import { defaultDescription } from '../data/siteMeta'
+import PageMeta from './PageMeta'
 
 function Resume() {
   const { experience, education, skills } = resumeData
@@ -16,6 +18,11 @@ function Resume() {
 
   return (
     <>
+      <PageMeta
+        title="Experience"
+        description={defaultDescription}
+        path="/experience"
+      />
       <section className="section fade-in" style={{ animationDelay: '0s' }}>
         <h2>Experience</h2>
         {(() => {

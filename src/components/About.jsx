@@ -1,4 +1,7 @@
 import resumeData from "../data/resume.json"
+import { defaultDescription } from "../data/siteMeta"
+import PageMeta from "./PageMeta"
+
 const clients = resumeData["clients and collaborators"];
 
 function ClientList() {
@@ -22,6 +25,11 @@ function ClientList() {
 function About() {
   return (
     <section className="section">
+      <PageMeta
+        title="About"
+        description={defaultDescription}
+        path="/about"
+      />
       <h2 className="fade-in" style={{ animationDelay: '0s' }}>About</h2>
       <div className="about-content">
         <div className="about-blurb-container fade-in" style={{ animationDelay: '0.1s' }}>

@@ -1,6 +1,8 @@
 import { useState, useMemo, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { loadCaseStudies, getAllCaseStudyImageUrls } from '../data/caseStudyLoader'
+import { defaultDescription } from '../data/siteMeta'
+import PageMeta from './PageMeta'
 
 const projects = loadCaseStudies()
 
@@ -66,6 +68,11 @@ function Portfolio() {
 
   return (
     <section className="section">
+      <PageMeta
+        title="Portfolio"
+        description={defaultDescription}
+        path="/portfolio"
+      />
       <h2>Recent Work</h2>
 
       <div className="filter-bar">

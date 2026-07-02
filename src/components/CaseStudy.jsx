@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import { loadCaseStudies, getCaseStudyLayout } from '../data/caseStudyLoader'
+import { defaultDescription } from '../data/siteMeta'
+import PageMeta from './PageMeta'
 
 const projects = loadCaseStudies()
 
@@ -152,6 +154,11 @@ function CaseStudy() {
   if (!project) {
     return (
       <section className="section">
+        <PageMeta
+          title="Project Not Found"
+          description={defaultDescription}
+          path={`/portfolio/${slug}`}
+        />
         <h2>Project Not Found</h2>
         <p>The project you're looking for doesn't exist.</p>
         <Link to="/portfolio" className="back-link"><svg className="back-arrow" width="14" height="14" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="244,400 100,256 244,112" stroke="currentColor" strokeWidth="48" strokeLinecap="square" strokeLinejoin="miter"/><line x1="120" y1="256" x2="412" y2="256" stroke="currentColor" strokeWidth="48" strokeLinecap="square"/></svg>Back</Link>
@@ -197,8 +204,19 @@ function CaseStudy() {
       </div>
     )
 
+  const metaDescription =
+    caseStudy?.blurb?.replace(/\s+/g, ' ').trim() ||
+    project.description ||
+    defaultDescription
+
   return (
     <div className="case-study">
+      <PageMeta
+        title={title}
+        description={metaDescription}
+        image={project.image}
+        path={`/portfolio/${slug}`}
+      />
       {/* Sentinel — scrolls out of view to trigger sticky header collapse */}
       <div ref={sentinelRef} className="case-study-sentinel" />
 
