@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import './App.css'
 import resumeData from './data/resume.json'
 import Resume from './components/Resume'
@@ -7,12 +7,27 @@ import Portfolio from './components/Portfolio'
 import CaseStudy from './components/CaseStudy'
 import About from './components/About'
 
+const pacificTimeFormatter = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'America/Los_Angeles',
+  hour: 'numeric',
+  minute: '2-digit',
+  hour12: true,
+  timeZoneName: 'short',
+})
+
 function App() {
   const { name, bio, contact } = resumeData
   const isFirstLoad = useRef(!sessionStorage.getItem('hasLoaded'))
+  const [pacificTime, setPacificTime] = useState(() => pacificTimeFormatter.format(new Date()))
 
   useEffect(() => {
     sessionStorage.setItem('hasLoaded', 'true')
+  }, [])
+
+  useEffect(() => {
+    const tick = () => setPacificTime(pacificTimeFormatter.format(new Date()))
+    const id = setInterval(tick, 1000)
+    return () => clearInterval(id)
   }, [])
 
   const intro = isFirstLoad.current
@@ -39,6 +54,7 @@ function App() {
             <ul>
               <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
               <li><a href={contact.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li className="location-time">{contact.location} | {pacificTime}</li>
             </ul>
           </div>
         </aside>

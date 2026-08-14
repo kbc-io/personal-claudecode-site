@@ -138,6 +138,10 @@
   text-decoration: none;
 }
 
+.sidebar .contact .location-time {
+  color: var(--text-secondary);
+}
+
 .main-content {
   flex: 1;
   min-width: 0;
