@@ -21,7 +21,7 @@
 
   /* Borders — decorative vs. interactive.
      --border-interactive clears the WCAG 1.4.11 3:1 minimum for UI
-     boundaries (3.24:1 on --bg-primary); --border-subtle is for dividers
+     boundaries (3.25:1 on --bg-primary); --border-subtle is for dividers
      and container edges that carry no interaction meaning. */
   --border-subtle: #2A2A2A;
   --border-default: #383838;
