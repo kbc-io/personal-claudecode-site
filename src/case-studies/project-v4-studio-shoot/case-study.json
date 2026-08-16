@@ -5,8 +5,10 @@
   "thumbnailPosition": "50%",
   "visible": true,
   "layout": "gallery",
-  "tags": ["Brand", "Photo"],
-  "order": 3,
+  "tags": [
+    "Visual"
+  ],
+  "order": 9,
   "caseStudy": {
     "overview": ""
   }

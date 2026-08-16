@@ -1,26 +1,38 @@
 {
   "title": "AI Learning App",
-  "description": "UI/UX overhaul of an AI-powered learning app for Carnegie Mellon.",
+  "description": "UI/UX overhaul and design system for an AI-powered learning platform at Carnegie Mellon.",
   "image": "cmu-mockup.webp",
   "visible": true,
-  "tags": ["Web", "UI/UX"],
-  "order": 5,
+  "tags": [
+    "Product"
+  ],
+  "order": 1,
   "caseStudy": {
     "heroImage": "cmu-app-01.webp",
-    "blurb": "A six-month UI/UX overhaul of an AI-powered learning platform for Carnegie Mellon's Tepper School of Business. I led the redesign end to end, rebuilding the experience around a scalable design system: a unified color and type foundation, reusable button, card, menu, and panel components, and redesigned core flows for campaign creation, bidding, and performance analytics. The result is a cohesive, accessible product that holds up across every learning module.",
-    "overview": "",
+    "blurb": "A six-month UI/UX overhaul of an AI-powered learning platform for Carnegie Mellon's Tepper School of Business. I led the redesign end to end, rebuilding the experience around a scalable design system: a unified color and type foundation, reusable button, card, menu, and panel components, and redesigned core flows for campaign creation, bidding, and performance analytics.",
+    "overview": "Tepper uses a simulation platform to teach digital advertising. Students run ad campaigns against a model of a real auction market — setting budgets, placing bids, and reading performance data back to adjust their strategy. The teaching material was strong. The interface it ran on had grown feature by feature over several years, and it had stopped keeping up.\n\nI came on as the sole designer for six months to redesign that interface and hand the result to the engineering team as a working system rather than a set of screens.",
     "role": "UI/UX Designer",
     "timeline": "6 months",
     "team": "Client: Carnegie Mellon University, Tepper School of Business",
     "videoUrl": "https://www.youtube.com/embed/qZkjKtYW7mY",
-    "objectives": [],
-    "challenge": "",
-    "approach": "",
+    "objectives": [
+      "Redesign the core student flows — campaign creation, bid management, and performance analytics — so the interface teaches the concept instead of competing with it.",
+      "Replace accumulated one-off styling with a documented design system the engineering team can build against.",
+      "Produce developer-ready specifications for a TypeScript/React frontend, not just static mockups.",
+      "Keep the visual language consistent across every learning module, including ones added after handoff."
+    ],
+    "challenge": "The platform had been extended one feature at a time, and it showed. Buttons that did the same thing looked different on different pages. Type sizes had drifted into a range wide enough that nothing read as deliberate. Dense numerical views — bid tables, campaign performance — gave inputs, results, and labels the same visual weight, so students had to work out what they were looking at before they could work out what it meant.\n\nThat last part is the real problem in an educational product. Every second a student spends decoding the interface is a second not spent learning how an ad auction behaves. The interface was adding difficulty in a place where the subject already supplies plenty.\n\nThe constraint was that this had to land as something a small engineering team could actually implement. A redesign that looked good in Figma and took a year to build would not have been useful to anyone.",
+    "approach": "I started by mapping what already existed rather than by drawing screens — every page, every component variant, every color and type value in use. Seeing the real inventory made the priority obvious: redundancy in the component set was the root cause, and the visual inconsistency was a symptom of it.\n\nSo the system came first. I defined a color palette and type scale, then built the component set on top of it — buttons and icon buttons with full state coverage, cards, menus, and panels — as Figma components whose variants mapped cleanly onto React props. Building the foundation first turned the screen redesigns into composition work instead of a series of one-off decisions, and it meant engineering received something with a structure they already recognised.\n\nOnly then did I rework the core flows. Campaign creation was restructured so setup reads as a sequence rather than one dense form. The bidding and placement view was reorganised around the comparison a student is actually trying to make. Analytics was rebuilt to lead with the result and put supporting detail second.",
     "userExperience": {
-      "description": "",
-      "insights": []
+      "description": "The users here are students under time pressure, working through a module, usually with nobody beside them to ask. That framing settled most of the interface questions. Where a general-purpose product might reasonably favour density and speed for repeat users, this one had to favour legibility for someone meeting the screen for the first and possibly only time.",
+      "insights": [
+        "In a teaching tool, interface friction and subject difficulty are indistinguishable to the learner. A confused student rarely stops to work out which one is confusing them — they just conclude the material is hard.",
+        "Consistency did more work than any individual screen improvement. Once a button meant one thing everywhere, the flows needed noticeably less explanation around them.",
+        "Designing component states up front — including empty, loading, and error cases — surfaced product questions the original screens had quietly left unanswered.",
+        "Designing for handoff changed the design itself. Knowing every variant had to map to a prop pushed me to reduce the component set rather than expand it."
+      ]
     },
-    "solution": "",
+    "solution": "The delivered work was a complete Figma design system plus the redesigned flows built from it. The system covers the color and type foundation, a component library with documented states, and the page-level patterns — hero and title treatments, module content layouts, and the analytics views.\n\nThe handoff was structured for a TypeScript/React codebase: components named and organised the way they would be implemented, states enumerated rather than implied, and specifications detailed enough to build from without a follow-up conversation for every screen.",
     "images": [
       {
         "src": "cmu-app-02.webp",
@@ -63,6 +75,11 @@
         "caption": "Typography and heading specimens"
       }
     ],
-    "results": []
+    "results": [
+      "Delivered a complete Figma design system — color and type foundation, component library with documented states, and page-level patterns.",
+      "Redesigned the three core student flows: campaign creation, bid management, and performance analytics.",
+      "Handed off developer-ready specifications structured for a TypeScript/React implementation.",
+      "Established a component set new learning modules can be built from without fresh design work for each one."
+    ]
   }
 }

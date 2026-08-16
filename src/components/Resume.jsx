@@ -1,9 +1,16 @@
 import resumeData from '../data/resume.json'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 function Resume() {
-  const { experience, education, skills } = resumeData
+  usePageMeta({
+    title: 'Experience',
+    description:
+      'Kevin Coalwell — Brand Designer at Agility Robotics, freelance UI/UX Designer for Carnegie Mellon, previously Brand Manager at Active911.'
+  })
 
-  // Group consecutive jobs at the same company to show tenure
+  const { experience, education, skills, awards } = resumeData
+
+  // Group consecutive roles at the same company to show tenure.
   const visibleExperience = experience.filter(job => job.visible !== false)
   const groupedExperience = visibleExperience.reduce((groups, job, i) => {
     if (i === 0 || job.company !== visibleExperience[i - 1].company) {
@@ -14,58 +21,71 @@ function Resume() {
     return groups
   }, [])
 
+  let delayIndex = 0
+  const nextDelay = () => `${++delayIndex * 0.06}s`
+
   return (
     <>
-      <section className="section fade-in" style={{ animationDelay: '0s' }}>
-        <h2>Experience</h2>
-        {(() => {
-          let flatIndex = 0
-          return groupedExperience.map((group, groupIdx) => {
-            const groupContent = (
-              <div key={groupIdx} className="company-group">
-                {group.map((job) => {
-                  const delay = `${(flatIndex++ + 1) * 0.1}s`
-                  return (
-                    <div className="job fade-in" key={job.title} style={{ animationDelay: delay }}>
-                      <div className="job-header">
-                        <span className="job-title">{job.title}</span>
-                        <span className="job-date">{job.duration}</span>
-                      </div>
-                      <div className="job-company">
-                        {job.url ? (
-                          <a href={job.url} target="_blank" rel="noopener noreferrer">{job.company}</a>
-                        ) : (
-                          job.company
-                        )}
-                        {job.time && <span className="job-location"> · {job.time}</span>}
-                      </div>
-                      <div className="job-description">
-                        {job.highlights && job.highlights.length > 0 && (
-                          <ul>
-                            {job.highlights.map((highlight, i) => (
-                              <li key={i}>{highlight}</li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    </div>
-                  )
-                })}
+      <section className="section">
+        <h1 className="page-title fade-in">Experience</h1>
+
+        {groupedExperience.map((group) => (
+          <div key={group[0].company + group[0].duration} className="company-group">
+            {group.map((job) => (
+              <div className="job fade-in" key={job.title + job.duration} style={{ animationDelay: nextDelay() }}>
+                <div className="job-header">
+                  <span className="job-title">{job.title}</span>
+                  <span className="job-date">{job.duration}</span>
+                </div>
+                <div className="job-company">
+                  {job.url ? (
+                    <a href={job.url} target="_blank" rel="noopener noreferrer">{job.company}</a>
+                  ) : (
+                    job.company
+                  )}
+                  {job.time && <span className="job-location"> · {job.time}</span>}
+                </div>
+                {job.highlights?.length > 0 && (
+                  <div className="job-description">
+                    <ul>
+                      {job.highlights.map((highlight) => (
+                        <li key={highlight}>{highlight}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
-            )
-            return groupContent
-          })
-        })()}
+            ))}
+          </div>
+        ))}
       </section>
 
-      <section className="section fade-in" style={{ animationDelay: `${(experience.length + 1) * 0.1}s` }}>
-        <h2>Education</h2>
+      <section className="section">
+        <h2 className="section-heading">Skills</h2>
         <div className="resume-section-container">
-          {education.map((edu, index) => (
-            <div className="job fade-in" key={index} style={{ animationDelay: `${(experience.length + 2 + index) * 0.1}s` }}>
+          {skills.map((group) => (
+            <div className="job fade-in" key={group.category} style={{ animationDelay: nextDelay() }}>
+              <div className="job-header">
+                <span className="job-title">{group.category}</span>
+              </div>
+              <div className="job-description">
+                <p>{group.items.join(' · ')}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <h2 className="section-heading">Education</h2>
+        <div className="resume-section-container">
+          {education.map((edu) => (
+            <div className="job fade-in" key={edu.degree} style={{ animationDelay: nextDelay() }}>
               <div className="job-header">
                 <span className="job-title">{edu.degree}</span>
-                {/* <span className="job-date">{edu.startDate} - {edu.endDate}</span> */}
+                <span className="job-date">
+                  {edu.issued ? edu.issued : `${edu.startDate}–${edu.endDate}`}
+                </span>
               </div>
               <div className="job-company">{edu.institution}</div>
             </div>
@@ -73,14 +93,19 @@ function Resume() {
         </div>
       </section>
 
-      {/* <section className="section fade-in" style={{ animationDelay: `${(experience.length + education.length + 2) * 0.1}s` }}>
-        <h2>Skills</h2>
-        <div className="resume-section-container">
-          <div className="job-description">
-            <p>{skills.join(', ')}</p>
-          </div>
-        </div>
-      </section> */}
+      {awards?.length > 0 && (
+        <section className="section">
+          <h2 className="section-heading">Awards</h2>
+          <ul className="award-list">
+            {awards.map((award) => (
+              <li key={award.title + award.year}>
+                <span>{award.title}</span>
+                <span className="award-year">{award.year}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </>
   )
 }
