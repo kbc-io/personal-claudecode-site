@@ -159,9 +159,10 @@
   color: var(--accent);
 }
 
-/* Location + local time. Scoped to neither the sidebar nor the footer, since
-   the contact block renders in both. */
-.location-time {
+/* Local time. Scoped to neither the sidebar nor the footer, since the contact
+   block renders in both. tabular-nums keeps the line from jittering as the
+   seconds tick. */
+.local-time {
   color: var(--text-secondary);
   font-variant-numeric: tabular-nums;
 }

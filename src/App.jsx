@@ -16,37 +16,38 @@ const pacificTimeFormatter = new Intl.DateTimeFormat('en-US', {
   timeZone: 'America/Los_Angeles',
   hour: 'numeric',
   minute: '2-digit',
+  second: '2-digit',
   hour12: true,
   timeZoneName: 'short',
 })
 
 /**
- * Local time where Kevin is, ticking on the minute.
+ * Local time where Kevin is, ticking every second.
  *
- * The formatted value has minute precision, so it re-renders once a minute
- * rather than once a second — the timeout is aligned to the next minute
- * boundary so the displayed value changes the moment it actually turns over.
+ * State lives in this leaf rather than in App so the per-second update
+ * re-renders one <li> instead of cascading through the whole route tree.
+ * The timeout is re-aligned to the next second boundary on every tick, so
+ * the display stays on the second instead of drifting the way a plain
+ * setInterval would.
  */
-function usePacificTime() {
+function LocalTime() {
   const [time, setTime] = useState(() => pacificTimeFormatter.format(new Date()))
 
   useEffect(() => {
     let timeoutId
 
     const schedule = () => {
-      const now = new Date()
-      const msToNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds()
       timeoutId = setTimeout(() => {
         setTime(pacificTimeFormatter.format(new Date()))
         schedule()
-      }, msToNextMinute)
+      }, 1000 - (Date.now() % 1000))
     }
 
     schedule()
     return () => clearTimeout(timeoutId)
   }, [])
 
-  return time
+  return <li className="local-time">{time}</li>
 }
 
 /**
@@ -62,7 +63,7 @@ function ScrollToTop() {
   return null
 }
 
-function ContactLinks({ className, pacificTime }) {
+function ContactLinks({ className }) {
   const { contact } = resumeData
   return (
     <ul className={className}>
@@ -79,11 +80,7 @@ function ContactLinks({ className, pacificTime }) {
           </a>
         </li>
       )}
-      {contact.location && (
-        <li className="location-time">
-          {contact.location} | {pacificTime}
-        </li>
-      )}
+      <LocalTime />
     </ul>
   )
 }
@@ -93,7 +90,6 @@ function App() {
 
   // The staggered intro plays once per session, not on every navigation.
   const [intro] = useState(() => !sessionStorage.getItem('hasLoaded'))
-  const pacificTime = usePacificTime()
 
   useEffect(() => {
     sessionStorage.setItem('hasLoaded', 'true')
@@ -128,7 +124,7 @@ function App() {
 
           <div className={`contact${intro ? ' fade-in' : ''}`} {...d(4)}>
             <h2>Contact</h2>
-            <ContactLinks pacificTime={pacificTime} />
+            <ContactLinks />
           </div>
         </aside>
 
@@ -151,7 +147,7 @@ function App() {
           primary calls to action live here instead of disappearing. */}
       <footer className="site-footer">
         <h2>Contact</h2>
-        <ContactLinks pacificTime={pacificTime} />
+        <ContactLinks />
       </footer>
     </BrowserRouter>
   )
