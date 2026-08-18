@@ -159,6 +159,19 @@
   color: var(--accent);
 }
 
+/* LinkedIn / Are.na / GitHub share a single line, pipe-separated. */
+.contact-profiles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.contact-sep {
+  color: var(--border-interactive);
+  user-select: none;
+}
+
 /* Local time. Scoped to neither the sidebar nor the footer, since the contact
    block renders in both. tabular-nums keeps the line from jittering as the
    seconds tick. */

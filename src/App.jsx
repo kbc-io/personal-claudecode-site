@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink, Navigate, useLocation } from 'react-router-dom'
-import { Suspense, lazy, useEffect, useState } from 'react'
+import { Fragment, Suspense, lazy, useEffect, useState } from 'react'
 import './App.css'
 import resumeData from './data/resume.json'
 import Portfolio from './components/Portfolio'
@@ -65,26 +65,27 @@ function ScrollToTop() {
 
 function ContactLinks({ className }) {
   const { contact } = resumeData
+
+  // Profile links share one line, so they are declared as data rather than
+  // as repeated markup — adding one is a single entry here.
+  const profiles = [
+    ['LinkedIn', contact.linkedin],
+    ['Are.na', contact.arena],
+    ['GitHub', contact.github],
+  ].filter(([, url]) => url)
+
   return (
     <ul className={className}>
       <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
-      <li>
-        <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
-          LinkedIn
-        </a>
-      </li>
-      {contact.arena && (
-        <li>
-          <a href={contact.arena} target="_blank" rel="noopener noreferrer">
-            Are.na
-          </a>
-        </li>
-      )}
-      {contact.github && (
-        <li>
-          <a href={contact.github} target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
+      {profiles.length > 0 && (
+        <li className="contact-profiles">
+          {profiles.map(([label, url], i) => (
+            <Fragment key={label}>
+              {/* Separator is decorative — hidden so it isn't read aloud. */}
+              {i > 0 && <span className="contact-sep" aria-hidden="true">|</span>}
+              <a href={url} target="_blank" rel="noopener noreferrer">{label}</a>
+            </Fragment>
+          ))}
         </li>
       )}
       <LocalTime />
