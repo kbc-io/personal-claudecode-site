@@ -27,11 +27,16 @@
   --border-default: #383838;
   --border-interactive: #626262;
 
-  /* Accent — the only hue in the palette. Signal amber, 11.2:1 on
-     --bg-primary. Used for focus rings, active states, and link hover.
-     Swap this single value to re-tint the whole site. */
-  --accent: #FFB454;
-  --accent-dim: rgba(255, 180, 84, 0.16);
+  /* Accent — the only hue in the palette. Cyan, 12.2:1 on --bg-primary.
+     Used for focus rings, active states, and link hover.
+     Swap this single value to re-tint the whole site.
+
+     Note: the accent sits on the dark page everywhere except the card hover
+     border, which can abut a white-background thumbnail. It clears only
+     1.6:1 against white, so that border reads by its dark-side edge rather
+     than its light-side one. */
+  --accent: #43E0DB;
+  --accent-dim: rgba(67, 224, 219, 0.16);
 
   /* Image plate. Sits behind lazy-loading images, so it must not flash
      bright against the page. */

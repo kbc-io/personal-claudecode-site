@@ -18,7 +18,7 @@ const COLOR_TOKENS = [
   ['--surface-3', 'Surface, raised'],
   ['--border-subtle', 'Divider, decorative'],
   ['--border-interactive', 'Control border · 3.2:1'],
-  ['--accent', 'Accent · 11.2:1']
+  ['--accent', 'Accent · 12.2:1']
 ]
 
 const TYPE_ROLES = [
