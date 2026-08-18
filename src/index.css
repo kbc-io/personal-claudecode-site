@@ -27,11 +27,11 @@
   --border-default: #383838;
   --border-interactive: #626262;
 
-  /* Accent — the only hue in the palette. Terminal green, 11.1:1 on
+  /* Accent — the only hue in the palette. Signal amber, 11.2:1 on
      --bg-primary. Used for focus rings, active states, and link hover.
      Swap this single value to re-tint the whole site. */
-  --accent: #1FE01F;
-  --accent-dim: rgba(31, 224, 31, 0.16);
+  --accent: #FFB454;
+  --accent-dim: rgba(255, 180, 84, 0.16);
 
   /* Image plate. Sits behind lazy-loading images, so it must not flash
      bright against the page. */
