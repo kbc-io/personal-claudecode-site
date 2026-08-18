@@ -73,6 +73,13 @@ function ContactLinks({ className }) {
           LinkedIn
         </a>
       </li>
+      {contact.arena && (
+        <li>
+          <a href={contact.arena} target="_blank" rel="noopener noreferrer">
+            Are.na
+          </a>
+        </li>
+      )}
       {contact.github && (
         <li>
           <a href={contact.github} target="_blank" rel="noopener noreferrer">
