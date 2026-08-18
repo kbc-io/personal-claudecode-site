@@ -11,15 +11,48 @@ import { usePageMeta } from '../hooks/usePageMeta'
 
 const COLOR_TOKENS = [
   ['--bg-primary', 'Page background'],
-  ['--text-primary', 'Primary text · 19.8:1'],
-  ['--text-secondary', 'Secondary text · 8.6:1'],
+  ['--text-primary', 'Primary text'],
+  ['--text-secondary', 'Secondary text'],
   ['--surface-1', 'Surface, lowest'],
   ['--surface-2', 'Surface, image plate'],
   ['--surface-3', 'Surface, raised'],
   ['--border-subtle', 'Divider, decorative'],
-  ['--border-interactive', 'Control border · 3.2:1'],
-  ['--accent', 'Accent · 12.2:1']
+  ['--border-interactive', 'Control border'],
+  ['--accent', 'Accent']
 ]
+
+/**
+ * Contrast against the current page background, measured from the values the
+ * browser actually resolved. Baking the numbers in as text would have gone
+ * stale the moment a theme changed — these follow whichever theme is active.
+ * Semi-transparent surfaces are skipped: their effective contrast depends on
+ * what they are layered over.
+ */
+function parseRgb(value) {
+  const m = value.match(/rgba?\(([^)]+)\)/)
+  if (!m) return null
+  const parts = m[1].split(/[\s,/]+/).filter(Boolean).map(Number)
+  if (parts.length > 3 && parts[3] < 1) return null // translucent
+  return parts.slice(0, 3)
+}
+
+function relativeLuminance([r, g, b]) {
+  const lin = (c) => {
+    c /= 255
+    return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
+  }
+  return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
+}
+
+function contrastRatio(a, b) {
+  const ca = parseRgb(a)
+  const cb = parseRgb(b)
+  if (!ca || !cb) return null
+  const la = relativeLuminance(ca)
+  const lb = relativeLuminance(cb)
+  const [hi, lo] = la > lb ? [la, lb] : [lb, la]
+  return (hi + 0.05) / (lo + 0.05)
+}
 
 const TYPE_ROLES = [
   ['--type-headline-large', 'Headline large', 'Recent Work'],
@@ -43,7 +76,22 @@ function readTokens() {
   const read = (name) => styles.getPropertyValue(name).trim()
 
   const next = {}
-  for (const [name] of COLOR_TOKENS) next[name] = read(name)
+  // Resolve each color through a probe element so custom properties come back
+  // as concrete rgb() values that can be measured.
+  const probe = document.createElement('span')
+  probe.style.display = 'none'
+  document.body.appendChild(probe)
+  const resolve = (name) => {
+    probe.style.color = ''
+    probe.style.color = `var(${name})`
+    return getComputedStyle(probe).color
+  }
+
+  for (const [name] of COLOR_TOKENS) {
+    next[name] = read(name)
+    next[`${name}--rgb`] = resolve(name)
+  }
+  probe.remove()
   for (const name of SPACE_TOKENS) next[name] = read(name)
   next['--measure'] = read('--measure')
   for (const [prefix] of TYPE_ROLES) {
@@ -92,6 +140,15 @@ function DesignSystem() {
           earlier single border token sat at 1.69:1, which meant every filter
           chip and toggle had an effectively invisible edge.
         </p>
+        <p className="system-note">
+          The ratios below are measured live against the current page
+          background, so they follow whichever theme is active — switch it in
+          the nav and these numbers change. Both themes hold the same floors.
+          The accent is the value that differs most between them: it is used
+          as a link-hover color, so each theme needs 4.5:1, and the dark
+          theme&rsquo;s cyan manages only 1.6:1 on a light page. The light
+          theme uses a considerably darker cyan for that reason.
+        </p>
         <div className="swatch-grid">
           {COLOR_TOKENS.map(([name, label]) => (
             <div className="swatch" key={name}>
@@ -101,6 +158,14 @@ function DesignSystem() {
                 {tokens[name] || '—'}
                 <br />
                 {label}
+                {(() => {
+                  if (name === '--bg-primary') return null
+                  const ratio = contrastRatio(
+                    tokens[`${name}--rgb`],
+                    tokens['--bg-primary--rgb']
+                  )
+                  return ratio ? ` · ${ratio.toFixed(2)}:1` : null
+                })()}
               </div>
             </div>
           ))}

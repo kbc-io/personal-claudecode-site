@@ -25,6 +25,7 @@ src/
   case-studies/      One folder per project
   hooks/
     usePageMeta.js   Per-route <title>, description, and Open Graph tags
+    useTheme.js      Dark/light resolution, persistence, and OS following
   index.css          Design tokens + global styles
   App.css            Everything else
 ```
@@ -97,11 +98,37 @@ runtime rather than hardcoding them, so it can't drift from `src/index.css`.
 
 Notable constraints baked into the tokens:
 
-- `--border-interactive` (3.24:1 on the page background) is required for
-  anything bounding a control; `--border-subtle` is for decorative dividers.
+- `--border-interactive` (~3.3:1 on the page background in both themes) is
+  required for anything bounding a control; `--border-subtle` is for
+  decorative dividers and has no contrast requirement.
 - Prose is capped at `--measure` (68ch) / `--measure-narrow` (62ch).
 - All motion is disabled under `prefers-reduced-motion`.
 - `:focus-visible` is defined globally — do not remove outlines per-element.
+
+### Theming
+
+Dark and light. Dark is the canonical palette and lives on bare `:root`, so no
+color is ever defined *only* inside a media query. The light palette is
+declared twice: once under `@media (prefers-color-scheme: light)` guarded by
+`:root:not([data-theme="dark"])`, and once under `:root[data-theme="light"]`,
+so an explicit choice from the nav toggle wins in both directions.
+
+With no stored choice the site follows the OS and keeps following it live. A
+choice is stamped on `<html>` and persisted to `localStorage`. An inline
+script in `index.html` applies the stored theme **before first paint** — remove
+it and a light-preferring visitor gets a dark flash on every load.
+
+Two things do not follow the theme, deliberately:
+
+- **The lightbox** keeps a dark backdrop in both themes, so its controls use
+  `--lightbox-*` tokens rather than `--text-*`, which would invert to
+  near-black on a black scrim.
+- **The accent differs per theme.** It is used as a link-hover color, so it
+  needs 4.5:1 against its own background — the dark theme's `#43E0DB` is only
+  1.6:1 on a light page, so light uses a much darker cyan.
+
+`/system` measures every ratio live against the active theme, so switching the
+toggle there shows both sets of numbers.
 
 ## Known gaps
 

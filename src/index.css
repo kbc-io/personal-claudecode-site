@@ -8,11 +8,14 @@
   color-scheme: dark;
 
   /* ---------------------------------------------------------------------
-     Color
+     Color — dark is the canonical palette and lives on bare :root, so a
+     value is never defined ONLY inside a media query. The light palette is
+     declared twice below: once for the system preference and once for an
+     explicit choice, so the toggle can win in either direction.
      --------------------------------------------------------------------- */
   --bg-primary: #0A0A0A;
-  --text-primary: #ffffff;
-  --text-secondary: #ABABAB;
+  --text-primary: #ffffff;        /* 19.8:1 */
+  --text-secondary: #ABABAB;      /* 8.6:1  */
 
   /* Surfaces — an explicit elevation scale replaces ad-hoc rgba() values */
   --surface-1: rgba(255, 255, 255, 0.03);
@@ -21,22 +24,29 @@
 
   /* Borders — decorative vs. interactive.
      --border-interactive clears the WCAG 1.4.11 3:1 minimum for UI
-     boundaries (3.25:1 on --bg-primary); --border-subtle is for dividers
-     and container edges that carry no interaction meaning. */
+     boundaries (3.25:1); --border-subtle is for dividers and container
+     edges that carry no interaction meaning. */
   --border-subtle: #2A2A2A;
   --border-default: #383838;
   --border-interactive: #626262;
 
-  /* Accent — the only hue in the palette. Cyan, 12.2:1 on --bg-primary.
-     Used for focus rings, active states, and link hover.
-     Swap this single value to re-tint the whole site.
-
-     Note: the accent sits on the dark page everywhere except the card hover
-     border, which can abut a white-background thumbnail. It clears only
-     1.6:1 against white, so that border reads by its dark-side edge rather
-     than its light-side one. */
+  /* Accent — the only hue in the palette. 12.2:1 here.
+     The accent is used as a text color on link hover, so each theme's value
+     has to clear 4.5:1 against that theme's background, not just the 3:1
+     needed for focus rings. The light theme therefore uses a much darker
+     cyan: #43E0DB is only 1.6:1 on a light page. */
   --accent: #43E0DB;
   --accent-dim: rgba(67, 224, 219, 0.16);
+
+  /* Scrim under the sticky case-study header — a fade to --bg-primary. */
+  --scrim: rgba(10, 10, 10, 0.75);
+
+  /* The lightbox keeps a dark backdrop in both themes, so its controls are
+     pinned to light-on-dark rather than following --text-*. */
+  --lightbox-fg: rgba(255, 255, 255, 0.72);
+  --lightbox-fg-strong: #ffffff;
+  --lightbox-surface: rgba(255, 255, 255, 0.12);
+  --lightbox-border: rgba(255, 255, 255, 0.45);
 
   /* Image plate. Sits behind lazy-loading images, so it must not flash
      bright against the page. */
@@ -135,6 +145,79 @@
   --type-body-xsmall-weight: 400;
   --type-body-xsmall-line-height: 1.5;
   --type-body-xsmall-letter-spacing: 0;
+}
+
+/* ---------------------------------------------------------------------
+   Light palette. Mirrors the dark contrast guarantees:
+     text-primary       18.97:1   (dark: 19.8:1)
+     text-secondary      6.61:1   (dark:  8.6:1)
+     border-interactive  3.31:1   (dark:  3.25:1)
+     accent              4.83:1   (dark: 12.2:1) — clears 4.5:1 as link text
+   --------------------------------------------------------------------- */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+
+    --bg-primary: #FAFAFA;
+    --text-primary: #0A0A0A;
+    --text-secondary: #5A5A5A;
+
+    --surface-1: rgba(0, 0, 0, 0.03);
+    --surface-2: rgba(0, 0, 0, 0.05);
+    --surface-3: rgba(0, 0, 0, 0.08);
+
+    --border-subtle: #E2E2E2;
+    --border-default: #D0D0D0;
+    --border-interactive: #8A8A8A;
+
+    --accent: #0E7C77;
+    --accent-dim: rgba(14, 124, 119, 0.14);
+
+    --scrim: rgba(250, 250, 250, 0.75);
+  }
+}
+
+/* An explicit choice overrides the system preference in both directions. */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg-primary: #FAFAFA;
+  --text-primary: #0A0A0A;
+  --text-secondary: #5A5A5A;
+
+  --surface-1: rgba(0, 0, 0, 0.03);
+  --surface-2: rgba(0, 0, 0, 0.05);
+  --surface-3: rgba(0, 0, 0, 0.08);
+
+  --border-subtle: #E2E2E2;
+  --border-default: #D0D0D0;
+  --border-interactive: #8A8A8A;
+
+  --accent: #0E7C77;
+  --accent-dim: rgba(14, 124, 119, 0.14);
+
+  --scrim: rgba(250, 250, 250, 0.75);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg-primary: #0A0A0A;
+  --text-primary: #ffffff;
+  --text-secondary: #ABABAB;
+
+  --surface-1: rgba(255, 255, 255, 0.03);
+  --surface-2: rgba(255, 255, 255, 0.05);
+  --surface-3: rgba(255, 255, 255, 0.08);
+
+  --border-subtle: #2A2A2A;
+  --border-default: #383838;
+  --border-interactive: #626262;
+
+  --accent: #43E0DB;
+  --accent-dim: rgba(67, 224, 219, 0.16);
+
+  --scrim: rgba(10, 10, 10, 0.75);
 }
 
 body {

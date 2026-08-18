@@ -41,6 +41,7 @@
 
 .nav-links {
   display: flex;
+  align-items: center;
   list-style: none;
   gap: var(--space-8);
   margin-left: auto;
@@ -70,6 +71,25 @@
   height: 1px;
   margin-top: 3px;
   background-color: var(--accent);
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--duration-base), border-color var(--duration-base);
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--border-interactive);
 }
 
 /* ===========================================================================
@@ -666,7 +686,7 @@
   right: 0;
   bottom: -40px;
   height: 40px;
-  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.75), transparent);
+  background: linear-gradient(to bottom, var(--scrim), transparent);
   opacity: 0;
   transition: opacity var(--duration-slow) ease;
   pointer-events: none;
@@ -1114,7 +1134,7 @@
 
 .lightbox-caption {
   font-size: var(--type-body-xsmall-size);
-  color: var(--text-secondary);
+  color: var(--lightbox-fg);
   margin-top: var(--space-4);
   text-align: center;
 }
@@ -1124,7 +1144,7 @@
   font-size: var(--type-eyebrow-size);
   font-weight: var(--type-eyebrow-weight);
   letter-spacing: var(--type-eyebrow-letter-spacing);
-  color: var(--text-secondary);
+  color: var(--lightbox-fg);
   margin-top: var(--space-2);
   text-align: center;
 }
@@ -1137,7 +1157,7 @@
   justify-content: center;
   background: transparent;
   border: 1px solid transparent;
-  color: var(--text-secondary);
+  color: var(--lightbox-fg);
   cursor: pointer;
   transition: background-color var(--duration-base), color var(--duration-base),
     border-color var(--duration-base);
@@ -1148,9 +1168,9 @@
    on hover, dropping them from 9.9:1 to 2.6:1. */
 .lightbox-close:hover,
 .lightbox-arrow:hover {
-  background-color: var(--surface-3);
-  border-color: var(--border-interactive);
-  color: var(--text-primary);
+  background-color: var(--lightbox-surface);
+  border-color: var(--lightbox-border);
+  color: var(--lightbox-fg-strong);
 }
 
 .lightbox-close {

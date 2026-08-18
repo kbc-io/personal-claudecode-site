@@ -3,6 +3,7 @@ import { Fragment, Suspense, lazy, useEffect, useState } from 'react'
 import './App.css'
 import resumeData from './data/resume.json'
 import Portfolio from './components/Portfolio'
+import { useTheme } from './hooks/useTheme'
 
 // Route-level code splitting. CaseStudy pulls in react-markdown and the
 // bento layout algorithm, neither of which a visitor to /about needs.
@@ -51,6 +52,51 @@ function LocalTime() {
 }
 
 /**
+ * Light/dark toggle. The icon shows the theme you would switch TO, and the
+ * accessible name says what pressing it does, so it is never ambiguous the
+ * way a bare sun/moon glyph is.
+ */
+function ThemeToggle({ theme, onToggle }) {
+  const next = theme === 'dark' ? 'light' : 'dark'
+  return (
+    <button
+      type="button"
+      className="theme-toggle"
+      onClick={onToggle}
+      aria-label={`Switch to ${next} theme`}
+      title={`Switch to ${next} theme`}
+    >
+      {theme === 'dark' ? (
+        // Sun
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="10" cy="10" r="3.6" stroke="currentColor" strokeWidth="1.5" />
+          <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+            <line x1="10" y1="1.5" x2="10" y2="3.4" />
+            <line x1="10" y1="16.6" x2="10" y2="18.5" />
+            <line x1="1.5" y1="10" x2="3.4" y2="10" />
+            <line x1="16.6" y1="10" x2="18.5" y2="10" />
+            <line x1="4" y1="4" x2="5.3" y2="5.3" />
+            <line x1="14.7" y1="14.7" x2="16" y2="16" />
+            <line x1="16" y1="4" x2="14.7" y2="5.3" />
+            <line x1="5.3" y1="14.7" x2="4" y2="16" />
+          </g>
+        </svg>
+      ) : (
+        // Moon
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path
+            d="M16.5 12.4A7 7 0 0 1 7.6 3.5a7 7 0 1 0 8.9 8.9Z"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
+          />
+        </svg>
+      )}
+    </button>
+  )
+}
+
+/**
  * Restores scroll position to the top on route change. Previously only
  * CaseStudy did this, so navigating from a scrolled portfolio to
  * /experience landed mid-page.
@@ -96,6 +142,8 @@ function ContactLinks({ className }) {
 function App() {
   const { name, tagline, bio } = resumeData
 
+  const { theme, toggle } = useTheme()
+
   // The staggered intro plays once per session, not on every navigation.
   const [intro] = useState(() => !sessionStorage.getItem('hasLoaded'))
 
@@ -119,6 +167,7 @@ function App() {
               <li><NavLink to="/experience">Experience</NavLink></li>
               <li><NavLink to="/system">System</NavLink></li>
               <li><NavLink to="/about">About</NavLink></li>
+              <li><ThemeToggle theme={theme} onToggle={toggle} /></li>
             </ul>
           </div>
         </nav>
