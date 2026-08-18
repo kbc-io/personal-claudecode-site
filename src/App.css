@@ -514,7 +514,7 @@
   background-color: transparent;
   border: 1px solid var(--border-interactive);
   overflow: hidden;
-  transition: border-color var(--duration-base);
+  transition: border-color var(--duration-base), box-shadow var(--duration-base);
   display: flex;
   animation: fadeInDown var(--duration-slow) var(--ease-out) both;
 }
@@ -527,9 +527,16 @@
   flex-direction: row;
 }
 
+/* The accent ring sits OUTSIDE the card rather than replacing its border.
+   Card thumbnails can have white backgrounds, and the accent clears only
+   1.6:1 against white — an accent border would have gone soft along the
+   image edge. Outside, it always meets the dark page, so the whole ring
+   reads at full contrast. box-shadow doesn't affect layout, so the 2px
+   costs nothing against the 12px grid gap. */
 .project-grid-card:hover,
 .project-card:hover {
-  border-color: var(--accent);
+  border-color: var(--border-subtle);
+  box-shadow: 0 0 0 2px var(--accent);
 }
 
 .project-grid-image,
