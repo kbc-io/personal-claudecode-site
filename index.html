@@ -45,13 +45,21 @@
       }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Weight 700 was requested but never used; dropping it removes two font
-         files from the critical path. -->
+    <!-- Self-hosted so IBM Plex's stylistic sets survive; Google Fonts
+         strips them. Preloading the two faces used above the fold. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/IBMPlexSans-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/IBMPlexSans-Medium.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
 
     <!-- Applies a stored theme before first paint. Without this the page

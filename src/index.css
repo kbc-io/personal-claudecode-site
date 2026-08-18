@@ -1,3 +1,54 @@
+/* ---------------------------------------------------------------------
+   Fonts — self-hosted.
+   Google Fonts strips IBM Plex's stylistic sets: its served latin subset
+   exposes only ccmp/dnom/frac/liga/numr, so ss01 and ss02 silently did
+   nothing. The official release carries them, so the faces are vendored in
+   public/fonts (Latin-1 subsets, ~116 KB for six faces). This also removes a
+   render-blocking third-party stylesheet from the critical path.
+   --------------------------------------------------------------------- */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/IBMPlexSans-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/IBMPlexSans-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/IBMPlexSans-SemiBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-SemiBold.woff2') format('woff2');
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -265,6 +316,10 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100svh;
+  /* ss01 = single-storey a, ss02 = single-storey g. Set on body so it
+     inherits everywhere, including the mono faces, which carry the same
+     two features. */
+  font-feature-settings: 'ss01' 1, 'ss02' 1;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

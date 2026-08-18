@@ -105,6 +105,28 @@ Notable constraints baked into the tokens:
 - All motion is disabled under `prefers-reduced-motion`.
 - `:focus-visible` is defined globally — do not remove outlines per-element.
 
+### Fonts
+
+IBM Plex Sans and Mono are **self-hosted** from `public/fonts` (Latin-1
+subsets, six faces, ~116 KB), not loaded from Google Fonts.
+
+That is not a preference — it is required. Google Fonts strips IBM Plex's
+stylistic sets; its served latin subset exposes only
+`ccmp dnom frac liga numr`, so `font-feature-settings: 'ss01'` silently did
+nothing. The official release carries them:
+
+| Feature | Substitution |
+| ------- | ------------ |
+| `ss01`  | single-storey `a` |
+| `ss02`  | single-storey `g` |
+
+Both are enabled on `body`, so they inherit everywhere including the mono
+faces, which carry the same two features. Files come from the `@ibm/plex-sans`
+and `@ibm/plex-mono` npm packages; the OFL license ships alongside them.
+
+Self-hosting also removes a render-blocking third-party stylesheet from the
+critical path. The two above-the-fold faces are preloaded in `index.html`.
+
 ### Theming
 
 Dark and light. Dark is the canonical palette and lives on bare `:root`, so no
