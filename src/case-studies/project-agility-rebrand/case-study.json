@@ -4,29 +4,25 @@
   "image": "agility-rebrand-thumbnail.webp",
   "thumbnailPosition": "50%",
   "visible": true,
-  "tags": ["Brand", "Design"],
-  "order": 1,
+  "tags": [
+    "Brand"
+  ],
+  "order": 3,
   "caseStudy": {
     "heroImage": "agility-rebrand-08.webp",
-    "overview": "A comprehensive overview of the project.",
-    "blurb": "Top to bottom refresh of the Agility Robotics brand identity. As the internal designer on the visual identity team, I worked closely with our Visual Brand Director to define the new visual language and strategy, including new proprietary typeface",
+    "overview": "",
+    "blurb": "Top to bottom refresh of the Agility Robotics brand identity. As the internal designer on the visual identity team, I worked closely with our Visual Brand Director to define the new visual language and strategy — a new proprietary typeface, a rebuilt logo and wordmark system, a core color palette, and the application of all of it across apparel, print, signage, and product photography.",
     "role": "Brand Designer (Internal Team)",
     "timeline": "6 months",
     "team": "Visual + Verbal Identity Brand Directors (External), Brand Designer (Me), C-Suite (Approval)",
-    "objectives": [
-      "First objective",
-      "Second objective"
-    ],
-    "challenge": "Describe the main challenge or problem.",
-    "approach": "Detail your strategic approach.",
+    "objectives": [],
+    "challenge": "",
+    "approach": "",
     "userExperience": {
-      "description": "User experience considerations.",
-      "insights": [
-        "Key insight 1",
-        "Key insight 2"
-      ]
+      "description": "",
+      "insights": []
     },
-    "solution": "Describe the final solution.",
+    "solution": "",
     "images": [
       {
         "src": "agility-rebrand-01.webp",
@@ -65,9 +61,6 @@
         "caption": "Hardware detail photography"
       }
     ],
-    "results": [
-      "Result or outcome 1",
-      "Result or outcome 2"
-    ]
+    "results": []
   }
 }

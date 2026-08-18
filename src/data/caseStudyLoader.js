@@ -107,25 +107,38 @@ export function getCaseStudyLayout(slug) {
 }
 
 /**
- * Every resolved case-study image URL (deduplicated).
- * Used to warm the browser cache in the background from the portfolio page,
- * so images are already downloaded by the time a visitor opens a case study.
+ * Resolved image URLs for a single case study, deduplicated.
+ * Used to warm the browser cache for one project when a visitor hovers or
+ * focuses its card, rather than downloading every image on the site up front.
  */
-export function getAllCaseStudyImageUrls() {
-  return Array.from(new Set(Object.values(imageModules)))
+export function getCaseStudyImageUrls(slug) {
+  const prefix = `../case-studies/${slug}/`
+  return Array.from(
+    new Set(
+      Object.entries(imageModules)
+        .filter(([path]) => path.startsWith(prefix))
+        .map(([, url]) => url)
+    )
+  )
 }
 
+// The resolve/sort pipeline is deterministic and the underlying globs are
+// eager, so the result is computed once and shared by every consumer.
+let cache = null
+
 export function loadCaseStudies() {
-  return Object.entries(caseStudyModules)
+  if (cache) return cache
+
+  cache = Object.entries(caseStudyModules)
     .map(([path, module]) => {
       const slug = path.split('/').at(-2)
       const data = module.default || module
       return { slug, ...resolveImages(slug, data) }
     })
     .filter(project => project.visible !== false)
-    .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
-    .map(project => ({
-      ...project,
-      tags: project.tags ? [...project.tags].sort() : project.tags
-    }))
+    // `order` is the single source of sequencing; slug breaks ties so the
+    // result never depends on glob iteration order.
+    .sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || a.slug.localeCompare(b.slug))
+
+  return cache
 }

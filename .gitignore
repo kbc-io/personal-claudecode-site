@@ -19,3 +19,6 @@ dist/
 
 # Large assets not needed in version control
 src/assets/psd-mockups/
+
+# Local Claude Code settings (contains machine-specific paths)
+.claude/settings.local.json

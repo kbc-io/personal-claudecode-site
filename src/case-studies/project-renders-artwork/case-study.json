@@ -4,8 +4,11 @@
   "image": "renders-artwork-06.webp",
   "visible": true,
   "layout": "gallery",
-  "tags": ["3D", "Graphics"],
-  "order": 7,
+  "tags": [
+    "Motion",
+    "Visual"
+  ],
+  "order": 10,
   "caseStudy": {
     "overview": ""
   }

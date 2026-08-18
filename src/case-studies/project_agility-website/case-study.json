@@ -1,41 +1,66 @@
 {
   "title": "Agility Website",
-  "description": "Brand design + scaling design systems.",
+  "description": "Website redesign and the visual system that had to survive it.",
   "image": "agility-website-08.webp",
   "visible": true,
-  "tags": ["Web", "UI/UX", "Brand"],
+  "tags": [
+    "Product",
+    "Brand"
+  ],
   "order": 2,
   "caseStudy": {
     "heroImage": "agility-website-08.webp",
+    "blurb": "A full redesign of agilityrobotics.com, built with Upstatement on a condensed timeline that ran in parallel with the company's brand refresh. I led visual strategy from the inside — translating a brand identity that was still being finalised into a working web system, and acting as the connective tissue between our brand team, the agency, and the business stakeholders who needed the site to sell.",
     "role": "Brand Designer",
     "timeline": "A few months (condensed, parallel build)",
     "team": "Brand Designer (me), Brand Director, Upstatement, Chief Business Officer",
     "teamHtml": "Brand Designer (me), Brand Director, <a href=\"https://upstatement.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Upstatement</a>, Chief Business Officer",
+    "overview": "Agility Robotics builds humanoid robots for warehouse and logistics work. The website had to do several jobs at once: explain a product most visitors have never seen operate, carry enough technical credibility for the engineers evaluating it, and support a sales motion aimed at operations leaders who care about throughput rather than robotics.\n\nWe rebuilt it with Upstatement while the company's visual rebrand was still in progress. My role was to hold the visual system together across both efforts.",
+    "objectives": [
+      "Translate an in-progress brand identity into a coherent, buildable web system.",
+      "Make the product legible to two very different audiences — technical evaluators and operations buyers — without splitting the site in two.",
+      "Keep the site and the parallel rebrand converging rather than drifting apart.",
+      "Deliver against a compressed timeline with an external agency and internal stakeholders working simultaneously."
+    ],
+    "challenge": "The hard part was not the design. It was that the brand the site had to express was being defined at the same time the site was being built.\n\nA normal sequence gives you a finished identity and then a website that applies it. We had neither the time nor that luxury. Type, color, and photographic direction were all still moving while page layouts were being designed against them. Every decision risked being invalidated by a decision happening somewhere else that week.\n\nOn top of that, the site had to serve genuinely different readers. An engineer wants specifications and evidence the thing works. An operations director wants to know what it does to their throughput and what it costs them to find out. Pitch too far toward either and you lose the other.",
+    "approach": "I worked as the point of contact between the brand side and the build side, which mostly meant making sure decisions travelled in both directions fast enough to matter.\n\nRather than wait for the identity to be finished, we agreed early on which parts of it were stable enough to build against — the grid, the type hierarchy, the photographic treatment — and which were still open. Design work went on top of the settled parts. Where something was unresolved, we built the page so the unresolved decision was isolated to a single component rather than woven through the layout, so a late change stayed cheap.\n\nFor the audience problem, we stopped treating it as one to solve at the page level and handled it in sequence instead: lead with what the robot does in plain language, then let the reader descend into detail at their own pace. Both audiences enter through the same door and stop at different depths.",
+    "userExperience": {
+      "description": "Most visitors arrive without a working mental model of what a humanoid robot actually does in a warehouse. Video and photography had to carry that first — the copy only lands once you have seen the thing move. The layout is built to put the demonstration before the explanation on almost every page.",
+      "insights": [
+        "When the brand is still moving, the useful design skill is isolating uncertainty rather than designing around it — keep the unresolved decision inside one component and a late change costs you an afternoon instead of a page.",
+        "Two audiences with different needs do not necessarily need two paths. Ordering the same page by depth handled it better than segmenting the site would have.",
+        "Being the internal designer on an agency project is mostly a translation job. The agency needs decisions, and the internal stakeholders need to understand what they are deciding — very little of the value came from me drawing screens.",
+        "For a product this unfamiliar, showing beats describing every time. The pages that underperformed were the ones where we led with words."
+      ]
+    },
+    "solution": "A redesigned site built on a visual system that survived the rebrand landing underneath it — a consistent grid, type hierarchy, and photographic treatment applied across page templates rather than composed per page. The layouts sequence each page from demonstration to detail, so the same page serves an operations buyer skimming the top and an engineer reading to the bottom.",
     "images": [
       {
         "src": "agility-website-03.webp",
-        "caption": "Site layout and visual system"
+        "caption": "Page template and grid system"
       },
       {
         "src": "agility-website-04.webp",
-        "caption": "Site layout and visual system"
+        "caption": "Product section layout"
       },
       {
         "src": "agility-website-05.webp",
-        "caption": "Site layout and visual system"
+        "caption": "Type hierarchy in context"
       },
       {
         "src": "agility-website-06.webp",
-        "caption": "Site layout and visual system"
+        "caption": "Photographic treatment and image system"
       },
       {
         "src": "agility-website-07.webp",
-        "caption": "Site layout and visual system"
+        "caption": "Content module variations"
       },
       {
         "src": "agility-website-08.webp",
-        "caption": "Site layout and visual system"
+        "caption": "Homepage composition"
       }
-    ]
+    ],
+    "articleLink": "https://www.agilityrobotics.com",
+    "articleLinkLabel": "Visit the site"
   }
 }

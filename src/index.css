@@ -1,3 +1,56 @@
+/* ---------------------------------------------------------------------
+   Fonts — self-hosted from public/fonts (Latin-1 subsets, ~116 KB for six
+   faces). This keeps a render-blocking third-party stylesheet off the
+   critical path; the page makes no external font requests.
+
+   These are the official IBM Plex releases, which unlike the Google Fonts
+   builds retain the stylistic sets — ss01 swaps in a single-storey 'a' and
+   ss02 a single-storey 'g'. Neither is enabled; add
+   `font-feature-settings: 'ss01' 1, 'ss02' 1` to body to turn them on.
+   --------------------------------------------------------------------- */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/IBMPlexSans-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/IBMPlexSans-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/IBMPlexSans-SemiBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/IBMPlexMono-SemiBold.woff2') format('woff2');
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,23 +58,105 @@
 }
 
 :root {
-  --bg-primary: #0A0A0A;
-  --text-primary: #ffffff;
-  --text-secondary: #ABABAB;
-  --border-color: #383838;
-  --gallery-image-bg: #ffffff;
+  color-scheme: dark;
 
-  /* Typography - Font Families */
+  /* ---------------------------------------------------------------------
+     Color — dark is the canonical palette and lives on bare :root, so a
+     value is never defined ONLY inside a media query. The light palette is
+     declared twice below: once for the system preference and once for an
+     explicit choice, so the toggle can win in either direction.
+     --------------------------------------------------------------------- */
+  --bg-primary: #0A0A0A;
+  --text-primary: #ffffff;        /* 19.8:1 */
+  --text-secondary: #ABABAB;      /* 8.6:1  */
+
+  /* Surfaces — an explicit elevation scale replaces ad-hoc rgba() values */
+  --surface-1: rgba(255, 255, 255, 0.03);
+  --surface-2: rgba(255, 255, 255, 0.05);
+  --surface-3: rgba(255, 255, 255, 0.08);
+
+  /* Borders — decorative vs. interactive.
+     --border-interactive clears the WCAG 1.4.11 3:1 minimum for UI
+     boundaries (3.25:1); --border-subtle is for dividers and container
+     edges that carry no interaction meaning. */
+  --border-subtle: #2A2A2A;
+  --border-default: #383838;
+  --border-interactive: #626262;
+
+  /* Accent — the only hue in the palette. 12.2:1 here.
+     The accent is used as a text color on link hover, so each theme's value
+     has to clear 4.5:1 against that theme's background, not just the 3:1
+     needed for focus rings. The light theme therefore uses a much darker
+     cyan: #43E0DB is only 1.6:1 on a light page. */
+  --accent: #43E0DB;
+  --accent-dim: rgba(67, 224, 219, 0.16);
+
+  /* Scrim under the sticky case-study header — a fade to --bg-primary. */
+  --scrim: rgba(10, 10, 10, 0.75);
+
+  /* The lightbox keeps a dark backdrop in both themes, so its controls are
+     pinned to light-on-dark rather than following --text-*. */
+  --lightbox-fg: rgba(255, 255, 255, 0.72);
+  --lightbox-fg-strong: #ffffff;
+  --lightbox-surface: rgba(255, 255, 255, 0.12);
+  --lightbox-border: rgba(255, 255, 255, 0.45);
+
+  /* Image plate. Sits behind lazy-loading images, so it must not flash
+     bright against the page. */
+  --image-bg: var(--surface-2);
+
+  /* ---------------------------------------------------------------------
+     Spacing — 4px base scale
+     --------------------------------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  /* ---------------------------------------------------------------------
+     Layout
+     --------------------------------------------------------------------- */
+  --page-max: 1440px;
+  --sidebar-width: 340px;
+  --navbar-height: 60px;
+  --measure: 68ch;          /* comfortable line length for body prose */
+  --measure-narrow: 62ch;   /* case-study prose */
+
+  /* ---------------------------------------------------------------------
+     Motion
+     --------------------------------------------------------------------- */
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 350ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---------------------------------------------------------------------
+     Radii — the site is deliberately hard-edged; these exist for the few
+     elements that need softening.
+     --------------------------------------------------------------------- */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* ---------------------------------------------------------------------
+     Typography
+     --------------------------------------------------------------------- */
   --font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
 
-  /* Typography - Site Title */
+  /* Site title */
   --type-site-title-size: 22px;
   --type-site-title-weight: 500;
   --type-site-title-line-height: 1.2;
   --type-site-title-letter-spacing: -0.02em;
 
-  /* Typography - Headlines */
+  /* Headlines */
   --type-headline-large-size: 32px;
   --type-headline-large-weight: 500;
   --type-headline-large-line-height: 1.2;
@@ -32,21 +167,21 @@
   --type-headline-medium-line-height: 1.3;
   --type-headline-medium-letter-spacing: -0.02em;
 
-  --type-headline-small-size: 14px;
-  --type-headline-small-weight: 500;
+  --type-headline-small-size: 15px;
+  --type-headline-small-weight: 600;
   --type-headline-small-line-height: 1.4;
   --type-headline-small-letter-spacing: -0.01em;
 
-  /* Typography - Eyebrow (Mono) */
+  /* Eyebrow (mono) */
   --type-eyebrow-size: 11px;
   --type-eyebrow-weight: 600;
   --type-eyebrow-line-height: 1.4;
   --type-eyebrow-letter-spacing: 0.05em;
 
-  /* Typography - Body */
+  /* Body */
   --type-body-large-size: 16px;
   --type-body-large-weight: 400;
-  --type-body-large-line-height: 1.7;
+  --type-body-large-line-height: 1.75;
   --type-body-large-letter-spacing: -0.01em;
 
   --type-body-medium-size: 15px;
@@ -65,6 +200,79 @@
   --type-body-xsmall-letter-spacing: 0;
 }
 
+/* ---------------------------------------------------------------------
+   Light palette. Mirrors the dark contrast guarantees:
+     text-primary       18.97:1   (dark: 19.8:1)
+     text-secondary      6.61:1   (dark:  8.6:1)
+     border-interactive  3.31:1   (dark:  3.25:1)
+     accent              4.83:1   (dark: 12.2:1) — clears 4.5:1 as link text
+   --------------------------------------------------------------------- */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+
+    --bg-primary: #FAFAFA;
+    --text-primary: #0A0A0A;
+    --text-secondary: #5A5A5A;
+
+    --surface-1: rgba(0, 0, 0, 0.03);
+    --surface-2: rgba(0, 0, 0, 0.05);
+    --surface-3: rgba(0, 0, 0, 0.08);
+
+    --border-subtle: #E2E2E2;
+    --border-default: #D0D0D0;
+    --border-interactive: #8A8A8A;
+
+    --accent: #0E7C77;
+    --accent-dim: rgba(14, 124, 119, 0.14);
+
+    --scrim: rgba(250, 250, 250, 0.75);
+  }
+}
+
+/* An explicit choice overrides the system preference in both directions. */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg-primary: #FAFAFA;
+  --text-primary: #0A0A0A;
+  --text-secondary: #5A5A5A;
+
+  --surface-1: rgba(0, 0, 0, 0.03);
+  --surface-2: rgba(0, 0, 0, 0.05);
+  --surface-3: rgba(0, 0, 0, 0.08);
+
+  --border-subtle: #E2E2E2;
+  --border-default: #D0D0D0;
+  --border-interactive: #8A8A8A;
+
+  --accent: #0E7C77;
+  --accent-dim: rgba(14, 124, 119, 0.14);
+
+  --scrim: rgba(250, 250, 250, 0.75);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg-primary: #0A0A0A;
+  --text-primary: #ffffff;
+  --text-secondary: #ABABAB;
+
+  --surface-1: rgba(255, 255, 255, 0.03);
+  --surface-2: rgba(255, 255, 255, 0.05);
+  --surface-3: rgba(255, 255, 255, 0.08);
+
+  --border-subtle: #2A2A2A;
+  --border-default: #383838;
+  --border-interactive: #626262;
+
+  --accent: #43E0DB;
+  --accent-dim: rgba(67, 224, 219, 0.16);
+
+  --scrim: rgba(10, 10, 10, 0.75);
+}
+
 body {
   font-family: var(--font-sans);
   font-size: var(--type-body-medium-size);
@@ -73,7 +281,7 @@ body {
   letter-spacing: var(--type-body-medium-letter-spacing);
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  min-height: 100vh;
+  min-height: 100svh;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -82,8 +290,8 @@ body {
 }
 
 #root {
-  min-height: 100vh;
-  max-width: 1440px;
+  min-height: 100svh;
+  max-width: var(--page-max);
   margin: 0 auto;
 }
 
@@ -92,18 +300,68 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
+/* ---------------------------------------------------------------------
+   Focus
+   Every interactive element gets the same visible ring. Several controls
+   (gallery tiles, carousel items) intentionally have no border of their
+   own, so the ring is offset to sit clear of the content.
+   --------------------------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
-/* Scrollbar Styles */
-/* Firefox */
+/* Remove the ring for pointer users while keeping it for keyboard. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ---------------------------------------------------------------------
+   Utility classes — the type roles that were previously copy-pasted as
+   five-line blocks across a dozen selectors.
+   --------------------------------------------------------------------- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--type-eyebrow-size);
+  font-weight: var(--type-eyebrow-weight);
+  line-height: var(--type-eyebrow-line-height);
+  letter-spacing: var(--type-eyebrow-letter-spacing);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.measure {
+  max-width: var(--measure);
+}
+
+/* Visible only to screen readers, until focused. */
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: var(--space-2);
+  z-index: 200;
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg-primary);
+  border: 1px solid var(--accent);
+  color: var(--text-primary);
+  font-size: var(--type-body-small-size);
+  transform: translateY(-200%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------------------------
+   Scrollbar
+   --------------------------------------------------------------------- */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--border-color) var(--bg-primary);
+  scrollbar-color: var(--border-default) var(--bg-primary);
 }
 
-/* Webkit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -113,11 +371,29 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--border-color);
-  border-radius: 4px;
+  background-color: var(--border-default);
+  border-radius: var(--radius-md);
   border: 3px solid var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--text-secondary);
+}
+
+/* ---------------------------------------------------------------------
+   Reduced motion
+   Content must still APPEAR — so animations are collapsed to a no-op
+   final state rather than removed, and entrance transforms are dropped.
+   --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
 }

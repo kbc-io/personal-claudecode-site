@@ -4,17 +4,37 @@
   "image": "sales-collateral-mockup.webp",
   "visible": true,
   "layout": "multi-gallery",
-  "tags": ["Graphics", "Print"],
-  "order": 2,
+  "tags": [
+    "Visual"
+  ],
+  "order": 8,
   "caseStudy": {
     "overview": "",
     "groups": [
-      { "label": "Digit Spec Sheet",    "prefix": "agility-post-spec-sheet-"    },
-      { "label": "Manufacturing Guide", "prefix": "agility-post-manufacturing-" },
-      { "label": "Safety Guide",        "prefix": "agility-post-safety-"        },
-      { "label": "Workflows Guide",     "prefix": "agility-post-workflows-"     },
-      { "label": "Agility - Pre Rebrand", "prefix": "agility-collateral-"       },
-      { "label": "Active911",             "prefix": "A911-"                     }
+      {
+        "label": "Digit Spec Sheet",
+        "prefix": "agility-post-spec-sheet-"
+      },
+      {
+        "label": "Manufacturing Guide",
+        "prefix": "agility-post-manufacturing-"
+      },
+      {
+        "label": "Safety Guide",
+        "prefix": "agility-post-safety-"
+      },
+      {
+        "label": "Workflows Guide",
+        "prefix": "agility-post-workflows-"
+      },
+      {
+        "label": "Agility - Pre Rebrand",
+        "prefix": "agility-collateral-"
+      },
+      {
+        "label": "Active911",
+        "prefix": "A911-"
+      }
     ]
   }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "temp-vite-project",
+  "name": "kbco-portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -28,5 +28,6 @@
     "sharp": "^0.34.5",
     "vite": "^7.2.4",
     "vite-plugin-image-optimizer": "^2.0.3"
-  }
+  },
+  "description": "Personal portfolio site for Kevin Coalwell — product and brand designer."
 }

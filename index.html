@@ -2,12 +2,78 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <title>Kevin Coalwell</title>
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0A0A0A" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAFAFA" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>Kevin Coalwell — Product &amp; Brand Designer</title>
+    <meta
+      name="description"
+      content="Kevin Coalwell is a product and brand designer working on interfaces for complex technical systems. UI and design system work for Carnegie Mellon and Agility Robotics."
+    />
+    <link rel="canonical" href="https://kbco.work/" />
+
+    <!-- Open Graph / Twitter. Replace og-image.jpg with a 1200x630 preview. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kevin Coalwell" />
+    <meta property="og:title" content="Kevin Coalwell — Product &amp; Brand Designer" />
+    <meta
+      property="og:description"
+      content="Product and brand designer working on interfaces for complex technical systems."
+    />
+    <meta property="og:url" content="https://kbco.work/" />
+    <meta property="og:image" content="https://kbco.work/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kevin Coalwell — Product &amp; Brand Designer" />
+    <meta
+      name="twitter:description"
+      content="Product and brand designer working on interfaces for complex technical systems."
+    />
+    <meta name="twitter:image" content="https://kbco.work/og-image.jpg" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Kevin Coalwell",
+        "url": "https://kbco.work/",
+        "jobTitle": "Product & Brand Designer",
+        "email": "mailto:hello@kbco.work",
+        "sameAs": ["https://www.linkedin.com/in/kevin-coalwell/"]
+      }
+    </script>
+
+    <!-- Self-hosted so IBM Plex's stylistic sets survive; Google Fonts
+         strips them. Preloading the two faces used above the fold. -->
+    <link
+      rel="preload"
+      href="/fonts/IBMPlexSans-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/IBMPlexSans-Medium.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Applies a stored theme before first paint. Without this the page
+         renders dark, then swaps once React mounts. -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') {
+            document.documentElement.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

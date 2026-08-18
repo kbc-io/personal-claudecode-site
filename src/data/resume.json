@@ -1,29 +1,40 @@
 {
   "name": "Kevin Coalwell",
-  "bio": "Versatile designer specializing in translating complex technical concepts into compelling visual experiences through strategic brand design and content creation, with proven experience engaging large-scale digital audiences. A unique blend of hands-on technical ability and attentive design sensibilities enable me to bridge the gap between engineering teams and broader markets.",
+  "tagline": "Product and brand designer working on interfaces for complex technical systems.",
+  "bio": "I design product UI and design systems, and I have spent the last four years doing it inside a humanoid robotics company. Enough hands-on technical ability to work directly with engineering, enough brand background to make the whole thing hold together.",
+  "about": [
+    "I'm a designer who works across product and brand. Most recently that has meant UI and design system work — a six-month overhaul of an AI-powered learning platform for Carnegie Mellon's Tepper School of Business, where I rebuilt the interface around a component library and handed it off to a TypeScript/React team.",
+    "The rest of my time is spent at Agility Robotics, where I've been since 2022, first as Creative Producer and now as Brand Designer. Working on humanoid robots means most of what I design starts as something genuinely difficult to explain. I interview engineers, figure out what actually matters, and turn it into something a person can understand — whether that's an interface, a website, a trade show floor, or a film.",
+    "That technical fluency is the through-line. I read and write enough code to have real conversations with engineers about what's feasible, and I've worked with clients across the public and private sectors including Agility Robotics, Carnegie Mellon, TIME, National Geographic, Active911, and Oregon State University.",
+    "When I'm not working or chasing my kids around, I enjoy strength training, tinkering with my homelab, and chipping away at a Cosmere novel."
+  ],
   "contact": {
     "email": "hello@kbco.work",
-    "linkedin": "https://www.linkedin.com/in/kevin-coalwell/"
+    "linkedin": "https://www.linkedin.com/in/kevin-coalwell/",
+    "arena": "https://www.are.na/itmekbc/channels",
+    "github": "https://github.com/kbc-io"
   },
   "experience": [
     {
       "title": "Brand Designer",
       "company": "Agility Robotics",
       "url": "https://www.agilityrobotics.com",
-      "duration": "October 2024 – Present",
+      "start": "2024",
+      "end": "Present",
       "time": "Full Time",
       "visible": true,
       "highlights": [
         "Managing internal coordination of comprehensive visual rebrand, serving as creative liaison between stakeholders and design contractors.",
         "Led visual strategy for website redesign project, focusing on user experience optimization and brand consistency.",
-        "Developed comprehensive visual strategy for major trade show presence, designing booth graphics and collatoral that supported lead generation goals"
+        "Developed comprehensive visual strategy for major trade show presence, designing booth graphics and collateral that supported lead generation goals."
       ]
     },
     {
       "title": "Creative Producer",
       "company": "Agility Robotics",
       "url": "https://www.agilityrobotics.com",
-      "duration": "August 2022 - October 2024",
+      "start": "2022",
+      "end": "2024",
       "time": "Full Time",
       "visible": true,
       "highlights": [
@@ -35,8 +46,9 @@
     {
       "title": "UI/UX Designer",
       "company": "Carnegie Mellon University",
-      "url": "https://www.agilityrobotics.com",
-      "duration": "July 2025 - December 2025",
+      "url": "https://www.cmu.edu",
+      "start": "2025",
+      "end": "2025",
       "time": "Freelance",
       "visible": true,
       "highlights": [
@@ -48,12 +60,13 @@
       "title": "Brand Manager",
       "company": "Active911",
       "url": "https://www.active911.com",
-      "duration": "March 2021 - June 2022",
-      "time": "Full-time",
+      "start": "2021",
+      "end": "2022",
+      "time": "Full Time",
       "visible": true,
       "highlights": [
         "Produced and published multimedia content across social channels to an audience of over 50,000.",
-        "Developed visual brand strategy for multimedia content in adherance to existing brand guidelines.",
+        "Developed visual brand strategy for multimedia content in adherence to existing brand guidelines.",
         "Interfaced with engineering teams to communicate software updates, new features, and tutorials to core audience."
       ]
     },
@@ -61,8 +74,9 @@
       "title": "Video Producer",
       "company": "Oregon State University",
       "url": "https://communications.oregonstate.edu/osp",
-      "duration": "January 2019 - March 2021",
-      "time": "Part-time",
+      "start": "2019",
+      "end": "2021",
+      "time": "Part Time",
       "visible": false,
       "highlights": [
         "Coordinated with clients, drafted project proposals, conducted video shoots, and edited documentary and promotional content for Oregon State University in accordance with university brand guidelines."
@@ -73,40 +87,44 @@
     {
       "degree": "Bachelor of Fine Arts, Digital Communication Arts",
       "institution": "Oregon State University",
-      "startDate": "2017",
-      "endDate": "2021"
-    }, 
+      "start": "2017",
+      "end": "2021"
+    },
     {
       "degree": "Certificate, Programming Fundamentals",
       "institution": "Oregon State University",
-      "issued": "2025"
+      "start": "2025",
+      "end": "2025"
     }
   ],
   "skills": [
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Node.js",
-    "Python",
-    "SQL",
-    "Git",
-    "AWS",
-    "Docker"
+    {
+      "category": "Product Design",
+      "items": ["Figma", "Design systems", "Component libraries", "Wireframing", "Prototyping", "Design-to-engineering handoff"]
+    },
+    {
+      "category": "Brand & Content",
+      "items": ["Visual identity", "Art direction", "Motion graphics", "Photography", "Video production", "3D rendering"]
+    },
+    {
+      "category": "Technical",
+      "items": ["JavaScript", "TypeScript", "React", "Node.js", "Python", "SQL", "Git"]
+    }
   ],
   "clients and collaborators": [
-  { "name": "TIME", "url": "https://time.com/collections/best-inventions-2024/7094773/agility-robotics-digit/" },
-  { "name": "National Geographic", "url": "https://films.oregonstate.edu/worry-wonder" },
-  { "name": "Territory Studio", "url": "https://territorystudio.com/" },
-  { "name": "Upstatement", "url": "https://upstatement.com/" },
-  { "name": "Oregon State University", "url": "https://films.oregonstate.edu/worry-wonder" },
-  { "name": "Agility Robotics", "url": "https://agilityrobotics.com" },
-  { "name": "Oregon State Productions", "url": "https://films.oregonstate.edu/worry-wonder" },
-  { "name": "Mila Zuo", "url": "https://www.imdb.com/title/tt13943838/" },
-  { "name": "Orange Media Network", "url": "https://orangemedianetwork.com/" },
-  { "name": "Daxbot", "url": "https://daxbot.com" },
-  { "name": "Active911", "url": "https://active911.com" },
-  { "name": "Carnegie Mellon University", "url": "https://www.cmu.edu/" }
-],
+    { "name": "TIME", "url": "https://time.com/collections/best-inventions-2024/7094773/agility-robotics-digit/" },
+    { "name": "National Geographic", "url": "https://films.oregonstate.edu/worry-wonder" },
+    { "name": "Territory Studio", "url": "https://territorystudio.com/" },
+    { "name": "Upstatement", "url": "https://upstatement.com/" },
+    { "name": "Oregon State University", "url": "https://films.oregonstate.edu/worry-wonder" },
+    { "name": "Agility Robotics", "url": "https://agilityrobotics.com" },
+    { "name": "Oregon State Productions", "url": "https://films.oregonstate.edu/worry-wonder" },
+    { "name": "Mila Zuo", "url": "https://www.imdb.com/title/tt13943838/" },
+    { "name": "Orange Media Network", "url": "https://orangemedianetwork.com/" },
+    { "name": "Daxbot", "url": "https://daxbot.com" },
+    { "name": "Active911", "url": "https://active911.com" },
+    { "name": "Carnegie Mellon University", "url": "https://www.cmu.edu/" }
+  ],
   "awards": [
     {
       "title": "Student Production Emmy Award, Nomination",

@@ -3,8 +3,11 @@
   "description": "Brand + visual design support.",
   "image": "agility-brand-film-02.webp",
   "visible": true,
-  "tags": ["Video", "Brand"],
-  "order": 4,
+  "tags": [
+    "Motion",
+    "Brand"
+  ],
+  "order": 6,
   "caseStudy": {
     "heroImage": "agility-brand-film-03.webp",
     "videoUrl": "https://www.youtube.com/embed/LM3hTXUShvA",

@@ -1,11 +1,13 @@
-import resumeData from "../data/resume.json"
-const clients = resumeData["clients and collaborators"];
+import resumeData from '../data/resume.json'
+import { usePageMeta } from '../hooks/usePageMeta'
+
+const clients = resumeData['clients and collaborators']
 
 function ClientList() {
   return (
-    <ul>
-      {clients.map((client, index) => (
-        <li key={index}>
+    <ul className="client-list">
+      {clients.map((client) => (
+        <li key={client.name}>
           {client.url ? (
             <a href={client.url} target="_blank" rel="noopener noreferrer">
               {client.name}
@@ -16,42 +18,37 @@ function ClientList() {
         </li>
       ))}
     </ul>
-  );
+  )
 }
 
 function About() {
+  usePageMeta({
+    title: 'About',
+    description:
+      'Kevin Coalwell is a product and brand designer working on interfaces for complex technical systems, currently at Agility Robotics.'
+  })
+
   return (
     <section className="section">
-      <h2 className="fade-in" style={{ animationDelay: '0s' }}>About</h2>
+      <h1 className="page-title fade-in">About</h1>
+
       <div className="about-content">
         <div className="about-blurb-container fade-in" style={{ animationDelay: '0.1s' }}>
-          <p>
-            I am a multidisciplinary designer and 3D artist specializing in
-            in-house brand cultivation. In addition to graphic design, I have a
-            robust background in video production and photography, giving me a
-            skilled eye for composition, balance, and story.
-          </p>
-          <p>
-            My experience working with different mediums allows me to coordinate
-            branding efforts across the entire content spectrum, generating
-            cohesive and impactful campaigns. I have worked for and collaborated
-            with clients across the public and private sectors, including Agility
-            Robotics, TIME, National Geographic, Active911, Oregon State
-            University, and Daxbot.
-          </p>
-          <p>
-            When I'm not working or chasing my kids around, I enjoy strength training, tinkering with my homelab, and chipping away at
-            a Cosmere novel.
-          </p>
+          {resumeData.about.map((paragraph) => (
+            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+          ))}
         </div>
-        <h2 className="fade-in" style={{ animationDelay: '0.2s' }}>Clients + Collaborators</h2>
+
+        <h2 className="section-heading fade-in" style={{ animationDelay: '0.2s' }}>
+          Clients + Collaborators
+        </h2>
         <div className="fade-in" style={{ animationDelay: '0.3s' }}>
           <ClientList />
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export { ClientList };
-export default About;
+export { ClientList }
+export default About
