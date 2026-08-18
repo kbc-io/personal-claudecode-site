@@ -1,6 +1,17 @@
 import resumeData from '../data/resume.json'
 import { usePageMeta } from '../hooks/usePageMeta'
 
+/**
+ * Year range for a role or degree. A range within a single calendar year
+ * collapses to that year, so a six-month engagement reads "2025" rather than
+ * "2025–2025". An open-ended role carries "Present" as its end.
+ */
+function formatYears(start, end) {
+  if (!start) return end || ''
+  if (!end || start === end) return start
+  return `${start}–${end}`
+}
+
 function Resume() {
   usePageMeta({
     title: 'Experience',
@@ -30,12 +41,12 @@ function Resume() {
         <h1 className="page-title fade-in">Experience</h1>
 
         {groupedExperience.map((group) => (
-          <div key={group[0].company + group[0].duration} className="company-group">
+          <div key={group[0].company + group[0].start} className="company-group">
             {group.map((job) => (
-              <div className="job fade-in" key={job.title + job.duration} style={{ animationDelay: nextDelay() }}>
+              <div className="job fade-in" key={job.title + job.start} style={{ animationDelay: nextDelay() }}>
                 <div className="job-header">
                   <span className="job-title">{job.title}</span>
-                  <span className="job-date">{job.duration}</span>
+                  <span className="job-date">{formatYears(job.start, job.end)}</span>
                 </div>
                 <div className="job-company">
                   {job.url ? (
@@ -84,7 +95,7 @@ function Resume() {
               <div className="job-header">
                 <span className="job-title">{edu.degree}</span>
                 <span className="job-date">
-                  {edu.issued ? edu.issued : `${edu.startDate}–${edu.endDate}`}
+                  {formatYears(edu.start, edu.end)}
                 </span>
               </div>
               <div className="job-company">{edu.institution}</div>

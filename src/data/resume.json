@@ -19,7 +19,8 @@
       "title": "Brand Designer",
       "company": "Agility Robotics",
       "url": "https://www.agilityrobotics.com",
-      "duration": "October 2024 – Present",
+      "start": "2024",
+      "end": "Present",
       "time": "Full Time",
       "visible": true,
       "highlights": [
@@ -32,7 +33,8 @@
       "title": "Creative Producer",
       "company": "Agility Robotics",
       "url": "https://www.agilityrobotics.com",
-      "duration": "August 2022 – October 2024",
+      "start": "2022",
+      "end": "2024",
       "time": "Full Time",
       "visible": true,
       "highlights": [
@@ -45,7 +47,8 @@
       "title": "UI/UX Designer",
       "company": "Carnegie Mellon University",
       "url": "https://www.cmu.edu",
-      "duration": "July 2025 – December 2025",
+      "start": "2025",
+      "end": "2025",
       "time": "Freelance",
       "visible": true,
       "highlights": [
@@ -57,7 +60,8 @@
       "title": "Brand Manager",
       "company": "Active911",
       "url": "https://www.active911.com",
-      "duration": "March 2021 – June 2022",
+      "start": "2021",
+      "end": "2022",
       "time": "Full Time",
       "visible": true,
       "highlights": [
@@ -70,7 +74,8 @@
       "title": "Video Producer",
       "company": "Oregon State University",
       "url": "https://communications.oregonstate.edu/osp",
-      "duration": "January 2019 – March 2021",
+      "start": "2019",
+      "end": "2021",
       "time": "Part Time",
       "visible": false,
       "highlights": [
@@ -82,13 +87,14 @@
     {
       "degree": "Bachelor of Fine Arts, Digital Communication Arts",
       "institution": "Oregon State University",
-      "startDate": "2017",
-      "endDate": "2021"
+      "start": "2017",
+      "end": "2021"
     },
     {
       "degree": "Certificate, Programming Fundamentals",
       "institution": "Oregon State University",
-      "issued": "2025"
+      "start": "2025",
+      "end": "2025"
     }
   ],
   "skills": [
