@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 /**
@@ -102,10 +102,38 @@ function readTokens() {
   return next
 }
 
-// Read once on mount. The stylesheet is imported by App, so the custom
-// properties are resolved by the time this component first renders.
+/**
+ * Token values for the theme currently in effect, re-read whenever that
+ * changes. The swatch chips are painted with `var(--token)` so they follow the
+ * theme on their own, but the printed hex values and measured ratios are
+ * JavaScript reads — without this they would stay frozen at whatever the theme
+ * was when the page mounted, and silently disagree with the swatch beside them.
+ *
+ * Two signals, because there are two ways the palette moves: the toggle stamps
+ * data-theme on <html>, and with no explicit choice stored the OS preference
+ * drives it with no attribute change at all.
+ */
 function useTokens() {
-  const [tokens] = useState(readTokens)
+  const [tokens, setTokens] = useState(readTokens)
+
+  useEffect(() => {
+    const reread = () => setTokens(readTokens())
+
+    const observer = new MutationObserver(reread)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    })
+
+    const mq = window.matchMedia('(prefers-color-scheme: light)')
+    mq.addEventListener('change', reread)
+
+    return () => {
+      observer.disconnect()
+      mq.removeEventListener('change', reread)
+    }
+  }, [])
+
   return tokens
 }
 
