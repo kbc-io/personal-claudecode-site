@@ -159,6 +159,13 @@
   color: var(--accent);
 }
 
+/* Location + local time. Scoped to neither the sidebar nor the footer, since
+   the contact block renders in both. */
+.location-time {
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
 .main-content {
   flex: 1;
   min-width: 0;

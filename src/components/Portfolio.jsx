@@ -121,10 +121,10 @@ function Portfolio() {
             aria-label="Grid view"
           >
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="1" y="1" width="6" height="6" stroke="currentColor" strokeWidth="1.5"/>
-              <rect x="9" y="1" width="6" height="6" stroke="currentColor" strokeWidth="1.5"/>
-              <rect x="1" y="9" width="6" height="6" stroke="currentColor" strokeWidth="1.5"/>
-              <rect x="9" y="9" width="6" height="6" stroke="currentColor" strokeWidth="1.5"/>
+              <rect x="1" y="1" width="6" height="6" stroke="currentColor" strokeWidth="1.25"/>
+              <rect x="9" y="1" width="6" height="6" stroke="currentColor" strokeWidth="1.25"/>
+              <rect x="1" y="9" width="6" height="6" stroke="currentColor" strokeWidth="1.25"/>
+              <rect x="9" y="9" width="6" height="6" stroke="currentColor" strokeWidth="1.25"/>
             </svg>
           </button>
           <button
@@ -135,9 +135,9 @@ function Portfolio() {
             aria-label="List view"
           >
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <line x1="5" y1="4" x2="15" y2="4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"/>
-              <line x1="5" y1="8" x2="15" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"/>
-              <line x1="5" y1="12" x2="15" y2="12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"/>
+              <line x1="5" y1="4" x2="15" y2="4" stroke="currentColor" strokeWidth="1.25" strokeLinecap="square"/>
+              <line x1="5" y1="8" x2="15" y2="8" stroke="currentColor" strokeWidth="1.25" strokeLinecap="square"/>
+              <line x1="5" y1="12" x2="15" y2="12" stroke="currentColor" strokeWidth="1.25" strokeLinecap="square"/>
               <rect x="1" y="2.5" width="2.5" height="2.5" fill="currentColor"/>
               <rect x="1" y="6.5" width="2.5" height="2.5" fill="currentColor"/>
               <rect x="1" y="10.5" width="2.5" height="2.5" fill="currentColor"/>
