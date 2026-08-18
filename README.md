@@ -108,24 +108,27 @@ Notable constraints baked into the tokens:
 ### Fonts
 
 IBM Plex Sans and Mono are **self-hosted** from `public/fonts` (Latin-1
-subsets, six faces, ~116 KB), not loaded from Google Fonts.
+subsets, six faces, ~116 KB), not loaded from Google Fonts. This keeps a
+render-blocking third-party stylesheet off the critical path — the page makes
+no external font requests — and the two above-the-fold faces are preloaded in
+`index.html`. Files come from the `@ibm/plex-sans` and `@ibm/plex-mono` npm
+packages; the OFL license ships alongside them.
 
-That is not a preference — it is required. Google Fonts strips IBM Plex's
-stylistic sets; its served latin subset exposes only
-`ccmp dnom frac liga numr`, so `font-feature-settings: 'ss01'` silently did
-nothing. The official release carries them:
+A second benefit, currently unused: these are the official IBM Plex builds,
+which retain the stylistic sets. The Google Fonts builds strip them — their
+latin subset exposes only `ccmp dnom frac liga numr`, so a
+`font-feature-settings` rule against it fails silently.
 
-| Feature | Substitution |
-| ------- | ------------ |
-| `ss01`  | single-storey `a` |
-| `ss02`  | single-storey `g` |
+| Feature | Substitution | Status |
+| ------- | ------------ | ------ |
+| `ss01`  | single-storey `a` | available, off |
+| `ss02`  | single-storey `g` | available, off |
 
-Both are enabled on `body`, so they inherit everywhere including the mono
-faces, which carry the same two features. Files come from the `@ibm/plex-sans`
-and `@ibm/plex-mono` npm packages; the OFL license ships alongside them.
+To enable, add `font-feature-settings: 'ss01' 1, 'ss02' 1` to `body`. Both
+families carry the same two features, so it inherits to the mono faces too.
 
-Self-hosting also removes a render-blocking third-party stylesheet from the
-critical path. The two above-the-fold faces are preloaded in `index.html`.
+No italic faces are vendored, and `font-synthesis: none` is set — markdown
+`*emphasis*` in a case-study blurb will render upright rather than slanted.
 
 ### Theming
 
