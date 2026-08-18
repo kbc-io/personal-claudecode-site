@@ -534,8 +534,7 @@
   background-color: transparent;
   border: 1px solid var(--border-interactive);
   overflow: hidden;
-  transition: background-color var(--duration-base), border-color var(--duration-base),
-    color var(--duration-base);
+  transition: border-color var(--duration-base), box-shadow var(--duration-base);
   display: flex;
   animation: fadeInDown var(--duration-slow) var(--ease-out) both;
 }
@@ -548,28 +547,16 @@
   flex-direction: row;
 }
 
-/* Hover flips the card to the opposite theme.
-   Rather than restyling each child, the palette tokens are redefined on the
-   card itself — custom properties inherit, so .project-title,
-   .project-description, and .tag re-resolve against the new values with no
-   extra selectors. The values come from the other theme's palette, which is
-   already contrast-checked, so the flipped card is as legible as the page.
-   --accent flips too, otherwise a focused-and-hovered card would draw a
-   dark-theme focus ring on a light card at 1.6:1.
-   Applies to :focus-visible as well, so keyboard navigation gets the same
-   feedback as the mouse rather than only the focus ring. */
-.project-grid-card:is(:hover, :focus-visible),
-.project-card:is(:hover, :focus-visible) {
-  --bg-primary: var(--inverse-bg);
-  --text-primary: var(--inverse-text);
-  --text-secondary: var(--inverse-text-secondary);
-  --border-subtle: var(--inverse-border);
-  --surface-2: var(--inverse-surface);
-  --accent: var(--inverse-accent);
-
-  background-color: var(--inverse-bg);
-  border-color: var(--inverse-border);
-  color: var(--inverse-text);
+/* The accent ring sits OUTSIDE the card rather than replacing its border.
+   Card thumbnails can have white backgrounds, and the accent clears only
+   1.6:1 against white — an accent border would have gone soft along the
+   image edge. Outside, it always meets the dark page, so the whole ring
+   reads at full contrast. box-shadow doesn't affect layout, so the 2px
+   costs nothing against the 12px grid gap. */
+.project-grid-card:hover,
+.project-card:hover {
+  border-color: var(--border-subtle);
+  box-shadow: 0 0 0 2px var(--accent);
 }
 
 .project-grid-image,
@@ -722,8 +709,10 @@
   margin-bottom: var(--space-3);
 }
 
+/* Matches the primary nav: secondary → primary text, not the accent. The
+   back link is navigation, so it behaves like navigation. */
 .back-link:hover {
-  color: var(--accent);
+  color: var(--text-primary);
 }
 
 .back-arrow {

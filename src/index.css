@@ -94,16 +94,6 @@
   /* Scrim under the sticky case-study header — a fade to --bg-primary. */
   --scrim: rgba(10, 10, 10, 0.75);
 
-  /* Inverse palette — the opposite theme's validated values, used by the
-     card hover flip. Kept as tokens so the flip reuses colors that have
-     already been contrast-checked rather than inventing new ones. */
-  --inverse-bg: #FAFAFA;
-  --inverse-text: #0A0A0A;
-  --inverse-text-secondary: #5A5A5A;
-  --inverse-border: #C9C9C9;
-  --inverse-surface: rgba(0, 0, 0, 0.05);
-  --inverse-accent: #0E7C77;
-
   /* The lightbox keeps a dark backdrop in both themes, so its controls are
      pinned to light-on-dark rather than following --text-*. */
   --lightbox-fg: rgba(255, 255, 255, 0.72);
@@ -237,14 +227,6 @@
     --accent-dim: rgba(14, 124, 119, 0.14);
 
     --scrim: rgba(250, 250, 250, 0.75);
-
-    /* Inverse palette — see the note on :root. */
-    --inverse-bg: #0A0A0A;
-    --inverse-text: #ffffff;
-    --inverse-text-secondary: #ABABAB;
-    --inverse-border: #383838;
-    --inverse-surface: rgba(255, 255, 255, 0.05);
-    --inverse-accent: #43E0DB;
   }
 }
 
@@ -268,14 +250,6 @@
   --accent-dim: rgba(14, 124, 119, 0.14);
 
   --scrim: rgba(250, 250, 250, 0.75);
-
-  /* Inverse palette — see the note on :root. */
-  --inverse-bg: #0A0A0A;
-  --inverse-text: #ffffff;
-  --inverse-text-secondary: #ABABAB;
-  --inverse-border: #383838;
-  --inverse-surface: rgba(255, 255, 255, 0.05);
-  --inverse-accent: #43E0DB;
 }
 
 :root[data-theme="dark"] {
@@ -297,16 +271,6 @@
   --accent-dim: rgba(67, 224, 219, 0.16);
 
   --scrim: rgba(10, 10, 10, 0.75);
-
-  /* Inverse palette — the opposite theme's validated values, used by the
-     card hover flip. Kept as tokens so the flip reuses colors that have
-     already been contrast-checked rather than inventing new ones. */
-  --inverse-bg: #FAFAFA;
-  --inverse-text: #0A0A0A;
-  --inverse-text-secondary: #5A5A5A;
-  --inverse-border: #C9C9C9;
-  --inverse-surface: rgba(0, 0, 0, 0.05);
-  --inverse-accent: #0E7C77;
 }
 
 body {
