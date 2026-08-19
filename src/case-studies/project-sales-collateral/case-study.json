@@ -29,11 +29,13 @@
       },
       {
         "label": "Agility - Pre Rebrand",
-        "prefix": "agility-collateral-"
+        "prefix": "agility-collateral-",
+        "visible": false
       },
       {
         "label": "Active911",
-        "prefix": "A911-"
+        "prefix": "A911-",
+        "visible": false
       }
     ]
   }

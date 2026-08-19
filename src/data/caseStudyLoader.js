@@ -32,16 +32,21 @@ function resolveImages(slug, data) {
       .filter(([path]) => path.startsWith(folderPrefix))
       .sort(([a], [b]) => a.localeCompare(b))
 
-    const groups = (data.caseStudy?.groups || []).map(group => ({
-      label: group.label,
-      prefix: group.prefix,
-      images: allEntries
-        .filter(([path]) => {
-          const filename = path.split('/').pop()
-          return filename.toLowerCase().startsWith(group.prefix.toLowerCase())
-        })
-        .map(([, url]) => ({ src: url, caption: '' }))
-    }))
+    // A group may be hidden with `"visible": false`, mirroring the flag on a
+    // whole case study. Its images stay in the folder so it can be restored by
+    // flipping the flag rather than re-deriving the prefix.
+    const groups = (data.caseStudy?.groups || [])
+      .filter(group => group.visible !== false)
+      .map(group => ({
+        label: group.label,
+        prefix: group.prefix,
+        images: allEntries
+          .filter(([path]) => {
+            const filename = path.split('/').pop()
+            return filename.toLowerCase().startsWith(group.prefix.toLowerCase())
+          })
+          .map(([, url]) => ({ src: url, caption: '' }))
+      }))
 
     const flatImages = groups.flatMap(g => g.images)
 
