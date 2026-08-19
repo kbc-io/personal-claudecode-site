@@ -1,14 +1,14 @@
 {
   "title": "AI Learning App",
   "description": "UI/UX overhaul and design system for an AI-powered learning platform at Carnegie Mellon.",
-  "image": "cmu-mockup.webp",
+  "image": "05-browser-keywords.webp",
   "visible": true,
   "tags": [
     "Product"
   ],
   "order": 1,
   "caseStudy": {
-    "heroImage": "cmu-app-01.webp",
+    "heroImage": "01-hero-research.webp",
     "blurb": "A six-month UI/UX overhaul of an AI-powered learning platform for Carnegie Mellon's Tepper School of Business. I led the redesign end to end, rebuilding the experience around a scalable design system: a unified color and type foundation, reusable button, card, menu, and panel components, and redesigned core flows for campaign creation, bidding, and performance analytics.",
     "overview": "Tepper uses a simulation platform to teach digital advertising. Students run ad campaigns against a model of a real auction market — setting budgets, placing bids, and reading performance data back to adjust their strategy. The teaching material was strong. The interface it ran on had grown feature by feature over several years, and it had stopped keeping up.\n\nI came on as the sole designer for six months to redesign that interface and hand the result to the engineering team as a working system rather than a set of screens.",
     "role": "UI/UX Designer",
@@ -35,44 +35,64 @@
     "solution": "The delivered work was a complete Figma design system plus the redesigned flows built from it. The system covers the color and type foundation, a component library with documented states, and the page-level patterns — hero and title treatments, module content layouts, and the analytics views.\n\nThe handoff was structured for a TypeScript/React codebase: components named and organised the way they would be implemented, states enumerated rather than implied, and specifications detailed enough to build from without a follow-up conversation for every screen.",
     "images": [
       {
-        "src": "cmu-app-02.webp",
-        "caption": "Ad campaign creation interface"
+        "src": "01-hero-research.webp",
+        "caption": "Marketing Research Assistant — the AI agent that opens the lab"
       },
       {
-        "src": "cmu-app-03.webp",
-        "caption": "Objectives and learning outcomes page"
+        "src": "02-hero-keywords.webp",
+        "caption": "Keyword Research Tool: estimated bid range, volume, and competition"
       },
       {
-        "src": "cmu-app-07.webp",
-        "caption": "Lesson content module: image and copy layout"
+        "src": "03-hero-course-complete.webp",
+        "caption": "Lab completion summary with results and recommended next courses"
       },
       {
-        "src": "cmu-app-08.webp",
-        "caption": "Campaign performance analytics"
+        "src": "04-hero-confirmation.webp",
+        "caption": "Confirmation step before a campaign is submitted"
       },
       {
-        "src": "cmu-app-09.webp",
-        "caption": "Bid management and placement view"
+        "src": "05-browser-keywords.webp",
+        "caption": "Keyword research in context"
       },
       {
-        "src": "cmu-app-10.webp",
-        "caption": "Page hero and title system"
+        "src": "06-browser-campaign.webp",
+        "caption": "Campaign submission: headline, audience, and bid"
       },
       {
-        "src": "cmu-app-11.webp",
-        "caption": "Button and icon-button component states"
+        "src": "07-square-course-rail.webp",
+        "caption": "Course outline and progress rail across the five modules"
       },
       {
-        "src": "cmu-app-12.webp",
-        "caption": "Navigation menu component"
+        "src": "08-square-chat.webp",
+        "caption": "Multi-agent research chat"
       },
       {
-        "src": "cmu-app-13.webp",
-        "caption": "Color palette and design tokens"
+        "src": "09-square-design-tokens.webp",
+        "caption": "Color tokens and type scale — action blue carries every interactive state, CMU red is reserved for brand"
       },
       {
-        "src": "cmu-app-14.webp",
-        "caption": "Typography and heading specimens"
+        "src": "10-detail-buttons.webp",
+        "caption": "Button variants across default, hover, and disabled"
+      },
+      {
+        "src": "11-detail-form-inputs.webp",
+        "caption": "Form inputs bound to semantic tokens"
+      },
+      {
+        "src": "12-detail-typography.webp",
+        "caption": "Type scale — one family, six roles"
+      },
+      {
+        "src": "13-detail-empty-states.webp",
+        "caption": "Empty, zero-result, and failure states, each with one clear way forward"
+      },
+      {
+        "src": "14-social-campaign.webp",
+        "caption": "Campaign submission"
+      },
+      {
+        "src": "15-social-performance.webp",
+        "caption": "Performance details"
       }
     ],
     "results": [
