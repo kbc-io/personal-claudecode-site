@@ -90,6 +90,15 @@ The order in that constant is the order they appear, not alphabetical.
 > leaving duplicates like `image 2.webp` around — they render as duplicate
 > tiles, which is exactly what happened before.
 
+A `multi-gallery` group can be hidden without deleting anything by setting
+`"visible": false` on it, the same flag a whole case study uses. Its images
+stay in the folder, so restoring the row is a matter of flipping the flag
+rather than working out the prefix again:
+
+```jsonc
+{ "label": "Active911", "prefix": "A911-", "visible": false }
+```
+
 ## Design system
 
 `/system` documents the live tokens — color, type, spacing, motion, and
