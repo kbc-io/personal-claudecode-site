@@ -1340,6 +1340,20 @@
     --sidebar-width: 280px;
   }
 
+  /* Never more than two columns below desktop.
+     The track floor is whichever is larger: 150px, or half the row minus a
+     gap. The half-row term is what caps the count — three tracks of that size
+     can never fit — while the 150px floor drops the grid to a single column
+     once two would be too cramped, on the narrowest phones.
+     Previously the mobile rule used a flat 150px floor, which let four
+     columns fit between 664px and 768px and made the cards too narrow. */
+  .portfolio-grid-view {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(max(150px, calc(50% - var(--space-3))), 1fr)
+    );
+  }
+
   .lightbox-overlay {
     padding: var(--space-12) var(--space-16);
   }
@@ -1443,7 +1457,6 @@
   }
 
   .portfolio-grid-view {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: var(--space-2);
   }
 
